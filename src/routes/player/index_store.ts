@@ -12,7 +12,7 @@ export const playerList = derived([apiData, filterString], ([$apiData, $filterSt
   if ($apiData) {
     if ($filterString) {
       return $apiData.filter(
-        s => [s.name, s.latest_team].filter(
+        s => [s.name, s.latest.team].filter(
           f => f.toLowerCase().includes($filterString.toLowerCase())
         ).length > 0
       )
