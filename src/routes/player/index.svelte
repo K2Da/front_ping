@@ -1,6 +1,13 @@
 <script lang="ts">
-  import { apiData, playerList, filterString, showRecord, showSns, showTournament } from './index_store'
+  import { page_size, apiData, playerList, filterString, showRecord, showSns, showTournament, pageNo } from './index_store'
   import { onMount } from 'svelte'
+  import { base } from '$app/paths'
+  import Pager from './Pager.svelte';
+
+  function filter(event) {
+    $filterString = event.target.value
+    $pageNo = 1
+  }
 
   onMount(async () => {
     fetch("/center_pin_g/player/players.json")
@@ -13,15 +20,15 @@
 <main>
   <h1>Center Pin(g)</h1>
   <nav>
-    <a rel="external" href="https://k2da.github.io/center_pin_g/index.html">top </a> |
-    <a rel="external" href="https://k2da.github.io/center_pin_g/tournament/index.html">大会</a>
+    <a rel="external" href="{base}/index.html">top </a> |
+    <a rel="external" href="{base}/tournament/index.html">大会</a>
     | プレイヤー
   </nav>
 
   <h2>プレイヤー</h2>
 
   <div>
-    <input bind:value={$filterString} placeholder="プレイヤー名 / チーム名" style="display: inline-block "/>
+    <input on:input={filter} placeholder="プレイヤー名 / チーム名" style="display: inline-block "/>
     <input id="tournament" type="checkbox" bind:checked={$showTournament} />
     <label for="tournament">最新参加大会</label>
     <input id="record" type="checkbox" bind:checked={$showRecord} />
@@ -30,10 +37,12 @@
     <label for="sns">アカウント</label>
   </div>
 
+  <Pager />
+
   <table style="table-layout: auto">
     <thead>
       <tr>
-        <th></th>
+        <th colspan="2"></th>
         {#if $showTournament}
           <th colspan="3">最新参加大会</th>
         {/if}
@@ -46,6 +55,7 @@
         <th></th>
       </tr>
       <tr>
+        <th>No.</th>
         <th style="text-align: left">名前</th>
         {#if $showTournament}
           <th style="text-align: left">チーム</th>
@@ -66,39 +76,45 @@
       </tr>
     </thead>
     <tbody>
-      {#each $playerList as player}
-        <tr>
-          <td style="text-align: left"><a rel="external" href="./{player.hash}.html">{player.name}</a></td>
-          {#if $showTournament}
-            <td style="text-align: left">{player.latest.team}</td>
-            <td style="text-align: left">{player.latest.tournament}</td>
-            <td style="text-align: left">{new Date(player.latest.date).toLocaleDateString()}</td>
-          {/if}
-          {#if $showRecord}
-            <td>{player.entries}</td>
-            <td>{player.win}</td>
-            <td>{player.lose}</td>
-          {/if}
-          {#if $showSns }
-            <td style="text-align: left">
-              {#if player.data && player.data.twitter}
-                <i class="fab fa-twitter"></i> <a href="https://twitter.com/{player.data.twitter}">@{player.data.twitter}</a>
-              {/if}
-            </td>
-            <td style="text-align: left">
-              {#if player.data && player.data.youtube}
-                <i class="fab fa-youtube"></i> <a href="https://www.youtube.com/{player.data.youtube[0]}">{player.data.youtube[1]}</a>
-              {/if}
-            </td>
-            <td style="text-align: left">
-              {#if player.data && player.data.twitch}
-                <i class="fab fa-twitch"></i> <a href="https://www.twitch.tv/{player.data.twitch}">{player.data.twitch}</a>
-              {/if}
-            </td>
-          {/if}
-          <td>{player.rating.toLocaleString()}</td>
-        </tr>
+      {#each $playerList as player, i}
+        {#if ($pageNo - 1) * page_size <= i && i < $pageNo * page_size}
+          <tr>
+            <td>{(i + 1).toLocaleString()}</td>
+            <td style="text-align: left"><a rel="external" href="./{player.hash}.html">{player.name}</a></td>
+            {#if $showTournament}
+              <td style="text-align: left">{player.latest.team}</td>
+              <td style="text-align: left">{player.latest.tournament}</td>
+              <td style="text-align: left">{new Date(player.latest.date).toLocaleDateString()}</td>
+            {/if}
+            {#if $showRecord}
+              <td>{player.entries}</td>
+              <td>{player.win}</td>
+              <td>{player.lose}</td>
+            {/if}
+            {#if $showSns }
+              <td style="text-align: left">
+                {#if player.data && player.data.twitter}
+                  <i class="fab fa-twitter"></i> <a href="https://twitter.com/{player.data.twitter}">@{player.data.twitter}</a>
+                {/if}
+              </td>
+              <td style="text-align: left">
+                {#if player.data && player.data.youtube}
+                  <i class="fab fa-youtube"></i> <a href="https://www.youtube.com/{player.data.youtube[0]}">{player.data.youtube[1]}</a>
+                {/if}
+              </td>
+              <td style="text-align: left">
+                {#if player.data && player.data.twitch}
+                  <i class="fab fa-twitch"></i> <a href="https://www.twitch.tv/{player.data.twitch}">{player.data.twitch}</a>
+                {/if}
+              </td>
+            {/if}
+            <td>{player.rating.toLocaleString()}</td>
+          </tr>
+        {/if}
       {/each}
     </tbody>
   </table>
+
+  <Pager />
+
 </main>
