@@ -11,8 +11,9 @@ const config = {
     appDir: 'app',
     paths: {
       base: '/center_pin_g'
-    }
-  }
+    },
+    serviceWorker: { register: false }
+  },
 };
 
 export default config;
