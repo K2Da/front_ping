@@ -1,6 +1,6 @@
 {
   "name": "front-ping",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "devDependencies": {
     "@sveltejs/adapter-static": "next",
     "@sveltejs/kit": "next",

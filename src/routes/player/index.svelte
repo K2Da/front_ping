@@ -2,11 +2,16 @@
   import { page_size, apiData, playerList, filterString, showRecord, showSns, showTournament, pageNo } from './index_store'
   import { onMount } from 'svelte'
   import { base } from '$app/paths'
-  import Pager from './Pager.svelte';
+  import Pager from './Pager.svelte'
+  import { dev } from '$app/env'
 
   function filter(event) {
     $filterString = event.target.value
     $pageNo = 1
+  }
+
+  function player_dir() {
+    return dev ? 'file:///home/kyokkyo/Workspace/center_ping/out/player' : '.'
   }
 
   onMount(async () => {
@@ -80,7 +85,7 @@
         {#if ($pageNo - 1) * page_size <= i && i < $pageNo * page_size}
           <tr>
             <td>{(i + 1).toLocaleString()}</td>
-            <td style="text-align: left"><a rel="external" href="./{player.hash}.html">{player.name}</a></td>
+            <td style="text-align: left"><a rel="external" href="{player_dir()}/{player.hash}.html">{player.name}</a></td>
             {#if $showTournament}
               <td style="text-align: left">{player.latest.team}</td>
               <td style="text-align: left">{player.latest.tournament}</td>
