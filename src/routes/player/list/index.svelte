@@ -3,6 +3,7 @@
   import { onMount } from 'svelte'
   import { base } from '$app/paths'
   import Pager from '../Pager.svelte'
+  import Header from '../Header.svelte'
 
   function filter(event) {
     $filterString = event.target.value
@@ -17,14 +18,9 @@
   })
 </script>
 
-<main>
-  <h1>Center Pin(g)</h1>
-  <nav>
-    <a rel="external" href="{base}/index.html">top </a> |
-    <a rel="external" href="{base}/tournament/index.html">大会</a>
-    | プレイヤー
-  </nav>
+<Header title="プレイヤー一覧" type="article" url="player/list" description="ポケモンユナイトの大会のプレイヤーの一覧" />
 
+<main>
   <h2>プレイヤー</h2>
 
   <div>
