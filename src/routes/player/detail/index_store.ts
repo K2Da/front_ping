@@ -1,3 +1,4 @@
 import { writable } from 'svelte/store'
 
-export const player_hash = writable('')
+export const playerHash = writable('')
+export const apiData = writable(null)
