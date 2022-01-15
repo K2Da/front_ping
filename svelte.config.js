@@ -9,9 +9,7 @@ const config = {
     adapter: adapter(),
     target: '#svelte',
     appDir: 'app',
-    paths: {
-      base: '/center_pin_g'
-    },
+    paths: { base: '/center_pin_g' },
     serviceWorker: { register: false }
   },
 };

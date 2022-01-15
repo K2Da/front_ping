@@ -2,7 +2,7 @@
   import { onDestroy, onMount } from "svelte";
   import { playerHash, apiData } from './index_store'
   import { base } from '$app/paths'
-  import Header from '../Header.svelte'
+  import Header from '../../Header.svelte'
   import { goto } from '$app/navigation'
 
   onMount(fetchPlayer)
@@ -20,7 +20,6 @@
   async function onPlayerChange(event) {
     event.preventDefault()
     apiData.set(null)
-    console.log(event.target)
     await goto(`${base}/player/detail?p=${event.target.dataset.player}`)
     await fetchPlayer()
   }
@@ -30,30 +29,50 @@
   <Header title="{$apiData.player.collated_name}" type="article" url="player/detail?q={$playerHash}" description="" />
 
   <h2>{$apiData.player.collated_name}</h2>
-  <dl>
-    {#if $apiData.data}
-      <dt>大会エントリー名</dt>
-      <dd>{[...new Set($apiData.tournaments.map((t) => t.member_name))].join(', ')}</dd>
-    {/if}
-    <dt>戦績</dt>
-    <dd>{$apiData.player.entries}大会エントリー {$apiData.player.win}勝 {$apiData.player.lose}敗</dd>
-    <dt>レート</dt>
-    <dd>{$apiData.player.rating.toLocaleString()}</dd>
-    {#if $apiData.data}
-      {#if $apiData.data.twitter}
-        <dt><i class="fab fa-twitter"></i> twitter</dt>
-        <dd><a href="https://twiter.com/{$apiData.data.twitter}">@{$apiData.data.twitter}</a></dd>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 20%; text-align: left">基本情報</th>
+        <th style="width: 80%; text-align: left"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {#if $apiData.data}
+        <tr>
+          <th style="text-align: left">大会エントリー名</th>
+          <td style="text-align: left">{[...new Set($apiData.tournaments.map((t) => t.member_name))].join(', ')}</td>
+        </tr>
       {/if}
-      {#if $apiData.data.youtube}
-        <dt><i class="fab fa-youtube"></i> youtube</dt>
-        <dd><a href="https://www.youtube.com/{$apiData.data.youtube[0]}">{$apiData.data.youtube[1]}</a></dd>
+      <tr>
+        <th style="text-align: left">戦績</th>
+        <td style="text-align: left">{$apiData.player.entries}大会エントリー {$apiData.player.win}勝 {$apiData.player.lose}敗</td>
+      </tr>
+      <tr>
+        <th style="text-align: left">レート</th>
+        <td style="text-align: left">{$apiData.player.rating.toLocaleString()}</td>
+      </tr>
+      {#if $apiData.data}
+        {#if $apiData.data.twitter}
+          <tr>
+            <th style="text-align: left"><i class="fab fa-twitter"></i> twitter</th>
+            <td style="text-align: left"><a href="https://twiter.com/{$apiData.data.twitter}">@{$apiData.data.twitter}</a></td>
+          </tr>
+        {/if}
+        {#if $apiData.data.youtube}
+          <tr>
+            <th style="text-align: left"><i class="fab fa-youtube"></i> youtube</th>
+            <td style="text-align: left"><a href="https://www.youtube.com/{$apiData.data.youtube[0]}">{$apiData.data.youtube[1]}</a></td>
+          </tr>
+        {/if}
+        {#if $apiData.data.twitch}
+          <tr>
+            <th style="text-align: left"><i class="fab fa-twitch"></i> twitch</th>
+            <td style="text-align: left"><a href="https://www.twitch.tv/{$apiData.data.twitch}">{$apiData.data.twitch}</a></td>
+          </tr>
+        {/if}
       {/if}
-      {#if $apiData.data.twitch}
-        <dt><i class="fab fa-twitch"></i> twitch</dt>
-        <dd><a href="https://www.twitch.tv/{$apiData.data.twitch}">{$apiData.data.twitch}</a></dd>
-      {/if}
-    {/if}
-  </dl>
+    </tbody>
+  </table>
   <h3>参加大会</h3>
   <table>
     <thead>
@@ -70,7 +89,7 @@
     <tbody>
     {#each $apiData.tournaments as t}
       <tr>
-        <td style="text-align: left"><a href="#<%= t.tournament_key %>">{t.tournament_name}</a></td>
+        <td style="text-align: left"><a href="#{t.tournament_key}">{t.tournament_name}</a></td>
           <td>{new Date(t.tournament_date).toLocaleDateString()}</td>
           <td>{t.team_result}位</td>
           <td>{t.rating.toLocaleString()}</td>
