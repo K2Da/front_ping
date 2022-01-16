@@ -12,7 +12,7 @@
 
     fetch(`/center_pin_g/tournament/${$tournamentKey}.json`)
       .then(response => response.json())
-      .then(data => { console.log(data); apiData.set(data) })
+      .then(data => { apiData.set(data) })
       .catch(() => [])
   }
 </script>
@@ -52,7 +52,7 @@
     <tbody>
       {#each $apiData.teams as t}
         <tr>
-          <td>{t.team_rank}位</td>
+          <td>{t.team_rank === 0 ? '-' : `${t.team_rank}位`}</td>
           <td style="text-align: left">{t.team_name}</td>
           <td style="text-align: left">
             {#each t.members as member, index}

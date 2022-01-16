@@ -1,15 +1,21 @@
+<script lang="ts" context="module">
+  import { currentUrl } from './index_store'
+  export async function load(arg: { url: URL }): Promise<{ status: number}> {
+    currentUrl.set(arg.url.toString())
+    return { status: 200 }
+  }
+</script>
+
 <script lang="ts">
-  import { onDestroy, onMount } from "svelte";
+  import { onDestroy } from "svelte";
   import { playerHash, apiData } from './index_store'
   import { base } from '$app/paths'
   import Header from '../../Header.svelte'
-  import { goto } from '$app/navigation'
 
-  onMount(fetchPlayer)
   onDestroy(() => apiData.set(null))
 
-  async function fetchPlayer() {
-    playerHash.set(new URLSearchParams(window.location.search).get('p'))
+  async function fetchPlayer(url) {
+    playerHash.set(new URLSearchParams(new URL(url).search).get('p'))
 
     fetch(`/center_pin_g/player/${$playerHash}.json`)
       .then(response => response.json())
@@ -17,12 +23,7 @@
       .catch(() => [])
   }
 
-  async function onPlayerChange(event) {
-    event.preventDefault()
-    apiData.set(null)
-    await goto(`${base}/player/detail?p=${event.target.dataset.player}`)
-    await fetchPlayer()
-  }
+  $: fetchPlayer($currentUrl)
 </script>
 
 {#if $apiData}
@@ -98,7 +99,7 @@
           <td style="text-align: left">
           {#each t.mates_hash as member, index}
             {#if index !== 0}, {/if}
-            <a href="{base}/player/detail?p={member[1]}" data-player="{member[1]}" on:click={onPlayerChange}>{member[0]}</a>
+            <a href="{base}/player/detail?p={member[1]}">{member[0]}</a>
           {/each}
         </td>
       </tr>
@@ -146,7 +147,7 @@
               <td style="text-align: left">
                 {#each m.opponents_hash as member, index}
                   {#if index !== 0}, {/if}
-                  <a href="{base}/player/detail?p={member[1]}" data-player="{member[1]}" on:click={onPlayerChange}>{member[0]}</a>
+                  <a href="{base}/player/detail?p={member[1]}">{member[0]}</a>
                 {/each}
               </td>
             </tr>

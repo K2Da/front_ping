@@ -19,8 +19,8 @@
 <table style="table-layout: auto">
   <thead>
   <tr>
-    <th style="text-align: left">大会名</th>
     <th>開催日</th>
+    <th style="text-align: left">大会名</th>
     <th>参加チーム</th>
     <th>参加人数</th>
   </tr>
@@ -29,8 +29,8 @@
     {#if $apiData.tournaments}
       {#each $apiData.tournaments as row}
         <tr>
-          <td style="text-align: left"><a href="{base}/tournament/detail?t={row.key}">{row.name}</a></td>
           <td>{new Date(row.date).toLocaleDateString()}</td>
+          <td style="text-align: left"><a href="{base}/tournament/detail?t={row.key}">{row.name}</a></td>
           <td>{row.team_count.toLocaleString()}</td>
           <td>{row.player_count.toLocaleString()}</td>
         </tr>
