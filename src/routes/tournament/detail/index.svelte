@@ -46,6 +46,7 @@
     <tr>
       <th>結果</th>
       <th style="text-align: left">チーム名</th>
+      <th style="text-align: center">戦績</th>
       <th style="text-align: left">メンバー</th>
     </tr>
     </thead>
@@ -54,6 +55,7 @@
         <tr>
           <td>{t.team_rank === 0 ? '-' : `${t.team_rank}位`}</td>
           <td style="text-align: left">{t.team_name}</td>
+          <td style="text-align: center">{t.win}勝 {t.lose}敗</td>
           <td style="text-align: left">
             {#each t.members as member, index}
               {#if index !== 0}, {/if}

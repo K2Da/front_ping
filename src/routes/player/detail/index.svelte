@@ -92,7 +92,7 @@
       <tr>
         <td style="text-align: left"><a href="#{t.tournament_key}">{t.tournament_name}</a></td>
           <td>{new Date(t.tournament_date).toLocaleDateString()}</td>
-          <td>{t.team_result}位</td>
+          <td>{t.team_result === 0 ? '-' : `${t.team_result}位`}</td>
           <td>{t.rating.toLocaleString()}</td>
           <td style="text-align: left">{t.team_name}</td>
           <td style="text-align: left">{t.member_name}</td>
@@ -143,7 +143,7 @@
                 {/if}
               </td>
               <td style="text-align: left">{m.opponent_team_name}</td>
-              <td>{m.opponent_team_rank}</td>
+              <td>{m.opponent_team_rank === 0 ? '-' : `${m.opponent_team_rank}位`}</td>
               <td style="text-align: left">
                 {#each m.opponents_hash as member, index}
                   {#if index !== 0}, {/if}

@@ -23,7 +23,7 @@
 <h2>プレイヤー</h2>
 
 <div>
-  <input on:input={filter} placeholder="プレイヤー名 / チーム名" style="display: inline-block "/>
+  <input on:input={filter} placeholder="プレイヤー名 / チーム名" style="display: inline-block " value={$filterString} />
   <input id="tournament" type="checkbox" bind:checked={$showTournament} />
   <label for="tournament">最新参加大会</label>
   <input id="record" type="checkbox" bind:checked={$showRecord} />

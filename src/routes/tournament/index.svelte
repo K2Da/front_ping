@@ -23,6 +23,7 @@
     <th style="text-align: left">大会名</th>
     <th>参加チーム</th>
     <th>参加人数</th>
+    <th>試合数</th>
   </tr>
   </thead>
   <tbody>
@@ -33,6 +34,7 @@
           <td style="text-align: left"><a href="{base}/tournament/detail?t={row.key}">{row.name}</a></td>
           <td>{row.team_count.toLocaleString()}</td>
           <td>{row.player_count.toLocaleString()}</td>
+          <td>{row.match_count.toLocaleString()}</td>
         </tr>
       {/each}
     {/if}
