@@ -1,19 +1,35 @@
+<script lang="ts" context="module">
+  import { currentUrl } from './index_store'
+  export async function load(arg: { url: URL }): Promise<{ status: number }> {
+    currentUrl.set(arg.url.toString())
+    return { status: 200 }
+  }
+</script>
+
 <script lang="ts">
-  import { onDestroy, onMount } from "svelte";
+  import { onDestroy } from 'svelte'
   import { tournamentKey, apiData } from './index_store'
   import { base } from '$app/paths'
   import Header from '../../Header.svelte'
+  import {browser} from "$app/env";
 
-  onMount(fetchPlayer)
   onDestroy(() => apiData.set(null))
 
-  async function fetchPlayer() {
+  async function fetchTournament() {
+    if (!browser) return
+
+    apiData.set(null)
     tournamentKey.set(new URLSearchParams(window.location.search).get('t'))
 
     fetch(`/center_pin_g/tournament/${$tournamentKey}.json`)
       .then(response => response.json())
       .then(data => { apiData.set(data) })
       .catch(() => [])
+  }
+
+  $: {
+    $currentUrl
+    fetchTournament()
   }
 </script>
 
@@ -59,7 +75,7 @@
           <td style="text-align: left">
             {#each t.members as member, index}
               {#if index !== 0}, {/if}
-              <a href="{base}/player/detail?p={member[1]}">{member[0]}</a>
+              <a href="{base}/player/detail/?p={member[1]}">{member[0]}</a>
             {/each}
           </td>
         </tr>

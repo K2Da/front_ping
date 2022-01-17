@@ -1,6 +1,6 @@
 <script lang="ts" context="module">
   import { currentUrl } from './index_store'
-  export async function load(arg: { url: URL }): Promise<{ status: number}> {
+  export async function load(arg: { url: URL }): Promise<{ status: number }> {
     currentUrl.set(arg.url.toString())
     return { status: 200 }
   }
@@ -10,12 +10,16 @@
   import { onDestroy } from "svelte";
   import { playerHash, apiData } from './index_store'
   import { base } from '$app/paths'
+  import { browser } from '$app/env';
   import Header from '../../Header.svelte'
 
   onDestroy(() => apiData.set(null))
 
-  async function fetchPlayer(url) {
-    playerHash.set(new URLSearchParams(new URL(url).search).get('p'))
+  async function fetchPlayer() {
+    if (!browser) return
+
+    apiData.set(null)
+    playerHash.set(new URLSearchParams(window.location.search).get('p'))
 
     fetch(`/center_pin_g/player/${$playerHash}.json`)
       .then(response => response.json())
@@ -23,11 +27,14 @@
       .catch(() => [])
   }
 
-  $: fetchPlayer($currentUrl)
+  $: {
+    $currentUrl
+    fetchPlayer()
+  }
 </script>
 
 {#if $apiData}
-  <Header title="{$apiData.player.collated_name}" type="article" url="player/detail?q={$playerHash}" description="" />
+  <Header title="{$apiData.player.collated_name}" type="article" url="player/detail/?q={$playerHash}" description="" />
 
   <h2>{$apiData.player.collated_name}</h2>
   <table>
@@ -84,7 +91,7 @@
       <th>rating</th>
       <th style="text-align: left">チーム名</th>
       <th style="text-align: left">エントリー名</th>
-      <th style="text-align: left">メンバー(同チーム回数)</th>
+      <th style="text-align: left">メンバー</th>
     </tr>
     </thead>
     <tbody>
@@ -99,7 +106,7 @@
           <td style="text-align: left">
           {#each t.mates_hash as member, index}
             {#if index !== 0}, {/if}
-            <a href="{base}/player/detail?p={member[1]}">{member[0]}</a>
+            <a href="{base}/player/detail/?p={member[1]}">{member[0]}</a>
           {/each}
         </td>
       </tr>
@@ -147,7 +154,7 @@
               <td style="text-align: left">
                 {#each m.opponents_hash as member, index}
                   {#if index !== 0}, {/if}
-                  <a href="{base}/player/detail?p={member[1]}">{member[0]}</a>
+                  <a href="{base}/player/detail/?p={member[1]}">{member[0]}</a>
                 {/each}
               </td>
             </tr>

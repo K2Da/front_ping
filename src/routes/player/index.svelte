@@ -76,7 +76,7 @@
       {#if ($pageNo - 1) * page_size <= i && i < $pageNo * page_size}
         <tr>
           <td>{(i + 1).toLocaleString()}</td>
-          <td style="text-align: left"><a href="{base}/player/detail?p={player.hash}">{player.name}</a></td>
+          <td style="text-align: left"><a href="{base}/player/detail/?p={player.hash}">{player.name}</a></td>
           {#if $showTournament}
             <td style="text-align: left">{player.latest.team}</td>
             <td style="text-align: left">{player.latest.tournament}</td>

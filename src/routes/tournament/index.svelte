@@ -31,7 +31,7 @@
       {#each $apiData.tournaments as row}
         <tr>
           <td>{new Date(row.date).toLocaleDateString()}</td>
-          <td style="text-align: left"><a href="{base}/tournament/detail?t={row.key}">{row.name}</a></td>
+          <td style="text-align: left"><a href="{base}/tournament/detail/?t={row.key}">{row.name}</a></td>
           <td>{row.team_count.toLocaleString()}</td>
           <td>{row.player_count.toLocaleString()}</td>
           <td>{row.match_count.toLocaleString()}</td>
