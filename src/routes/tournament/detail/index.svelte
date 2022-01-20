@@ -10,8 +10,9 @@
   import { onDestroy } from 'svelte'
   import { tournamentKey, apiData } from './index_store'
   import { base } from '$app/paths'
+  import { browser } from '$app/env'
   import Header from '../../Header.svelte'
-  import {browser} from "$app/env";
+  import PlaceHolder from '../../PlaceHolder.svelte'
 
   onDestroy(() => apiData.set(null))
 
@@ -61,18 +62,18 @@
     <thead>
     <tr>
       <th>結果</th>
-      <th style="text-align: left">チーム名</th>
-      <th style="text-align: center">戦績</th>
-      <th style="text-align: left">メンバー</th>
+      <th class="tal">チーム名</th>
+      <th>戦績</th>
+      <th class="tal">メンバー</th>
     </tr>
     </thead>
     <tbody>
       {#each $apiData.teams as t}
         <tr>
           <td>{t.team_rank === 0 ? '-' : `${t.team_rank}位`}</td>
-          <td style="text-align: left">{t.team_name}</td>
+          <td class="tal">{t.team_name}</td>
           <td style="text-align: center">{t.win}勝 {t.lose}敗</td>
-          <td style="text-align: left">
+          <td class="tal">
             {#each t.members as member, index}
               {#if index !== 0}, {/if}
               <a href="{base}/player/detail/?p={member[1]}">{member[0]}</a>
@@ -82,4 +83,6 @@
       {/each}
     </tbody>
   </table>
+{:else}
+  <PlaceHolder />
 {/if}
