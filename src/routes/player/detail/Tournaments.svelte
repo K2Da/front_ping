@@ -1,6 +1,7 @@
 <script lang="ts">
   import { apiData } from './index_store'
   import { base } from '$app/paths'
+  import { sha1 } from '../../../util'
 </script>
 
 {#if $apiData}
@@ -26,9 +27,9 @@
         <td class="tal">{t.team_name}</td>
         <td class="tal">{t.member_name}</td>
         <td class="tal">
-          {#each t.mates_hash as member, index}
+          {#each t.mate_list as member, index}
             {#if index !== 0}, {/if}
-            <a href="{base}/player/detail/?p={member[1]}">{member[0]}</a>
+            <a href="{base}/player/detail/?p={sha1(member)}">{member}</a>
           {/each}
         </td>
       </tr>
@@ -74,9 +75,9 @@
             <td class="tal">{m.opponent_team_name}</td>
             <td>{m.opponent_team_rank === 0 ? '-' : `${m.opponent_team_rank}位`}</td>
             <td class="tal">
-              {#each m.opponents_hash as member, index}
+              {#each m.opponents_list as member, index}
                 {#if index !== 0}, {/if}
-                <a href="{base}/player/detail/?p={member[1]}">{member[0]}</a>
+                <a href="{base}/player/detail/?p={sha1(member)}">{member}</a>
               {/each}
             </td>
           </tr>

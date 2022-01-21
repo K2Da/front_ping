@@ -35,10 +35,9 @@ export const matesData = derived(apiData, ($apiData) => {
         : t.lose += 1
     }
 
-    for (const mate of tournament.mates_hash) {
-      const name = mate[0]
+    for (const name of tournament.mate_list) {
       mates_dic[name] === undefined
-        ? mates_dic[name] = {name: name, tournaments: [tournament.tournament_key]}
+        ? mates_dic[name] = { name: name, tournaments: [tournament.tournament_key] }
         : mates_dic[name].tournaments.push(tournament.tournament_key)
     }
 

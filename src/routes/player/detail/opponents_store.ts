@@ -20,8 +20,7 @@ export const opponentsData = derived(apiData, ($apiData) => {
   const opponents_dic: { [name: string]: Opponent } = {}
 
   for (const match of $apiData.matches) {
-    for (const opponent of match.opponents_hash) {
-      const name = opponent[0]
+    for (const name of match.opponents_list) {
       const win = match.opponent_team_key === match.loser_key
       const match_key = `${match.tnmt_key}/${match.bracket}/${match.round}`
 

@@ -11,6 +11,7 @@
   import { tournamentKey, apiData } from './index_store'
   import { base } from '$app/paths'
   import { browser } from '$app/env'
+  import { sha1 } from '../../../util'
   import Header from '../../Header.svelte'
   import PlaceHolder from '../../PlaceHolder.svelte'
 
@@ -76,7 +77,7 @@
           <td class="tal">
             {#each t.members as member, index}
               {#if index !== 0}, {/if}
-              <a href="{base}/player/detail/?p={member[1]}">{member[0]}</a>
+              <a href="{base}/player/detail/?p={sha1(member)}">{member}</a>
             {/each}
           </td>
         </tr>
