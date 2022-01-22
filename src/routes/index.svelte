@@ -1,5 +1,8 @@
 <script lang="ts">
+  import Header from './Header.svelte'
 </script>
+
+<Header title="Top" type="site" url="" description="ポケモンユナイト大会の情報収集" />
 
 <p>ポケモンユナイトの大会結果をメモしてく場所(構築中)です。各種大会の結果を集めて、名前で寄せて集計してます。</p>
 <h2>etc</h2>

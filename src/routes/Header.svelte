@@ -1,8 +1,12 @@
 <script lang="ts">
+  import { currentUrl, ga_view } from "./global_store";
+
   export let title: string
   export let type: string
   export let url: string
   export let description: string
+
+  $: ga_view($currentUrl, title)
 </script>
 
 <svelte:head>

@@ -5,7 +5,6 @@
   import Pager from './Pager.svelte'
   import Header from '../Header.svelte'
   import PlaceHolder from '../PlaceHolder.svelte'
-  import { sha1 } from '../../util'
 
   function filter(event) {
     $filterString = event.target.value

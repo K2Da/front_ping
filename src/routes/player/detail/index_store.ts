@@ -2,7 +2,6 @@ import { writable, derived } from 'svelte/store'
 
 export const playerHash = writable('')
 export const apiData = writable(null)
-export const currentUrl = writable('')
 
 export type Team = {
   name: string

@@ -1,15 +1,9 @@
-<script lang="ts" context="module">
-  import { currentUrl } from './index_store'
-  export async function load(arg: { url: URL }): Promise<{ status: number }> {
-    currentUrl.set(arg.url.toString())
-    return { status: 200 }
-  }
-</script>
-
 <script lang="ts">
-  import { onDestroy } from "svelte";
+  import { onDestroy } from 'svelte'
   import { playerHash, apiData } from './index_store'
-  import { browser } from '$app/env';
+  import { browser } from '$app/env'
+  import { currentUrl } from '../../global_store'
+
   import Header from '../../Header.svelte'
   import Profile from './Profile.svelte'
   import Teams from './Teams.svelte'

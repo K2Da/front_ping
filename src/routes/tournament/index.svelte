@@ -1,9 +1,9 @@
 <script lang="ts">
   import Header from '../Header.svelte'
+  import PlaceHolder from '../PlaceHolder.svelte'
   import { onMount } from 'svelte'
   import { base } from '$app/paths'
   import { apiData } from '../player/index_store'
-  import PlaceHolder from '../PlaceHolder.svelte'
 
   onMount(async () => {
     fetch("/center_pin_g/tournament/tournaments.json")
