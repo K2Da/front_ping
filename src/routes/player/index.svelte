@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page_size, apiData, playerList, filterString, showRecord, showSns, showTournament, pageNo } from './index_store'
+  import { slimMode } from '../global_store'
   import { onMount } from 'svelte'
   import { base } from '$app/paths'
   import Pager from './Pager.svelte'
@@ -24,13 +25,19 @@
 <h2>プレイヤー</h2>
 
 <div>
-  <input on:input={filter} placeholder="プレイヤー名 / チーム名" style="display: inline-block " value={$filterString} />
-  <input id="tournament" type="checkbox" bind:checked={$showTournament} />
-  <label for="tournament">最新参加大会</label>
-  <input id="record" type="checkbox" bind:checked={$showRecord} />
-  <label for="record">通算戦績</label>
-  <input id="sns" type="checkbox" bind:checked={$showSns} />
-  <label for="sns">アカウント</label>
+  <input on:input={filter}
+         placeholder="プレイヤー名 / チーム名"
+         style="{$slimMode ? 'box-sizing: border-box; width: 100%' : 'display: inline-block'}"
+         value={$filterString} />
+
+  <div style="{$slimMode ? 'text-align: center' : 'display: inline'}">
+    <input id="tournament" type="checkbox" bind:checked={$showTournament} />
+    <label for="tournament">最新参加大会</label>
+    <input id="record" type="checkbox" bind:checked={$showRecord} />
+    <label for="record">通算戦績</label>
+    <input id="sns" type="checkbox" bind:checked={$showSns} />
+    <label for="sns">アカウント</label>
+  </div>
 </div>
 
 <Pager />

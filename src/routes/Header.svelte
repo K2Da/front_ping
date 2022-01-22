@@ -6,7 +6,10 @@
   export let url: string
   export let description: string
 
-  $: ga_view($currentUrl, title)
+  $: {
+    $currentUrl
+    ga_view(title)
+  }
 </script>
 
 <svelte:head>

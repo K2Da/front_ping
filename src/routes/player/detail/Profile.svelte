@@ -1,19 +1,20 @@
 <script lang="ts">
   import { apiData } from './index_store'
+  import { slimMode } from '../../global_store'
 </script>
 
 {#if $apiData}
   <table>
     <thead>
     <tr>
-      <th style="width: 20%; text-align: left">基本情報</th>
-      <th style="width: 80%; text-align: left"></th>
+      <th class="tal" style="{$slimMode ? '' : 'width: 20%'}">基本情報</th>
+      <th class="tal" style="{$slimMode ? '' : 'width: 80%'}"></th>
     </tr>
     </thead>
     <tbody>
     {#if $apiData.data}
       <tr>
-        <th class="tal">大会エントリー名</th>
+        <th class="tal">エントリー名</th>
         <td class="tal">{[...new Set($apiData.tournaments.map((t) => t.member_name))].join(', ')}</td>
       </tr>
     {/if}

@@ -7,20 +7,20 @@
 <table>
   <thead>
   <tr>
+    <th class="nw">戦績</th>
     <th class="tal">対戦通算(計2戦以上)</th>
-    <th>戦績</th>
   </tr>
   </thead>
   <tbody>
     {#each $opponentsData as m}
       <tr>
+        <td class="nw">{m.win}勝{m.lose}敗</td>
         <td class="tal">
           {#each m.names as name, i}
             {#if i > 0}, {/if}
             <a href="{base}/player/detail/?p={sha1(name)}">{name}</a>
           {/each}
         </td>
-        <td>{m.win}勝{m.lose}敗</td>
       </tr>
     {/each}
   </tbody>

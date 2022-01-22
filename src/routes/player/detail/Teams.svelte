@@ -1,27 +1,33 @@
 <script lang="ts">
   import { teamsData } from './index_store'
+  import { slimMode } from '../../global_store'
+  import { date_to_s, span_to_s } from '../../../util'
 </script>
 
 <table>
   <thead>
     <tr>
-      <th class="tal">大会参加チーム名</th>
-      <th>参加大会数</th>
       <th>期間</th>
+      {#if $slimMode}
+        <th class="tal" colspan="2">チーム名 / 大会数</th>
+      {:else}
+        <th class="tal">チーム名</th>
+        <th>大会参加数</th>
+      {/if}
     </tr>
   </thead>
   <tbody>
   {#each $teamsData as t}
     <tr>
-      <td class="tal">{t.name}</td>
-      <td>{t.tournament_count}</td>
       <td>
         {#if t.first_match_at === t.last_match_at}
-          {new Date(t.first_match_at).toLocaleDateString()}
+          {date_to_s($slimMode, t.first_match_at)}
         {:else}
-          {new Date(t.first_match_at).toLocaleDateString()} 〜 {new Date(t.last_match_at).toLocaleDateString()}
+          {@html span_to_s($slimMode, t.first_match_at, t.last_match_at)}
         {/if}
       </td>
+      <td class="tal">{t.name}</td>
+      <td>{t.tournament_count}</td>
     </tr>
   {/each}
   </tbody>

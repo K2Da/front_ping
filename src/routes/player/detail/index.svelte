@@ -2,7 +2,7 @@
   import { onDestroy } from 'svelte'
   import { playerHash, apiData } from './index_store'
   import { browser } from '$app/env'
-  import { currentUrl } from '../../global_store'
+  import { currentUrl, slimMode } from '../../global_store'
 
   import Header from '../../Header.svelte'
   import Profile from './Profile.svelte'
@@ -49,7 +49,7 @@
 
   <h2>{$apiData.player.collated_name}</h2>
 
-  <div class="grid">
+  <div class="{$slimMode ? '' : 'grid'}">
     <div class="l"><Profile /></div>
     <div class="r"><Teams /></div>
     <div class="l"><Mates /></div>
