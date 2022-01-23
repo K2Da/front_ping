@@ -1,19 +1,16 @@
 <script lang="ts">
-  import { teamsData } from './index_store'
-  import { slimMode } from '../../global_store'
-  import { date_to_s, span_to_s } from '../../../util'
+  import { teamsData } from './teams_store'
+  import Date from '/src/parts/Date.svelte'
+  import Span from '/src/parts/Span.svelte'
 </script>
 
+<h4>チーム履歴</h4>
 <table>
   <thead>
     <tr>
-      <th>期間</th>
-      {#if $slimMode}
-        <th class="tal" colspan="2">チーム名 / 大会数</th>
-      {:else}
-        <th class="tal">チーム名</th>
-        <th>大会参加数</th>
-      {/if}
+      <th style="width: 30%;"></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -21,13 +18,13 @@
     <tr>
       <td>
         {#if t.first_match_at === t.last_match_at}
-          {date_to_s($slimMode, t.first_match_at)}
+          <Date date={t.first_match_at} />
         {:else}
-          {@html span_to_s($slimMode, t.first_match_at, t.last_match_at)}
+          <Span date1={t.first_match_at} date2={t.last_match_at} />
         {/if}
       </td>
-      <td class="tal">{t.name}</td>
-      <td>{t.tournament_count}</td>
+      <td class="tal nw">{t.name}</td>
+      <td class="nw">{t.tournament_count}</td>
     </tr>
   {/each}
   </tbody>

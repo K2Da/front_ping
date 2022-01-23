@@ -1,5 +1,7 @@
 <script lang="ts" context="module">
+  import { slimMode } from '/src/routes/global_store'
   import { currentUrl } from './index_store'
+
   export async function load(arg: { url: URL }): Promise<{ status: number }> {
     currentUrl.set(arg.url.toString())
     return { status: 200 }
@@ -9,11 +11,13 @@
 <script lang="ts">
   import { onDestroy } from 'svelte'
   import { tournamentKey, apiData } from './index_store'
-  import { base } from '$app/paths'
   import { browser } from '$app/env'
-  import { sha1 } from '../../../util'
+  import Date from '/src/parts/Date.svelte'
   import Header from '../../Header.svelte'
   import PlaceHolder from '../../PlaceHolder.svelte'
+  import T from '/src/parts/T.svelte'
+  import PlayersLine from '/src/parts/PlayersLine.svelte'
+  import TournamentResult from '/src/parts/TournamentResult.svelte'
 
   onDestroy(() => apiData.set(null))
 
@@ -41,7 +45,7 @@
   {#if $apiData.data}
     <dl>
       <dt>開催日</dt>
-      <dd>{new Date($apiData.tournament.date).toLocaleDateString()}</dd>
+      <dd><Date date={$apiData.tournament.date} /></dd>
       <dt>形式</dt>
       <dd>{$apiData.data.type}</dd>
       {#if $apiData.data.note}
@@ -59,31 +63,43 @@
     </dl>
   {/if}
   <h3>参加チーム</h3>
-  <table>
-    <thead>
-    <tr>
-      <th>結果</th>
-      <th class="tal">チーム名</th>
-      <th>戦績</th>
-      <th class="tal">メンバー</th>
-    </tr>
-    </thead>
-    <tbody>
-      {#each $apiData.teams as t}
+  {#if $slimMode}
+    <table>
+      <tbody class="double">
+        {#each $apiData.teams as t}
+          <tr>
+            <td class="nw"><TournamentResult rank={t.team_rank} /></td>
+            <td class="tal">{t.team_name}</td>
+            <td class="nw" style="text-align: center">{t.win}<T t="勝" /> {t.lose}<T t="敗" /></td>
+          </tr>
+          <tr>
+            <td colspan="3" class="tal" style="padding-left: 2em"><PlayersLine players={t.members} /></td>
+          </tr>
+        {/each}
+      </tbody>
+    </table>
+  {:else}
+    <table>
+      <thead>
         <tr>
-          <td>{t.team_rank === 0 ? '-' : `${t.team_rank}位`}</td>
-          <td class="tal">{t.team_name}</td>
-          <td style="text-align: center">{t.win}勝 {t.lose}敗</td>
-          <td class="tal">
-            {#each t.members as member, index}
-              {#if index !== 0}, {/if}
-              <a href="{base}/player/detail/?p={sha1(member)}">{member}</a>
-            {/each}
-          </td>
+          <th>結果</th>
+          <th class="tal">チーム名</th>
+          <th>戦績</th>
+          <th class="tal">メンバー</th>
         </tr>
-      {/each}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {#each $apiData.teams as t}
+          <tr>
+            <td><TournamentResult rank={t.team_rank} /></td>
+            <td class="tal">{t.team_name}</td>
+            <td style="text-align: center">{t.win}<T t=" 勝 " /> {t.lose}<T t=" 敗" /></td>
+            <td class="tal"><PlayersLine players={t.members} /></td>
+          </tr>
+        {/each}
+      </tbody>
+    </table>
+  {/if}
 {:else}
   <PlaceHolder />
 {/if}

@@ -1,14 +1,16 @@
 <script lang="ts">
   import { apiData } from './index_store'
   import { slimMode } from '../../global_store'
+  import T from '/src/parts/T.svelte'
 </script>
 
 {#if $apiData}
+  <h4>基本情報</h4>
   <table>
     <thead>
-    <tr>
-      <th class="tal" style="{$slimMode ? '' : 'width: 20%'}">基本情報</th>
-      <th class="tal" style="{$slimMode ? '' : 'width: 80%'}"></th>
+    <tr style="">
+      <th style="{$slimMode ? '' : 'width: 20%'}"></th>
+      <th style="{$slimMode ? '' : 'width: 80%'}"></th>
     </tr>
     </thead>
     <tbody>
@@ -20,7 +22,9 @@
     {/if}
     <tr>
       <th class="tal">戦績</th>
-      <td class="tal">{$apiData.player.entries}大会エントリー {$apiData.player.win}勝 {$apiData.player.lose}敗</td>
+      <td class="tal">
+        {$apiData.player.entries}<T t=" 大会エントリー" /> {$apiData.player.win}<T t=" 勝" /> {$apiData.player.lose}<T t=" 敗" />
+      </td>
     </tr>
     <tr>
       <th class="tal">レート</th>

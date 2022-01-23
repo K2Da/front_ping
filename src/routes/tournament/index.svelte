@@ -1,9 +1,13 @@
 <script lang="ts">
-  import Header from '../Header.svelte'
-  import PlaceHolder from '../PlaceHolder.svelte'
   import { onMount } from 'svelte'
+  import { slimMode } from '/src/routes/global_store'
   import { base } from '$app/paths'
   import { apiData } from '../player/index_store'
+
+  import Header from '../Header.svelte'
+  import PlaceHolder from '../PlaceHolder.svelte'
+  import T from '/src/parts/T.svelte'
+  import Date from '/src/parts/Date.svelte'
 
   onMount(async () => {
     fetch("/center_pin_g/tournament/tournaments.json")
@@ -19,24 +23,32 @@
 
 <table style="table-layout: auto">
   <thead>
-  <tr>
-    <th>開催日</th>
-    <th class="tal">大会名</th>
-    <th>参加チーム</th>
-    <th>参加人数</th>
-    <th>試合数</th>
-  </tr>
+    {#if !$slimMode}
+      <tr><th>開催日</th><th class="tal">大会名</th><th>参加チーム</th><th>参加人数</th><th>試合数</th></tr>
+    {/if}
   </thead>
-  <tbody>
+  <tbody class="{$slimMode ? 'double' : ''}">
     {#if $apiData.tournaments}
       {#each $apiData.tournaments as row}
-        <tr>
-          <td>{new Date(row.date).toLocaleDateString()}</td>
-          <td class="tal"><a href="{base}/tournament/detail/?t={row.key}">{row.name}</a></td>
-          <td>{row.team_count.toLocaleString()}</td>
-          <td>{row.player_count.toLocaleString()}</td>
-          <td>{row.match_count.toLocaleString()}</td>
-        </tr>
+          {#if $slimMode}
+            <tr>
+              <th class="tal" colspan="4"><a href="{base}/tournament/detail/?t={row.key}">{row.name}</a></th>
+            </tr>
+            <tr>
+              <td class="tal"><Date date={row.date} /></td>
+              <td>{row.team_count.toLocaleString()} <T t="チーム" /></td>
+              <td>{row.player_count.toLocaleString()} <T t="人" /></td>
+              <td>{row.match_count.toLocaleString()} <T t="試合" /></td>
+            </tr>
+          {:else}
+            <tr>
+              <td><Date date={row.date} /></td>
+              <td class="tal"><a href="{base}/tournament/detail/?t={row.key}">{row.name}</a></td>
+              <td>{row.team_count.toLocaleString()}</td>
+              <td>{row.player_count.toLocaleString()}</td>
+              <td>{row.match_count.toLocaleString()}</td>
+            </tr>
+          {/if}
       {/each}
     {:else}
       <PlaceHolder />

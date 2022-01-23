@@ -1,15 +1,16 @@
 <script lang="ts">
   import { onDestroy } from 'svelte'
-  import { playerHash, apiData } from './index_store'
+  import { playerHash, apiData, set_api_data } from './index_store'
   import { browser } from '$app/env'
   import { currentUrl, slimMode } from '../../global_store'
 
-  import Header from '../../Header.svelte'
-  import Profile from './Profile.svelte'
-  import Teams from './Teams.svelte'
+  import Header      from '../../Header.svelte'
+  import Profile     from './Profile.svelte'
+  import Teams       from './Teams.svelte'
   import Tournaments from './Tournaments.svelte'
-  import Mates from './Mates.svelte'
-  import Opponents from './Opponents.svelte'
+  import Matches     from './Matches.svelte'
+  import Mates       from './Mates.svelte'
+  import Opponents   from './Opponents.svelte'
   import PlaceHolder from '../../PlaceHolder.svelte'
 
   onDestroy(() => apiData.set(null))
@@ -22,7 +23,7 @@
 
     fetch(`/center_pin_g/player/${$playerHash}.json`)
       .then(response => response.json())
-      .then(data => { apiData.set(data) })
+      .then(data => { set_api_data(data) })
       .catch(() => [])
   }
 
@@ -58,6 +59,7 @@
 
   <h3>参加大会</h3>
   <Tournaments />
+  <Matches />
 {:else}
   <PlaceHolder />
 {/if}
