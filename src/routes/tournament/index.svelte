@@ -24,7 +24,14 @@
 <table style="table-layout: auto">
   <thead>
     {#if !$slimMode}
-      <tr><th>開催日</th><th class="tal">大会名</th><th>参加チーム</th><th>参加人数</th><th>試合数</th></tr>
+      <tr>
+        <th>開催日</th>
+        <th class="tal">大会名</th>
+        <th class="tar">参加チーム</th>
+        <th class="tar">参加人数</th>
+        <th class="tar">試合数</th>
+        <th></th>
+      </tr>
     {/if}
   </thead>
   <tbody class="{$slimMode ? 'double' : ''}">
@@ -44,9 +51,10 @@
             <tr>
               <td><Date date={row.date} /></td>
               <td class="tal"><a href="{base}/tournament/detail/?t={row.key}">{row.name}</a></td>
-              <td>{row.team_count.toLocaleString()}</td>
-              <td>{row.player_count.toLocaleString()}</td>
-              <td>{row.match_count.toLocaleString()}</td>
+              <td class="tar">{row.team_count.toLocaleString()}</td>
+              <td class="tar">{row.player_count.toLocaleString()}</td>
+              <td class="tar">{row.match_count.toLocaleString()}</td>
+              <td></td>
             </tr>
           {/if}
       {/each}

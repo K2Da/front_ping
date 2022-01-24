@@ -1,11 +1,10 @@
 <script lang="ts">
   import { apiData } from './index_store'
-  import { base } from '$app/paths'
   import { slimMode } from '../../global_store'
-  import { sha1 } from '/src/util'
   import T from '/src/parts/T.svelte'
   import TournamentResult from '/src/parts/TournamentResult.svelte'
   import Date from '/src/parts/Date.svelte'
+  import PlayersLine from '/src/parts/PlayersLine.svelte'
 </script>
 
 {#if $apiData}
@@ -20,13 +19,7 @@
             <td class="nw"><T t="結果" /> <TournamentResult rank={t.team_result} />
           </tr>
           <tr>
-            <td class="tal" colspan="3">
-              <T t="メンバー" />
-              {#each t.mate_list as member, index}
-                {#if index !== 0}, {/if}
-                <a href="{base}/player/detail/?p={sha1(member)}">{member}</a>
-              {/each}
-            </td>
+            <td class="tal" colspan="3">{t.member_name}, <PlayersLine players={t.mate_list} /></td>
           </tr>
         {/each}
       </tbody>
@@ -35,30 +28,23 @@
     <table>
       <thead>
       <tr>
-        <th class="tal">大会名</th>
         <th>開催日</th>
+        <th class="tal">大会名</th>
         <th>結果</th>
         <th>rating</th>
         <th class="tal">チーム名</th>
-        <th class="tal">エントリー名</th>
         <th class="tal">メンバー</th>
       </tr>
       </thead>
       <tbody>
       {#each $apiData.tournaments as t}
         <tr>
-          <td class="tal"><a href="#{t.tournament_key}">{t.tournament_name}</a></td>
           <td><Date date={t.tournament_date} /></td>
-          <td>{t.team_result === 0 ? '-' : `${t.team_result}位`}</td>
+          <td class="tal"><a href="#{t.tournament_key}">{t.tournament_name}</a></td>
+          <td><TournamentResult rank={t.team_result} /></td>
           <td>{t.rating.toLocaleString()}</td>
           <td class="tal">{t.team_name}</td>
-          <td class="tal">{t.member_name}</td>
-          <td class="tal">
-            {#each t.mate_list as member, index}
-              {#if index !== 0}, {/if}
-              <a href="{base}/player/detail/?p={sha1(member)}">{member}</a>
-            {/each}
-          </td>
+          <td class="tal">{t.member_name}, <PlayersLine players={t.mate_list} /></td>
         </tr>
       {/each}
       </tbody>
