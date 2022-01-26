@@ -13,13 +13,13 @@
   const y2 = dd2.getFullYear() % 100
   const m2 = dd2.getMonth() + 1
   const d2 = dd2.getDate()
-
+  const s = '&nbsp;'
 </script>
 
-'{y1}<T t="年" /> {m1 < 10 ? '0' : ''}{m1}<T t="月" /> {d1 < 10 ? '0' : ''}{d1}<T t="日" />
+'{y1}<T t="年" /> {@html m1 < 10 ? s : ''}{m1}<T t="月" /> {@html d1 < 10 ? s : ''}{d1}<T t="日" />
 〜
 {#if dd1.getFullYear() === dd2.getFullYear()}
-  {m2 < 10 ? '0' : ''}{m2}<T t="月" /> {d2 < 10 ? '0' : ''}{d2}<T t="日" />
+  {@html m2 < 10 ? s : ''}{m2}<T t="月" /> {@html d2 < 10 ? s : ''}{d2}<T t="日" />
 {:else}
-  '{y2}<T t="年" /> {m2 < 10 ? '0' : ''}{m2}<T t="月" /> {d2 < 10 ? '0' : ''}{d2}<T t="日" />
+  '{y2}<T t="年" /> {@html m2 < 10 ? s : ''}{m2}<T t="月" /> {@html d2 < 10 ? s : ''}{d2}<T t="日" />
 {/if}

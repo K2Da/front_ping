@@ -10,5 +10,5 @@
 </script>
 
 <span class="m">
-  '{y}<T t="年" /> {m < 10 ? '0' : ''}{m}<T t="月" /> {d < 10 ? '0' : ''}{d}<T t="日" />
+  '{y}<T t="年" /> {@html m < 10 ? '&nbsp' : ''}{m}<T t="月" /> {@html d < 10 ? '&nbsp' : ''}{d}<T t="日" />
 </span>
