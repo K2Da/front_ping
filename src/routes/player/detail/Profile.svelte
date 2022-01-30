@@ -28,7 +28,7 @@
     </tr>
     <tr>
       <th class="tal">レート</th>
-      <td class="tal">{$apiData.player.rating.toLocaleString()}</td>
+      <td class="tal">{($apiData.player.rating ?? 0).toLocaleString()}</td>
     </tr>
     {#if $apiData.data}
       {#if $apiData.data.twitter}

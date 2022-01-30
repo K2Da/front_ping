@@ -5,6 +5,11 @@
   import TournamentResult from '/src/parts/TournamentResult.svelte'
   import Date from '/src/parts/Date.svelte'
   import PlayersLine from '/src/parts/PlayersLine.svelte'
+
+  function rate(t: any) {
+    if (t == null) return "-"
+    return t.toLocaleString()
+  }
 </script>
 
 {#if $apiData}
@@ -42,7 +47,7 @@
           <td><Date date={t.tournament_date} /></td>
           <td class="tal"><a href="#{t.tournament_key}">{t.tournament_name}</a></td>
           <td><TournamentResult rank={t.team_result} /></td>
-          <td>{t.rating.toLocaleString()}</td>
+          <td>{rate(t.rating)}</td>
           <td class="tal">{t.team_name}</td>
           <td class="tal">{t.member_name}, <PlayersLine players={t.mate_list} /></td>
         </tr>

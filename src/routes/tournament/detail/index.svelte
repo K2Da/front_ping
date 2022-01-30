@@ -1,6 +1,8 @@
 <script lang="ts" context="module">
   import { slimMode } from '/src/routes/global_store'
+  import { base } from '$app/paths'
   import { currentUrl } from './index_store'
+  import { sha1 } from '/src/util'
 
   export async function load(arg: { url: URL }): Promise<{ status: number }> {
     currentUrl.set(arg.url.toString())
@@ -16,7 +18,6 @@
   import Header from '../../Header.svelte'
   import PlaceHolder from '../../PlaceHolder.svelte'
   import T from '/src/parts/T.svelte'
-  import PlayersLine from '/src/parts/PlayersLine.svelte'
   import TournamentResult from '/src/parts/TournamentResult.svelte'
 
   onDestroy(() => apiData.set(null))
@@ -73,7 +74,19 @@
             <td class="nw" style="text-align: center">{t.win}<T t="勝" /> {t.lose}<T t="敗" /></td>
           </tr>
           <tr>
-            <td colspan="3" class="tal" style="padding-left: 2em"><PlayersLine players={t.members} /></td>
+            <td colspan="3" class="tal" style="padding-left: 2em">
+              {#each t.members as player, index}
+                {#if index !== 0}, {/if}
+                {#if player in $apiData.ratings}
+                  <a href="{base}/player/detail/?p={sha1(player)}">{player}</a>
+                  {#if $apiData.ratings[player] > 1500}
+                    <T t={'(' + $apiData.ratings[player].toLocaleString() + ')'} />
+                  {/if}
+                {:else}
+                  {player}
+                {/if}
+              {/each}
+            </td>
           </tr>
         {/each}
       </tbody>
@@ -94,7 +107,19 @@
             <td><TournamentResult rank={t.team_rank} /></td>
             <td class="tal">{t.team_name}</td>
             <td style="text-align: center">{t.win}<T t=" 勝 " /> {t.lose}<T t=" 敗" /></td>
-            <td class="tal"><PlayersLine players={t.members} /></td>
+            <td class="tal">
+              {#each t.members as player, index}
+                {#if index !== 0}, {/if}
+                {#if player in $apiData.ratings}
+                  <a href="{base}/player/detail/?p={sha1(player)}">{player}</a>
+                  {#if $apiData.ratings[player] > 1500}
+                    <T t={'(' + $apiData.ratings[player].toLocaleString() + ')'} />
+                  {/if}
+                {:else}
+                  {player}
+                {/if}
+              {/each}
+            </td>
           </tr>
         {/each}
       </tbody>
