@@ -2,7 +2,7 @@
   import { onMount } from 'svelte'
   import { slimMode } from '/src/routes/global_store'
   import { base } from '$app/paths'
-  import { apiData } from '../player/index_store'
+  import { apiData } from './index_store'
 
   import Header from '../Header.svelte'
   import PlaceHolder from '../PlaceHolder.svelte'

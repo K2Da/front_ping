@@ -112,7 +112,7 @@
               {/if}
             </td>
           {/if}
-          <td>{player.rating.toLocaleString()}</td>
+          <td>{(player.rating ?? 0).toLocaleString()}</td>
         </tr>
       {/if}
     {/each}
