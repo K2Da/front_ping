@@ -1,12 +1,10 @@
 <script lang="ts">
   import { opponentsData } from './opponents_store'
-  import { base } from '$app/paths'
-  import { sha1 } from '../../../util'
   import T from '/src/parts/T.svelte'
   import PlayersLine from '/src/parts/PlayersLine.svelte'
 </script>
 
-<h4>試合の多いプレイヤー(2戦以上)</h4>
+<h4>対戦の多いプレイヤー(2戦以上)</h4>
 <table>
   <thead>
   <tr>
