@@ -2,7 +2,6 @@
   import { page_size, apiData, teamList, filterString, pageNo } from './index_store'
   import { slimMode } from '../global_store'
   import { onMount } from 'svelte'
-  import { base } from '$app/paths'
   import Pager from './Pager.svelte'
   import Header from '../Header.svelte'
   import PlayersLine from '/src/parts/PlayersLine.svelte'

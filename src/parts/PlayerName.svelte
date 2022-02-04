@@ -2,7 +2,7 @@
   import { base } from '$app/paths'
   import { sha1 } from '../util'
 
-  export let team_name: string
+  export let player: string
 </script>
 
-<a href="{base}/team/detail/?t={sha1(team_name)}">{team_name}</a>
+<a href="{base}/player/detail/?p={sha1(player)}">{player}</a>

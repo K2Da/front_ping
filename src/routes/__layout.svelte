@@ -17,7 +17,8 @@
 <nav>
   <a href="{base}/">top </a> |
   <a href="{base}/tournament">大会</a> |
-  <a href="{base}/player">プレイヤー</a>
+  <a href="{base}/player">プレイヤー</a> |
+  <a href="{base}/team">チーム</a>
 </nav>
 
 <slot />
