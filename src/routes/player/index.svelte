@@ -27,10 +27,10 @@
 <div>
   <input on:input={filter}
          placeholder="プレイヤー名 / チーム名"
-         style="{$slimMode ? 'box-sizing: border-box; width: 100%' : 'display: inline-block'}"
+         style="box-sizing: border-box; width: 100%"
          value={$filterString} />
 
-  <div style="{$slimMode ? 'text-align: center' : 'display: inline'}">
+  <div style="text-align: center">
     <input id="tournament" type="checkbox" bind:checked={$showTournament} />
     <label for="tournament">最新参加大会</label>
     <input id="record" type="checkbox" bind:checked={$showRecord} />
