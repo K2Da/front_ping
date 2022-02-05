@@ -47,7 +47,7 @@
     </thead>
     <tbody>
       <tr>
-        <td>戦績</td>
+        <th>戦績</th>
         <td class="tal">
           {$apiData.team.tournament_count}<T t=" 大会" />
           {$apiData.team.win}<T t=" 勝" />
@@ -55,7 +55,7 @@
         </td>
       </tr>
       <tr>
-        <td>大会参加登録チーム名</td>
+        <th>大会参加登録チーム名</th>
         <td class="tal">
           {#each $apiData.team.names as name, index}
             {#if index !== 0}, {/if}{name}
