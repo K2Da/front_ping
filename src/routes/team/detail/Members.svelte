@@ -9,7 +9,7 @@
     <thead>
       <tr>
         <th></th>
-        <th colspan={$apiData.reversed_tournaments.length}>参加大会#</th>
+        <th colspan={$apiData.reversed_tournaments.length + 1} class="tal">参加大会#</th>
       </tr>
       <tr>
         <th style="width: 10em"></th>

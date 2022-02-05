@@ -49,7 +49,7 @@
       <dt>開催日</dt>
       <dd><Date date={$apiData.tournament.date} /></dd>
       <dt>形式</dt>
-      <dd>{$apiData.data.type}</dd>
+      <dd>{#if $apiData.data.official}<span style="color: greenyellow">公式 ✔</span>{/if} {$apiData.data.type}</dd>
       {#if $apiData.data.note}
         <dt>備考</dt>
         <dd>{$apiData.data.note}</dd>
