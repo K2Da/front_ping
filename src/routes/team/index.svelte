@@ -37,25 +37,27 @@
 
 <table style="table-layout: auto">
   {#if $slimMode}
-    <tbody class="double">
+    <tbody class="triple">
     {#if Array.isArray($teamList)}
       {#each $teamList as team, i}
         {#if ($pageNo - 1) * page_size <= i && i < $pageNo * page_size}
           <tr>
-            <td class="nw" rowspan="2" style="vertical-align: middle">{(i + 1).toLocaleString()}</td>
-            <td class="tal nw"><TeamName team_name={team.name} /></td>
-            <td class="tal">
-              <T t="大会登録名" />
-              {#each team.names.filter(n => team.name !== n) as name, index}
-                {#if index !== 0}, {/if}{name}
-              {/each}
-            </td>
+            <td class="nw" rowspan="3" style="vertical-align: middle">{(i + 1).toLocaleString()}</td>
+            <td class="tal nw"><TeamName name={team.name} /></td>
             <td class="nw">{team.tournament_count}<T t=" 大会" /></td>
             <td class="nw">{team.win}<T t=" 勝" /></td>
             <td class="nw">{team.lose}<T t=" 敗" /></td>
           </tr>
           <tr>
-            <td class="tal" colspan="5">
+            <td class="tal" colspan="4">
+              <T t="大会登録名" />
+              {#each team.names.filter(n => team.name !== n) as name, index}
+                {#if index !== 0}, {/if}{name}
+              {/each}
+            </td>
+          </tr>
+          <tr>
+            <td class="tal" colspan="4">
               {team.members.length}
               <T t="名" />
               <PlayersLine players={team.members} />
@@ -83,7 +85,7 @@
           {#if ($pageNo - 1) * page_size <= i && i < $pageNo * page_size}
             <tr>
               <td class="nw">{(i + 1).toLocaleString()}</td>
-              <td class="tal nw"><TeamName team_name={team.name} /></td>
+              <td class="tal nw"><TeamName name={team.name} /></td>
               <td class="nw">{team.tournament_count}<T t=" 大会" /></td>
               <td class="nw">{team.win}<T t=" 勝" /></td>
               <td class="nw">{team.lose}<T t=" 敗" /></td>

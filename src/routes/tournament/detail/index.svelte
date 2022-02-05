@@ -3,6 +3,7 @@
   import { base } from '$app/paths'
   import { currentUrl } from './index_store'
   import { sha1 } from '/src/util'
+  import TeamName from '/src/parts/TeamName.svelte'
 
   export async function load(arg: { url: URL }): Promise<{ status: number }> {
     currentUrl.set(arg.url.toString())
@@ -70,7 +71,7 @@
         {#each $apiData.teams as t}
           <tr>
             <td class="nw"><TournamentResult rank={t.team_rank} /></td>
-            <td class="tal">{t.team_name}</td>
+            <td class="tal"><TeamName name={t.team_name} /></td>
             <td class="nw" style="text-align: center">{t.win}<T t="勝" /> {t.lose}<T t="敗" /></td>
           </tr>
           <tr>
@@ -105,7 +106,7 @@
         {#each $apiData.teams as t}
           <tr>
             <td><TournamentResult rank={t.team_rank} /></td>
-            <td class="tal">{t.team_name}</td>
+            <td class="tal"><TeamName name={t.team_name} /></td>
             <td style="text-align: center">{t.win}<T t=" 勝 " /> {t.lose}<T t=" 敗" /></td>
             <td class="tal">
               {#each t.members as player, index}

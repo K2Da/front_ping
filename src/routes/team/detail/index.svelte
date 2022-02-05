@@ -8,6 +8,7 @@
   import PlaceHolder from '/src/routes/PlaceHolder.svelte'
   import Tournaments from './Tournaments.svelte'
   import Members     from './Members.svelte'
+  import SimilarTeam from './SimilarTeam.svelte'
 
   onDestroy(() => apiData.set(null))
 
@@ -69,6 +70,8 @@
 
   <h3>メンバー</h3>
   <Members />
+
+  <SimilarTeam />
 {:else}
   <PlaceHolder />
 {/if}

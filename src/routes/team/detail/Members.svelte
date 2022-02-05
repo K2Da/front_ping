@@ -8,6 +8,10 @@
   <table style="width: 100%">
     <thead>
       <tr>
+        <th></th>
+        <th colspan={$apiData.reversed_tournaments.length}>参加大会#</th>
+      </tr>
+      <tr>
         <th style="width: 10em"></th>
         {#each $apiData.reversed_tournaments as t, i}
           <th style="width: 2em" >

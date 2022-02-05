@@ -14,7 +14,7 @@
       <tbody class="triple">
         {#each $apiData.tournaments as t, i}
           <tr>
-            <th rowspan="3" style="vertical-align: middle;">{i + 1}</th>
+            <th rowspan="3" style="vertical-align: middle;">#{i + 1}</th>
             <th class="tal" colspan="3">
               <TournamentName name={t.tournament_name} key={t.tournament_key} />
             </th>
@@ -34,7 +34,7 @@
     <table>
       <thead>
       <tr>
-        <th></th>
+        <th class="tar">#</th>
         <th>開催日</th>
         <th class="tal">大会名</th>
         <th>結果</th>
@@ -45,7 +45,7 @@
       <tbody>
       {#each $apiData.tournaments as t, i}
         <tr>
-          <td style="text-align: right">{i + 1}</td>
+          <td class="tar">{i + 1}</td>
           <td><Date date={t.tournament_date} /></td>
           <td class="tal">
             <TournamentName name={t.tournament_name} key={t.tournament_key} />
