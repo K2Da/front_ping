@@ -1,6 +1,5 @@
 <script lang="ts">
   import { page_size, apiData, playerList, filterString, showRecord, showSns, showTournament, pageNo } from './index_store'
-  import { slimMode } from '../global_store'
   import { onMount } from 'svelte'
   import { base } from '$app/paths'
   import Pager from './Pager.svelte'
