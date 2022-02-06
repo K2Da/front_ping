@@ -5,6 +5,7 @@
   import Pager from './Pager.svelte'
   import Header from '../Header.svelte'
   import PlaceHolder from '../PlaceHolder.svelte'
+  import TeamName from '/src/parts/TeamName.svelte'
 
   function filter(event) {
     $filterString = event.target.value
@@ -44,9 +45,9 @@
 <table style="table-layout: auto">
   <thead>
     <tr>
-      <th colspan="2"></th>
+      <th colspan="3"></th>
       {#if $showTournament}
-        <th colspan="3">最新参加大会</th>
+        <th colspan="2">最新参加大会</th>
       {/if}
       {#if $showRecord}
         <th colspan="3">通算戦績</th>
@@ -59,8 +60,8 @@
     <tr>
       <th>No.</th>
       <th class="tal">名前</th>
+      <th class="tal">チーム</th>
       {#if $showTournament}
-        <th class="tal">チーム</th>
         <th class="tal">大会</th>
         <th class="tal">開催日</th>
       {/if}
@@ -84,8 +85,8 @@
         <tr>
           <td>{(i + 1).toLocaleString()}</td>
           <td class="tal"><a href="{base}/player/detail/?p={player.hash}">{player.name}</a></td>
+          <td class="tal"><TeamName name={player.latest.team} /></td>
           {#if $showTournament}
-            <td class="tal">{player.latest.team}</td>
             <td class="tal">{player.latest.tournament}</td>
             <td class="tal">{new Date(player.latest.date).toLocaleDateString()}</td>
           {/if}

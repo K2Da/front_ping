@@ -16,7 +16,7 @@
           <tr>
             <th rowspan="3" style="vertical-align: middle;">#{i + 1}</th>
             <th class="tal" colspan="3">
-              <TournamentName name={t.tournament_name} key={t.tournament_key} />
+              <TournamentName name={t.tournament_name} key={t.tournament_key} official={false} />
             </th>
           </tr>
           <tr class="tal">
@@ -48,7 +48,7 @@
           <td class="tar">{i + 1}</td>
           <td><Date date={t.tournament_date} /></td>
           <td class="tal">
-            <TournamentName name={t.tournament_name} key={t.tournament_key} />
+            <TournamentName name={t.tournament_name} key={t.tournament_key} official={false} />
           </td>
           <td><TournamentResult rank={t.result} /></td>
           <td class="tal">{t.name}</td>
