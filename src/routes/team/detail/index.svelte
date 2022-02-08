@@ -1,5 +1,8 @@
 <script lang="ts">
   import { onDestroy } from 'svelte'
+  import { base } from '$app/paths'
+  import { goto } from '$app/navigation'
+  import { tournamentKey } from '../../tournament/detail/index_store'
   import { teamHash, apiData, set_api_data } from './index_store'
   import { browser } from '$app/env'
   import { currentUrl, slimMode } from '../../global_store'
@@ -12,21 +15,40 @@
 
   onDestroy(() => apiData.set(null))
 
-  async function fetchTeam() {
+  async function redirectTeam(team_hash) {
+    fetch(`/center_pin_g/team/team_aliases.json`)
+      .then(response => response.json())
+      .then(data => fetchTeam(data[team_hash]))
+      .catch(() => [])
+  }
+
+  async function fetchTeam(team_hash) {
     if (!browser) return
 
     apiData.set(null)
-    teamHash.set(new URLSearchParams(window.location.search).get('t'))
+    if (team_hash === null) {
+      teamHash.set(new URLSearchParams(window.location.search).get('m'))
+    } else {
+      teamHash.set(team_hash)
+    }
+    if ($teamHash === null || $teamHash === undefined) return
 
     fetch(`/center_pin_g/team/${$teamHash}.json`)
-      .then(response => response.json())
+      .then(response => {
+        if (response.status === 404) throw new Error('NOT FOUND')
+        return response.json()
+      })
       .then(data => { set_api_data(data) })
-      .catch(() => [])
+      .catch(e => {
+        if (e.message === 'NOT FOUND' && team_hash === null) {
+          redirectTeam($teamHash)
+        }
+      })
   }
 
   $: {
     $currentUrl
-    fetchTeam()
+    fetchTeam(null)
   }
 </script>
 

@@ -5,4 +5,4 @@
   export let name: string
 </script>
 
-<a href="{base}/team/detail/?t={sha1(name)}">{name}</a>
+<a href="{base}/team/detail/?m={sha1(name)}">{name}</a>

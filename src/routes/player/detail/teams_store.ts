@@ -14,7 +14,7 @@ export const teamsData = derived(apiData, ($apiData) => {
 
   const teams:  { [name: string]: Team }  = {}
   for (const tournament of $apiData.tournaments) {
-    const name = tournament.team_name
+    const name = tournament.team_current_name
     if (teams[name] === undefined) {
       teams[name] = {
         name: name, tournament_count: 1,

@@ -15,21 +15,40 @@
 
   onDestroy(() => apiData.set(null))
 
-  async function fetchPlayer() {
+  async function redirectPlayer(player_hash) {
+    fetch(`/center_pin_g/player/player_aliases.json`)
+      .then(response => response.json())
+      .then(data => fetchPlayer(data[player_hash]))
+      .catch(() => [])
+  }
+
+  async function fetchPlayer(player_hash) {
     if (!browser) return
 
     apiData.set(null)
-    playerHash.set(new URLSearchParams(window.location.search).get('p'))
+    if (player_hash === null) {
+      playerHash.set(new URLSearchParams(window.location.search).get('p'))
+    } else {
+      playerHash.set(player_hash)
+    }
+    if ($playerHash === null || $playerHash === undefined) return
 
     fetch(`/center_pin_g/player/${$playerHash}.json`)
-      .then(response => response.json())
+      .then(response => {
+        if (response.status === 404) throw new Error('NOT FOUND')
+        return response.json()
+      })
       .then(data => { set_api_data(data) })
-      .catch(() => [])
+      .catch(e => {
+        if (e.message === 'NOT FOUND' && player_hash === null) {
+          redirectPlayer($playerHash)
+        }
+      })
   }
 
   $: {
     $currentUrl
-    fetchPlayer()
+    fetchPlayer(null)
   }
 </script>
 

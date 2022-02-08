@@ -13,6 +13,7 @@
 
 <script lang="ts">
   import { onDestroy } from 'svelte'
+  import { teamHash } from '../../team/detail/index_store'
   import { tournamentKey, apiData } from './index_store'
   import { browser } from '$app/env'
   import Date from '/src/parts/Date.svelte'
@@ -28,6 +29,8 @@
 
     apiData.set(null)
     tournamentKey.set(new URLSearchParams(window.location.search).get('t'))
+
+    if ($tournamentKey === null || $tournamentKey === undefined) return
 
     fetch(`/center_pin_g/tournament/${$tournamentKey}.json`)
       .then(response => response.json())
