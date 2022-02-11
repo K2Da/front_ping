@@ -7,10 +7,9 @@ const config = {
 
   kit: {
     adapter: adapter(),
-    target: '#svelte',
     appDir: 'app',
     paths: { base: '/center_pin_g' },
-    serviceWorker: { register: false }
+    serviceWorker: { register: false },
   },
 };
 
