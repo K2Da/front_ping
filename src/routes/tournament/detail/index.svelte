@@ -5,7 +5,6 @@
   import { base } from '$app/paths'
   import { sha1 } from '/src/lib/util'
   import { onDestroy } from 'svelte'
-  import { playerHash } from '../../player/detail/index_store'
   import { tournamentKey, apiData } from './index_store'
   import { browser } from '$app/env'
   import TeamName from '/src/parts/TeamName.svelte'

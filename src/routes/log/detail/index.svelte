@@ -6,6 +6,7 @@
   import { browser } from '$app/env'
   import { get_param_hash } from '$lib/util'
   import PlaceHolder from '/src/routes/PlaceHolder.svelte'
+  import TeamName from '/src/parts/TeamName.svelte'
 
   afterNavigate(() => { fetchLog(null) })
   onDestroy(() => apiData.set(null))
@@ -30,7 +31,23 @@
 </script>
 
 {#if $apiData}
-  {$apiData}
+  {console.log($apiData)}
+  <table>
+    <thead>
+    <tr>
+      <th class="nw" style="width: 2.5em;"></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {#each $apiData.teams as t, i}
+      <tr>
+        <td class="nw">{i + 1}</td>
+        <td class="nw tal"><TeamName name={t.team_name} /></td>
+      </tr>
+    {/each}
+    </tbody>
+  </table>
 {:else}
   <PlaceHolder />
 {/if}

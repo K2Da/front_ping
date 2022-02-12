@@ -2,7 +2,6 @@
   import { get_param_hash } from '$lib/util'
   import { onDestroy } from 'svelte'
   import { afterNavigate } from '$app/navigation'
-  import { tournamentKey } from '../../tournament/detail/index_store'
   import { teamHash, apiData, set_api_data } from './index_store'
   import { browser } from '$app/env'
   import { slimMode } from '../../global_store'
