@@ -1,6 +1,6 @@
-import { writable } from 'svelte/store'
+import { Writable, writable } from 'svelte/store'
 
-export const playerHash = writable('')
+export const playerHash: Writable<(string|null)> = writable('')
 export const apiData = writable(null)
 
 export function set_api_data(data: any): void {

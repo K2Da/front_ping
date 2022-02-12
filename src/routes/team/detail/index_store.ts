@@ -1,6 +1,6 @@
-import { writable } from 'svelte/store'
+import { Writable, writable } from 'svelte/store'
 
-export const teamHash = writable('')
+export const teamHash: Writable<(string|null)> = writable('')
 export const apiData = writable(null)
 
 export function set_api_data(data: any): void {
@@ -16,7 +16,7 @@ export function set_api_data(data: any): void {
   }
 
   data.players = Object.keys(player_stats)
-  data.players.sort((p1, p2) => {
+  data.players.sort((p1: string, p2: string) => {
     if (player_stats[p1].tournament === player_stats[p2].tournament) {
       return player_stats[p1].count < player_stats[p2].count
     } else {

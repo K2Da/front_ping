@@ -1,9 +1,5 @@
 <script lang="ts" context="module">
-  import { currentUrl, windowWidth } from './global_store'
-  export async function load(arg: { url: URL }): Promise<{ status: number }> {
-    currentUrl.set(arg.url.toString())
-    return { status: 200 }
-  }
+  import { windowWidth } from './global_store'
 </script>
 
 <script lang="ts">

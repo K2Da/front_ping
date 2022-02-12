@@ -1,8 +1,9 @@
 <script lang="ts">
   import { onDestroy } from 'svelte'
+  import { afterNavigate } from '$app/navigation'
   import { playerHash, apiData, set_api_data } from './index_store'
   import { browser } from '$app/env'
-  import { currentUrl, slimMode } from '../../global_store'
+  import { slimMode } from '../../global_store'
 
   import Header      from '../../Header.svelte'
   import Profile     from './Profile.svelte'
@@ -13,6 +14,7 @@
   import Opponents   from './Opponents.svelte'
   import PlaceHolder from '../../PlaceHolder.svelte'
 
+  afterNavigate(() => { fetchPlayer(null) })
   onDestroy(() => apiData.set(null))
 
   async function redirectPlayer(player_hash) {
@@ -31,7 +33,7 @@
     } else {
       playerHash.set(player_hash)
     }
-    if ($playerHash === null || $playerHash === undefined) return
+    if ($playerHash === null) return
 
     fetch(`/center_pin_g/player/${$playerHash}.json`)
       .then(response => {
@@ -44,11 +46,6 @@
           redirectPlayer($playerHash)
         }
       })
-  }
-
-  $: {
-    $currentUrl
-    fetchPlayer(null)
   }
 </script>
 

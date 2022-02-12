@@ -1,5 +1,4 @@
-import { writable } from 'svelte/store'
+import { Writable, writable } from 'svelte/store'
 
-export const tournamentKey = writable('')
+export const tournamentKey: Writable<(string|null)> = writable('')
 export const apiData = writable(null)
-export const currentUrl = writable('')

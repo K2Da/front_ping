@@ -1,27 +1,19 @@
-<script lang="ts" context="module">
+<script lang="ts">
+  import { afterNavigate } from '$app/navigation'
   import { slimMode } from '/src/routes/global_store'
   import { base } from '$app/paths'
-  import { currentUrl } from './index_store'
   import { sha1 } from '/src/util'
-  import TeamName from '/src/parts/TeamName.svelte'
-
-  export async function load(arg: { url: URL }): Promise<{ status: number }> {
-    currentUrl.set(arg.url.toString())
-    return { status: 200 }
-  }
-</script>
-
-<script lang="ts">
   import { onDestroy } from 'svelte'
-  import { teamHash } from '../../team/detail/index_store'
   import { tournamentKey, apiData } from './index_store'
   import { browser } from '$app/env'
+  import TeamName from '/src/parts/TeamName.svelte'
   import Date from '/src/parts/Date.svelte'
   import Header from '../../Header.svelte'
   import PlaceHolder from '../../PlaceHolder.svelte'
   import T from '/src/parts/T.svelte'
   import TournamentResult from '/src/parts/TournamentResult.svelte'
 
+  afterNavigate(() => { fetchTournament() })
   onDestroy(() => apiData.set(null))
 
   async function fetchTournament() {
@@ -30,17 +22,12 @@
     apiData.set(null)
     tournamentKey.set(new URLSearchParams(window.location.search).get('t'))
 
-    if ($tournamentKey === null || $tournamentKey === undefined) return
+    if ($tournamentKey === null) return
 
     fetch(`/center_pin_g/tournament/${$tournamentKey}.json`)
       .then(response => response.json())
       .then(data => { apiData.set(data) })
       .catch(() => [])
-  }
-
-  $: {
-    $currentUrl
-    fetchTournament()
   }
 </script>
 

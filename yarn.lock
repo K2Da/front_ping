@@ -88,14 +88,14 @@
   dependencies:
     tiny-glob "^0.2.9"
 
-"@sveltejs/kit@1.0.0-next.251":
-  version "1.0.0-next.251"
-  resolved "https://registry.yarnpkg.com/@sveltejs/kit/-/kit-1.0.0-next.251.tgz#66e36c3187353acf0165cdd7437ff6732a759f52"
-  integrity sha512-7GtUrUHqOa7ISo86PlICcMKcfGodOZwP9p7hXnN4t1yMWIQD2eKZlJffvnwx1X+NMcJ8hLChgcjGYjc1xZABhQ==
+"@sveltejs/kit@1.0.0-next.265":
+  version "1.0.0-next.265"
+  resolved "https://registry.yarnpkg.com/@sveltejs/kit/-/kit-1.0.0-next.265.tgz#b1b0fb031e4ed5d01f69886ebe542fc6d83750fa"
+  integrity sha512-7Y79kfJ3VRAqQ8w05wgI/im3jmR/Hy7/FN7rdKVYf5xuW6X4gwqM1qjWKIdQUTFWIgg3B/XIuCZZsfrGC064eA==
   dependencies:
     "@sveltejs/vite-plugin-svelte" "^1.0.0-next.32"
     sade "^1.7.4"
-    vite "^2.7.2"
+    vite "^2.8.0"
 
 "@sveltejs/vite-plugin-svelte@^1.0.0-next.32":
   version "1.0.0-next.37"
@@ -1370,11 +1370,6 @@ svelte-preprocess@^4.0.0, svelte-preprocess@^4.9.4:
     sorcery "^0.10.0"
     strip-indent "^3.0.0"
 
-svelte-simple-datatables@^0.1.27:
-  version "0.1.27"
-  resolved "https://registry.yarnpkg.com/svelte-simple-datatables/-/svelte-simple-datatables-0.1.27.tgz#f11e7a08f362f8552d872b340ba4877f8901e872"
-  integrity sha512-/FcV2ep6VNF2WbMtDbmE91wd3Cu2OFqG29dKYAfW6wnndetR7UewKBMJw1sqwzgiJ+QB1sBT407HrGXucKPpIw==
-
 svelte@^3.44.0:
   version "3.46.4"
   resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.46.4.tgz#0c46bc4a3e20a2617a1b7dc43a722f9d6c084a38"
@@ -1457,7 +1452,7 @@ v8-compile-cache@^2.0.3:
   resolved "https://registry.yarnpkg.com/v8-compile-cache/-/v8-compile-cache-2.3.0.tgz#2de19618c66dc247dcfb6f99338035d8245a2cee"
   integrity sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==
 
-vite@^2.7.2:
+vite@^2.8.0:
   version "2.8.1"
   resolved "https://registry.yarnpkg.com/vite/-/vite-2.8.1.tgz#4b2a42c1d01d6786a2a4c278cd0ba7223b8ec15c"
   integrity sha512-Typ8qjUnW0p53gBsJpisrKcZlEbUPZATja9BG6Z09QZjg9YrnEn/htkr/VH4WhnH7eNUQeSD+wKI1lHzQRWskw==

@@ -1,7 +1,6 @@
 import { writable, derived } from 'svelte/store'
 import { browser } from '$app/env'
 
-export const currentUrl = writable('')
 export const windowWidth = writable(0)
 export const slimMode = derived(windowWidth, ($windowWidth) => {
   return $windowWidth <= 1280

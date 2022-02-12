@@ -1,15 +1,13 @@
 <script lang="ts">
-  import { currentUrl, ga_view } from "./global_store";
+  import { afterNavigate } from '$app/navigation'
+  import { ga_view } from "./global_store";
 
   export let title: string
   export let type: string
   export let url: string
   export let description: string
 
-  $: {
-    $currentUrl
-    ga_view(title)
-  }
+  afterNavigate(() => { ga_view(title) })
 </script>
 
 <svelte:head>

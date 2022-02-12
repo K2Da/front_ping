@@ -1,11 +1,9 @@
 <script lang="ts">
   import { onDestroy } from 'svelte'
-  import { base } from '$app/paths'
-  import { goto } from '$app/navigation'
-  import { tournamentKey } from '../../tournament/detail/index_store'
+  import { afterNavigate } from '$app/navigation'
   import { teamHash, apiData, set_api_data } from './index_store'
   import { browser } from '$app/env'
-  import { currentUrl, slimMode } from '../../global_store'
+  import { slimMode } from '../../global_store'
   import T           from '/src/parts/T.svelte'
   import Header      from '/src/routes/Header.svelte'
   import PlaceHolder from '/src/routes/PlaceHolder.svelte'
@@ -13,12 +11,14 @@
   import Members     from './Members.svelte'
   import SimilarTeam from './SimilarTeam.svelte'
 
+  afterNavigate(() => { fetchTeam(null) })
   onDestroy(() => apiData.set(null))
 
   async function redirectTeam(team_hash) {
+    console.log(team_hash)
     fetch(`/center_pin_g/team/team_aliases.json`)
       .then(response => response.json())
-      .then(data => fetchTeam(data[team_hash]))
+      .then(data => { console.log(data); fetchTeam(data[team_hash]) })
       .catch(() => [])
   }
 
@@ -31,7 +31,7 @@
     } else {
       teamHash.set(team_hash)
     }
-    if ($teamHash === null || $teamHash === undefined) return
+    if ($teamHash === null) return
 
     fetch(`/center_pin_g/team/${$teamHash}.json`)
       .then(response => {
@@ -44,11 +44,6 @@
           redirectTeam($teamHash)
         }
       })
-  }
-
-  $: {
-    $currentUrl
-    fetchTeam(null)
   }
 </script>
 
