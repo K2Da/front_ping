@@ -1,6 +1,8 @@
 <script lang="ts">
+  import { get_param_hash } from '$lib/util'
   import { onDestroy } from 'svelte'
   import { afterNavigate } from '$app/navigation'
+  import { tournamentKey } from '../../tournament/detail/index_store'
   import { teamHash, apiData, set_api_data } from './index_store'
   import { browser } from '$app/env'
   import { slimMode } from '../../global_store'
@@ -24,13 +26,8 @@
 
   async function fetchTeam(team_hash) {
     if (!browser) return
-
     apiData.set(null)
-    if (team_hash === null) {
-      teamHash.set(new URLSearchParams(window.location.search).get('m'))
-    } else {
-      teamHash.set(team_hash)
-    }
+    teamHash.set(get_param_hash(team_hash, 'm'))
     if ($teamHash === null) return
 
     fetch(`/center_pin_g/team/${$teamHash}.json`)

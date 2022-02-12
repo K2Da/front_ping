@@ -1,6 +1,6 @@
 <script lang="ts">
   import { base } from '$app/paths'
-  import { sha1 } from '../util'
+  import { sha1 } from '$lib/util'
 
   export let name: string
 </script>

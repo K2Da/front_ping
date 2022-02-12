@@ -3,6 +3,7 @@
   import { afterNavigate } from '$app/navigation'
   import { playerHash, apiData, set_api_data } from './index_store'
   import { browser } from '$app/env'
+  import { get_param_hash } from '$lib/util'
   import { slimMode } from '../../global_store'
 
   import Header      from '../../Header.svelte'
@@ -26,13 +27,9 @@
 
   async function fetchPlayer(player_hash) {
     if (!browser) return
-
     apiData.set(null)
-    if (player_hash === null) {
-      playerHash.set(new URLSearchParams(window.location.search).get('p'))
-    } else {
-      playerHash.set(player_hash)
-    }
+
+    playerHash.set(get_param_hash(player_hash, 'p'))
     if ($playerHash === null) return
 
     fetch(`/center_pin_g/player/${$playerHash}.json`)

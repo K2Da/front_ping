@@ -1,9 +1,11 @@
 <script lang="ts">
   import { afterNavigate } from '$app/navigation'
+  import { get_param_hash } from '$lib/util'
   import { slimMode } from '/src/routes/global_store'
   import { base } from '$app/paths'
-  import { sha1 } from '/src/util'
+  import { sha1 } from '/src/lib/util'
   import { onDestroy } from 'svelte'
+  import { playerHash } from '../../player/detail/index_store'
   import { tournamentKey, apiData } from './index_store'
   import { browser } from '$app/env'
   import TeamName from '/src/parts/TeamName.svelte'
@@ -18,10 +20,8 @@
 
   async function fetchTournament() {
     if (!browser) return
-
     apiData.set(null)
-    tournamentKey.set(new URLSearchParams(window.location.search).get('t'))
-
+    tournamentKey.set(get_param_hash(null, 't'))
     if ($tournamentKey === null) return
 
     fetch(`/center_pin_g/tournament/${$tournamentKey}.json`)
