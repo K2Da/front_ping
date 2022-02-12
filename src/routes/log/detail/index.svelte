@@ -1,17 +1,27 @@
+<style>
+  button {
+    padding: 1px 20px;
+    margin: 6px;
+  }
+  table th { vertical-align: middle; }
+  table td { vertical-align: middle; }
+</style>
+
 <script lang="ts">
   import { onDestroy } from 'svelte'
   import { afterNavigate, goto } from '$app/navigation'
-  import { logHash, apiData, set_api_data } from './index_store'
+  import { selectedTeams, logHash, apiData, teamRelation, set_api_data, tk } from './index_store'
   import { base } from '$app/paths'
   import { browser } from '$app/env'
   import { get_param_hash } from '$lib/util'
   import PlaceHolder from '/src/routes/PlaceHolder.svelte'
   import TeamName from '/src/parts/TeamName.svelte'
+  import TeamMatches from './TeamMatches.svelte'
 
   afterNavigate(() => { fetchLog(null) })
   onDestroy(() => apiData.set(null))
 
-  async function fetchLog(log_hash) {
+ async function fetchLog(log_hash) {
     if (!browser) return
     apiData.set(null)
 
@@ -31,23 +41,45 @@
 </script>
 
 {#if $apiData}
-  {console.log($apiData)}
-  <table>
+  <table style="margin-top: 10px">
     <thead>
-    <tr>
-      <th class="nw" style="width: 2.5em;"></th>
-      <th></th>
-    </tr>
+      <tr>
+        <th class="nw" style="width: 2.5em">No.</th>
+        <th class="nw tal" style="width: 10em"></th>
+        {#each $apiData.teams as _, i}
+          <th class="nw" style="width: 4em">{i}</th>
+        {/each}
+        <th></th>
+      </tr>
     </thead>
     <tbody>
-    {#each $apiData.teams as t, i}
+    {#each $apiData.teams as t1, i}
       <tr>
-        <td class="nw">{i + 1}</td>
-        <td class="nw tal"><TeamName name={t.team_name} /></td>
+        <th class="nw">{i + 1}</th>
+        <td class="nw tal"><TeamName name={t1.team_name} /></td>
+        {#each $apiData.teams as t2, j}
+          {@const rel = $teamRelation[tk(t1.team_name, t2.team_name)]}
+          <td>
+            {#if i !== j}
+              {#if rel.matches.length > 0}{rel.wl[0]} - {rel.wl[1]}{/if}
+              <br />
+              <button on:click={() => selectedTeams.set([t1.team_name, t2.team_name])}>-</button>
+            {/if}
+          </td>
+        {/each}
+        <td></td>
       </tr>
     {/each}
     </tbody>
   </table>
+  {#if $selectedTeams}
+    <h2>{$selectedTeams[0]} : {$selectedTeams[1]}</h2>
+    <h3>対戦</h3>
+    <TeamMatches
+      matches={$teamRelation[tk($selectedTeams[0], $selectedTeams[1])].matches}
+      left={$selectedTeams[0]}
+    />
+  {/if}
 {:else}
   <PlaceHolder />
 {/if}
