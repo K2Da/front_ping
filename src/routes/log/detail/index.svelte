@@ -1,8 +1,5 @@
 <style>
-  button {
-    padding: 1px 20px;
-    margin: 6px;
-  }
+  button { padding: 1px 20px; margin: 6px; }
   table th { vertical-align: middle; }
   table td { vertical-align: middle; }
 </style>
@@ -10,13 +7,13 @@
 <script lang="ts">
   import { onDestroy } from 'svelte'
   import { afterNavigate, goto } from '$app/navigation'
-  import { selectedTeams, logHash, apiData, teamRelation, set_api_data, tk } from './index_store'
+  import { selectedTeams, logHash, apiData, teamRelation, set_api_data, select_team, tk } from './index_store'
   import { base } from '$app/paths'
   import { browser } from '$app/env'
   import { get_param_hash } from '$lib/util'
   import PlaceHolder from '/src/routes/PlaceHolder.svelte'
   import TeamName from '/src/parts/TeamName.svelte'
-  import TeamMatches from './TeamMatches.svelte'
+  import TeamRelation from './TeamRelation.svelte'
 
   afterNavigate(() => { fetchLog(null) })
   onDestroy(() => apiData.set(null))
@@ -47,7 +44,7 @@
         <th class="nw" style="width: 2.5em">No.</th>
         <th class="nw tal" style="width: 10em"></th>
         {#each $apiData.teams as _, i}
-          <th class="nw" style="width: 4em">{i}</th>
+          <th class="nw" style="width: 4em">{i + 1}</th>
         {/each}
         <th></th>
       </tr>
@@ -63,7 +60,7 @@
             {#if i !== j}
               {#if rel.matches.length > 0}{rel.wl[0]} - {rel.wl[1]}{/if}
               <br />
-              <button on:click={() => selectedTeams.set([t1.team_name, t2.team_name])}>-</button>
+              <button on:click={() => select_team($apiData, t1.team_name, t2.team_name)}>-</button>
             {/if}
           </td>
         {/each}
@@ -73,12 +70,7 @@
     </tbody>
   </table>
   {#if $selectedTeams}
-    <h2>{$selectedTeams[0]} : {$selectedTeams[1]}</h2>
-    <h3>対戦</h3>
-    <TeamMatches
-      matches={$teamRelation[tk($selectedTeams[0], $selectedTeams[1])].matches}
-      left={$selectedTeams[0]}
-    />
+    <TeamRelation />
   {/if}
 {:else}
   <PlaceHolder />
