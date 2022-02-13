@@ -17,7 +17,7 @@
       <Date date={match.tournament_date} />
       <S s={2} />
       <T t="大会" />
-      <TournamentName name={match.tournament_name} key={match.tournament_key} />
+      <TournamentName name={match.tournament_name} key={match.tournament_key} official={false} />
       {#if match.match_bracket}
         <S s={2} />
         <T t="ブラケット" />

@@ -1,4 +1,3 @@
-import { MembersTeam } from '$lib/api/types'
 import type * as api from '$lib/api/types'
 import { Writable, writable } from 'svelte/store'
 
@@ -72,6 +71,7 @@ export function select_team(apiData: api.LogData, team1: string, team2: string):
     column_width: Math.floor(100.0 / (right_members.length + 1)),
     member_relation
   })
+  selectedMembers.set(null)
 }
 
 export function select_members(selectedTeams: SelectedTeams, member1: string, member2: string): void {
@@ -103,6 +103,16 @@ function member_matches(apiData: api.LogData, left_members: string[], right_memb
         if (match.winner_players.includes(r) && match.loser_players.includes(l)) {
           ret[key].wl[1] += 1
           ret[key].matches.push(match)
+        }
+      }
+    }
+  }
+  for (const match of apiData.mix_teams) {
+    for (const l of left_members) {
+      for (const r of right_members) {
+        if (match.team_players.includes(l) && match.team_players.includes(r)) {
+          const key = `${l}\t${r}`
+          ret[key].mix_teams.push(match)
         }
       }
     }

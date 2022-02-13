@@ -60,7 +60,7 @@
             {#if i !== j}
               {#if rel.matches.length > 0}{rel.wl[0]} - {rel.wl[1]}{/if}
               <br />
-              <button on:click={() => select_team($apiData, t1.team_name, t2.team_name)}>-</button>
+              <button on:click={() => select_team($apiData, t1.team_name, t2.team_name)}>🔻</button>
             {/if}
           </td>
         {/each}
