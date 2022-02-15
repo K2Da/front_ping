@@ -1,7 +1,8 @@
-import { writable, derived } from 'svelte/store'
+import { Writable, writable, derived } from 'svelte/store'
+import type { TeamIndex } from '$lib/api/Team'
 
 export const page_size = 200
-export const apiData = writable([])
+export const apiData: Writable<TeamIndex[]> = writable([])
 export const pageNo = writable(1)
 export const filterString = writable('')
 

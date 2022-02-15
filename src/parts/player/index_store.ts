@@ -1,7 +1,8 @@
-import { writable, derived } from 'svelte/store'
+import type { PlayerIndex } from '$lib/api/PlayerIndex'
+import { Writable, writable, derived } from 'svelte/store'
 
 export const page_size = 200
-export const apiData = writable([])
+export const apiData: Writable<PlayerIndex[]> = writable([])
 
 export const showRecord     = writable(true)
 export const showTournament = writable(false)
