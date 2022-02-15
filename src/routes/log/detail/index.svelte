@@ -7,13 +7,13 @@
 <script lang="ts">
   import { onDestroy } from 'svelte'
   import { afterNavigate, goto } from '$app/navigation'
-  import { selectedTeams, logHash, apiData, teamRelation, set_api_data, select_team, tk } from './index_store'
+  import { selectedTeams, logHash, apiData, teamRelation, set_api_data, select_team, tk } from '../../../parts/log/index_store'
   import { base } from '$app/paths'
   import { browser } from '$app/env'
   import { get_param_hash } from '$lib/util'
   import PlaceHolder from '/src/routes/PlaceHolder.svelte'
   import TeamName from '/src/parts/TeamName.svelte'
-  import TeamRelation from './TeamRelation.svelte'
+  import TeamRelation from '/src/parts/log/TeamRelation.svelte'
 
   afterNavigate(() => { fetchLog(null) })
   onDestroy(() => apiData.set(null))
