@@ -13,7 +13,7 @@
   }
 
   onMount(async () => {
-    fetch("/center_pin_g/player/players.json")
+    fetch("/center_pin_g/data/player/players.json")
       .then(response => response.json())
       .then(data => apiData.set(data))
       .catch(() => [])

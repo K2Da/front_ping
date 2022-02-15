@@ -25,7 +25,7 @@
     logHash.set(get_param_hash(log_hash, 'l'))
     if ($logHash === null) return
 
-    fetch(`/center_pin_g/log/${$logHash}.json`)
+    fetch(`/center_pin_g/data/log/${$logHash}.json`)
       .then(response => {
         if (response.status === 404) throw new Error('NOT FOUND')
         return response.json()

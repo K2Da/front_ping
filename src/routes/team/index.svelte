@@ -15,7 +15,7 @@
   }
 
   onMount(async () => {
-    fetch("/center_pin_g/team/teams.json")
+    fetch("/center_pin_g/data/team/teams.json")
       .then(response => response.json())
       .then(data => apiData.set(data))
       .catch(() => [])

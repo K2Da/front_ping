@@ -10,7 +10,7 @@
   import TournamentName from '/src/parts/TournamentName.svelte'
 
   onMount(async () => {
-    fetch("/center_pin_g/tournament/tournaments.json")
+    fetch("/center_pin_g/data/tournament/tournaments.json")
       .then(response => response.json())
       .then(data => apiData.set(data))
       .catch(() => [])
