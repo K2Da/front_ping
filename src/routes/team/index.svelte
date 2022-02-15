@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { page_size, apiData, teamList, filterString, pageNo } from './index_store'
-  import { slimMode } from '../global_store'
+  import { page_size, apiData, teamList, filterString, pageNo } from '../../parts/team/index_store'
+  import { slimMode } from '../../parts/global_store'
   import { onMount } from 'svelte'
-  import Pager from './Pager.svelte'
-  import Header from '../Header.svelte'
+  import Pager from '../../parts/team/Pager.svelte'
+  import Header from '../../parts/Header.svelte'
   import PlayersLine from '/src/parts/PlayersLine.svelte'
   import TeamName from '/src/parts/TeamName.svelte'
-  import PlaceHolder from '../PlaceHolder.svelte'
+  import PlaceHolder from '../../parts/PlaceHolder.svelte'
   import T from '/src/parts/T.svelte'
 
   function filter(event) {

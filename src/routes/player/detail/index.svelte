@@ -1,19 +1,19 @@
 <script lang="ts">
   import { onDestroy } from 'svelte'
   import { afterNavigate } from '$app/navigation'
-  import { playerHash, apiData, set_api_data } from './index_store'
+  import { playerHash, apiData, set_api_data } from '../../../parts/player/detail/index_store'
   import { browser } from '$app/env'
   import { get_param_hash } from '$lib/util'
-  import { slimMode } from '../../global_store'
+  import { slimMode } from '../../../parts/global_store'
 
-  import Header      from '../../Header.svelte'
-  import Profile     from './Profile.svelte'
-  import Teams       from './Teams.svelte'
-  import Tournaments from './Tournaments.svelte'
-  import Matches     from './Matches.svelte'
-  import Mates       from './Mates.svelte'
-  import Opponents   from './Opponents.svelte'
-  import PlaceHolder from '../../PlaceHolder.svelte'
+  import Header      from '../../../parts/Header.svelte'
+  import Profile     from '../../../parts/player/detail/Profile.svelte'
+  import Teams       from '../../../parts/player/detail/Teams.svelte'
+  import Tournaments from '../../../parts/player/detail/Tournaments.svelte'
+  import Matches     from '../../../parts/player/detail/Matches.svelte'
+  import Mates       from '../../../parts/player/detail/Mates.svelte'
+  import Opponents   from '../../../parts/player/detail/Opponents.svelte'
+  import PlaceHolder from '../../../parts/PlaceHolder.svelte'
 
   afterNavigate(() => { fetchPlayer(null) })
   onDestroy(() => apiData.set(null))

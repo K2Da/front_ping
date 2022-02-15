@@ -2,15 +2,15 @@
   import { get_param_hash } from '$lib/util'
   import { onDestroy } from 'svelte'
   import { afterNavigate } from '$app/navigation'
-  import { teamHash, apiData, set_api_data } from './index_store'
+  import { teamHash, apiData, set_api_data } from '../../../parts/team/detail/index_store'
   import { browser } from '$app/env'
-  import { slimMode } from '../../global_store'
+  import { slimMode } from '../../../parts/global_store'
   import T           from '/src/parts/T.svelte'
-  import Header      from '/src/routes/Header.svelte'
-  import PlaceHolder from '/src/routes/PlaceHolder.svelte'
-  import Tournaments from './Tournaments.svelte'
-  import Members     from './Members.svelte'
-  import SimilarTeam from './SimilarTeam.svelte'
+  import Header      from '/src/parts/Header.svelte'
+  import PlaceHolder from '/src/parts/PlaceHolder.svelte'
+  import Tournaments from '../../../parts/team/detail/Tournaments.svelte'
+  import Members     from '../../../parts/team/detail/Members.svelte'
+  import SimilarTeam from '../../../parts/team/detail/SimilarTeam.svelte'
 
   afterNavigate(() => { fetchTeam(null) })
   onDestroy(() => apiData.set(null))

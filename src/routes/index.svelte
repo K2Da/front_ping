@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Header from './Header.svelte'
+  import Header from '../parts/Header.svelte'
 </script>
 
 <Header title="Top" type="site" url="" description="ポケモンユナイト大会の情報収集" />

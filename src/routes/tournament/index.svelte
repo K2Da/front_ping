@@ -1,10 +1,10 @@
 <script lang="ts">
   import { onMount } from 'svelte'
-  import { slimMode } from '/src/routes/global_store'
-  import { apiData } from './index_store'
+  import { slimMode } from '/src/parts/global_store'
+  import { apiData } from '../../parts/tournament/index_store'
 
-  import Header from '../Header.svelte'
-  import PlaceHolder from '../PlaceHolder.svelte'
+  import Header from '../../parts/Header.svelte'
+  import PlaceHolder from '../../parts/PlaceHolder.svelte'
   import T from '/src/parts/T.svelte'
   import Date from '/src/parts/Date.svelte'
   import TournamentName from '/src/parts/TournamentName.svelte'

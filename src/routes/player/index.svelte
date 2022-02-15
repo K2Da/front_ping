@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { page_size, apiData, playerList, filterString, showRecord, showSns, showTournament, pageNo } from './index_store'
+  import { page_size, apiData, playerList, filterString, showRecord, showSns, showTournament, pageNo } from '../../parts/player/index_store'
   import { onMount } from 'svelte'
   import { base } from '$app/paths'
-  import Pager from './Pager.svelte'
-  import Header from '../Header.svelte'
-  import PlaceHolder from '../PlaceHolder.svelte'
+  import Pager from '../../parts/player/Pager.svelte'
+  import Header from '../../parts/Header.svelte'
+  import PlaceHolder from '../../parts/PlaceHolder.svelte'
   import TeamName from '/src/parts/TeamName.svelte'
 
   function filter(event) {
