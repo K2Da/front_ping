@@ -1,9 +1,8 @@
 <script lang="ts">
-  import type * as api from '$lib/api/types'
-  import { split_by_team } from '$lib/api/types'
+  import { split_by_team } from '$lib/api/LogDetail'
   import Match from './Match.svelte'
 
-  export let matches: api.Match[]
+  export let matches: Match[]
   export let left: string
 </script>
 

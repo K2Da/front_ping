@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type * as api from '$lib/api/types'
+  import type { SplitTeam, Match } from '$lib/api/LogDetail'
   import Date from '/src/parts/Date.svelte'
   import TournamentName from '/src/parts/TournamentName.svelte'
   import T from '/src/parts/T.svelte'
@@ -7,8 +7,8 @@
   import Team from './Team.svelte'
   import MatchResult from '/src/parts/MatchResult.svelte'
 
-  export let match: api.Match
-  export let teams: api.SplitTeam
+  export let match: Match
+  export let teams: SplitTeam
 </script>
 
 <tr>

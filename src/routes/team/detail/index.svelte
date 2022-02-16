@@ -16,10 +16,9 @@
   onDestroy(() => apiData.set(null))
 
   async function redirectTeam(team_hash) {
-    console.log(team_hash)
     fetch(`/center_pin_g/data/team/team_aliases.json`)
       .then(response => response.json())
-      .then(data => { console.log(data); fetchTeam(data[team_hash]) })
+      .then(data => { fetchTeam(data[team_hash]) })
       .catch(() => [])
   }
 

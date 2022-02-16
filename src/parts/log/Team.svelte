@@ -1,12 +1,12 @@
 <script lang="ts">
-  import type * as api from '$lib/api/types'
+  import { Team } from '$lib/api/LogDetail'
   import PlayersLine from '/src/parts/PlayersLine.svelte'
   import T from '/src/parts/T.svelte'
   import S from '/src/parts/S.svelte'
   import TeamName from '/src/parts/TeamName.svelte'
   import TournamentResult from '/src/parts/TournamentResult.svelte'
 
-  export let team_match: api.Team
+  export let team_match: Team
 </script>
 
 <tr>

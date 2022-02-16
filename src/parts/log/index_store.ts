@@ -1,8 +1,8 @@
-import type * as api from '$lib/api/types'
+import type { LogData, Match, MembersTeam } from '$lib/api/LogDetail'
 import { Writable, writable } from 'svelte/store'
 
 export const logHash: Writable<(string|null)> = writable('')
-export const apiData: Writable<api.LogData|null> = writable(null)
+export const apiData: Writable<LogData|null> = writable(null)
 export const teamRelation: Writable<TeamRelation> = writable({})
 export const selectedTeams: Writable<SelectedTeams|null> = writable(null)
 export const selectedMembers: Writable<SelectedMembers|null> = writable(null)
@@ -26,10 +26,10 @@ export type SelectedTeam = {
 }
 
 export type TeamRelation = {
-  [teams: string]: { matches: api.Match[], wl: [number, number]}
+  [teams: string]: { matches: Match[], wl: [number, number]}
 }
 
-export function set_api_data(data: api.LogData): void {
+export function set_api_data(data: LogData): void {
   apiData.set(data)
   const team_relation: TeamRelation = {}
 
@@ -52,16 +52,16 @@ export function set_api_data(data: api.LogData): void {
 }
 
 export type MemberRelation = {
-  matches: api.Match[]
+  matches: Match[]
   wl: [number, number]
-  mix_teams: api.MembersTeam[]
+  mix_teams: MembersTeam[]
 }
 
 export type MemberRelationDic = {
   [members: string]: MemberRelation
 }
 
-export function select_team(apiData: api.LogData, team1: string, team2: string): void {
+export function select_team(apiData: LogData, team1: string, team2: string): void {
   const left_members = apiData.teams.filter(t => t.team_name == team1).flatMap(t => t.members)
   const right_members = apiData.teams.filter(t => t.team_name == team2).flatMap(t => t.members)
   const member_relation = member_matches(apiData, left_members, right_members)
@@ -82,7 +82,7 @@ export function select_members(selectedTeams: SelectedTeams, member1: string, me
   })
 }
 
-function member_matches(apiData: api.LogData, left_members: string[], right_members: string[]) {
+function member_matches(apiData: LogData, left_members: string[], right_members: string[]) {
   const ret: MemberRelationDic = {}
 
   for (const l of left_members) {
@@ -117,7 +117,6 @@ function member_matches(apiData: api.LogData, left_members: string[], right_memb
       }
     }
   }
-  console.log(ret)
   return ret
 }
 
