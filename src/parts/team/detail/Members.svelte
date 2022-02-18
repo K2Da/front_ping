@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { apiData } from './index_store'
+  import { apiData } from '$lib/store/team/detail'
   import PlayerName from '/src/parts/PlayerName.svelte'
   import TournamentName from '/src/parts/TournamentName.svelte'
   import TeamName from '/src/parts/TeamName.svelte'

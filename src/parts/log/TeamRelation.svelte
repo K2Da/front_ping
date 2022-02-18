@@ -4,7 +4,7 @@
 </style>
 
 <script lang="ts">
-  import { selectedTeams, teamRelation, selectedMembers, tk, select_members } from './index_store'
+  import { selectedTeams, teamRelation, selectedMembers, tk, select_members } from '$lib/store/log'
   import TeamMatches from './TeamMatches.svelte'
   import PlayerName from '/src/parts/PlayerName.svelte'
   import MemberRelation from './MemberRelation.svelte'

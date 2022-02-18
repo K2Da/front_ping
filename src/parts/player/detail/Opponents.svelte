@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { opponentsData } from './opponents_store'
+  import { opponentsData } from '$lib/store/player/detail/opponents'
   import T from '/src/parts/T.svelte'
   import PlayersLine from '/src/parts/PlayersLine.svelte'
 </script>

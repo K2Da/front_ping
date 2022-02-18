@@ -1,5 +1,5 @@
 import { derived } from 'svelte/store'
-import { apiData } from "./index_store"
+import { apiData } from "$lib/store/player/detail"
 
 export type MergedOpponents = {
   names: string[]

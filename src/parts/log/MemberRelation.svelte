@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { selectedMembers } from './index_store'
+  import { selectedMembers } from '$lib/store/log'
   import Date from '/src/parts/Date.svelte'
   import TeamMatches from './TeamMatches.svelte'
   import PlayersLine from '/src/parts/PlayersLine.svelte'

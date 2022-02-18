@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte'
-  import { slimMode } from '/src/parts/global_store'
-  import { apiData } from '../../parts/tournament/index_store'
+  import { slimMode } from '/src/lib/store/global'
+  import { apiData } from '$lib/store/tournament'
 
   import Header from '../../parts/Header.svelte'
   import PlaceHolder from '../../parts/PlaceHolder.svelte'

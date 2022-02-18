@@ -7,7 +7,7 @@
 <script lang="ts">
   import { onDestroy } from 'svelte'
   import { afterNavigate, goto } from '$app/navigation'
-  import { selectedTeams, logHash, apiData, teamRelation, set_api_data, select_team, tk } from '../../../parts/log/index_store'
+  import { selectedTeams, logHash, apiData, teamRelation, set_api_data, select_team, tk } from '$lib/store/log'
   import { base } from '$app/paths'
   import { browser } from '$app/env'
   import { get_param_hash } from '$lib/util'

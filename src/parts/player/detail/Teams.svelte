@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { teamsData } from './teams_store'
+  import { teamsData } from '$lib/store/player/detail/teams'
   import Date from '/src/parts/Date.svelte'
   import Span from '/src/parts/Span.svelte'
   import TeamName from '/src/parts/TeamName.svelte'

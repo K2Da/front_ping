@@ -1,6 +1,6 @@
 <script lang="ts">
   import { afterNavigate } from '$app/navigation'
-  import { ga_view } from "./global_store";
+  import { ga_view } from '$lib/store/global'
 
   export let title: string
   export let type: string

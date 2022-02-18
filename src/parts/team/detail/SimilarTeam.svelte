@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { apiData } from './index_store'
+  import { apiData } from '$lib/store/team/detail'
   import PlayersLine from '/src/parts/PlayersLine.svelte'
   import TeamName from '/src/parts/TeamName.svelte'
 </script>

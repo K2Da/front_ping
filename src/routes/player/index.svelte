@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { page_size, apiData, playerList, filterString, showRecord, showSns, showTournament, pageNo } from '../../parts/player/index_store'
+  import { page_size, apiData, playerList, filterString, showRecord, showSns, showTournament, pageNo } from '$lib/store/player'
   import { onMount } from 'svelte'
   import { base } from '$app/paths'
   import Pager from '../../parts/player/Pager.svelte'

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { page_size, pageNo, playerList } from './index_store'
-  import { slimMode } from "../global_store"
+  import { page_size, pageNo, playerList } from '$lib/store/player'
+  import { slimMode } from '$lib/store/global'
 
   $: max_page = Math.ceil($playerList.length / page_size)
 </script>

@@ -1,11 +1,11 @@
 <script lang="ts">
   import { afterNavigate } from '$app/navigation'
   import { get_param_hash } from '$lib/util'
-  import { slimMode } from '/src/parts/global_store'
+  import { slimMode } from '/src/lib/store/global'
   import { base } from '$app/paths'
   import { sha1 } from '/src/lib/util'
   import { onDestroy } from 'svelte'
-  import { tournamentKey, apiData } from '../../../parts/tournament/detail/index_store'
+  import { tournamentKey, apiData } from '$lib/store/tournament/detail'
   import { browser } from '$app/env'
   import TeamName from '/src/parts/TeamName.svelte'
   import Date from '/src/parts/Date.svelte'

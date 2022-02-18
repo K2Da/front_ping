@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { page_size, apiData, teamList, filterString, pageNo } from '../../parts/team/index_store'
-  import { slimMode } from '../../parts/global_store'
+  import { page_size, apiData, teamList, filterString, pageNo } from '$lib/store/team'
+  import { slimMode } from '$lib/store/global'
   import { onMount } from 'svelte'
   import Pager from '../../parts/team/Pager.svelte'
   import Header from '../../parts/Header.svelte'

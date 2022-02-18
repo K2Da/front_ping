@@ -1,10 +1,10 @@
 <script lang="ts">
   import { onDestroy } from 'svelte'
   import { afterNavigate } from '$app/navigation'
-  import { playerHash, apiData, set_api_data } from '../../../parts/player/detail/index_store'
+  import { playerHash, apiData, set_api_data } from '$lib/store/player/detail'
   import { browser } from '$app/env'
   import { get_param_hash } from '$lib/util'
-  import { slimMode } from '../../../parts/global_store'
+  import { slimMode } from '$lib/store/global'
 
   import Header      from '../../../parts/Header.svelte'
   import Profile     from '../../../parts/player/detail/Profile.svelte'

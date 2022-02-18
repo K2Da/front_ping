@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-  import { windowWidth } from '../parts/global_store'
+  import { windowWidth } from '$lib/store/global'
 </script>
 
 <script lang="ts">

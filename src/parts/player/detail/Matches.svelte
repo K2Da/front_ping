@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { apiData } from './index_store'
-  import { slimMode } from '../../global_store'
+  import { apiData } from '$lib/store/player/detail'
+  import { slimMode } from '$lib/store/global'
   import PlayerLine from '/src/parts/PlayersLine.svelte'
   import MatchResult from '/src/parts/MatchResult.svelte'
   import TournamentResult from '/src/parts/TournamentResult.svelte'
