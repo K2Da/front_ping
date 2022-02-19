@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-  import { windowWidth } from '$lib/store/global'
+  import { windowWidth, windowHeight } from '$lib/store/global'
 </script>
 
 <script lang="ts">
@@ -10,7 +10,7 @@
   onMount(async () => loadMaster())
 </script>
 
-<svelte:window bind:innerWidth={$windowWidth}/>
+<svelte:window bind:innerWidth={$windowWidth} bind:innerHeight={$windowHeight} />
 
 <h1>Center Pin(g)</h1>
 

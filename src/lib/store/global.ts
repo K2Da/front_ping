@@ -3,21 +3,37 @@ import { Writable, writable, derived } from 'svelte/store'
 import { browser } from '$app/env'
 
 export const windowWidth = writable(0)
+export const windowHeight = writable(0)
 export const slimMode = derived(windowWidth, ($windowWidth) => {
   return $windowWidth <= 1280
 })
-export const masterData: Writable<MasterData> = writable({ players: [] })
+export const masterData: Writable<MasterData> = writable({ players: [], player_dic: {} })
 
 export type MasterData = {
   players: PlayerIndex[]
+  player_dic: Record<string, PlayerIndex>
 }
 
 export function loadMaster(): null {
   fetch("/center_pin_g/data/player/players.json")
     .then(response => response.json())
-    .then(data => masterData.set({ ...masterData, players: data }))
+    .then(data => {
+      masterData.set({
+        ...masterData,
+        players: data,
+        player_dic: player_dic(data)
+      })
+    })
     .catch(() => [])
   return null
+}
+
+function player_dic(players: PlayerIndex[]): Record<string, PlayerIndex> {
+  const ret: Record<string, PlayerIndex> = {}
+  for (const p of players) {
+    ret[p.name] = p
+  }
+  return ret
 }
 
 

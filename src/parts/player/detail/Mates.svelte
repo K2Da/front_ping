@@ -19,9 +19,7 @@
         <td class="nw">{m.entry}<T t=" 大会" /></td>
         <td class="nw">{m.win}<T t=" 勝" /> {m.lose}<T t=" 敗" /></td>
         <td class="tal">
-          <PlayersLine players={m.names} popup={false}>
-            placeholder
-          </PlayersLine>
+          <PlayersLine players={m.names} />
         </td>
       </tr>
     {/each}
