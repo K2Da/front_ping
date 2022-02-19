@@ -6,14 +6,14 @@
   import { get_param_hash } from '$lib/util'
   import { slimMode } from '$lib/store/global'
 
-  import Header      from '../../../parts/Header.svelte'
-  import Profile     from '../../../parts/player/detail/Profile.svelte'
-  import Teams       from '../../../parts/player/detail/Teams.svelte'
-  import Tournaments from '../../../parts/player/detail/Tournaments.svelte'
-  import Matches     from '../../../parts/player/detail/Matches.svelte'
-  import Mates       from '../../../parts/player/detail/Mates.svelte'
-  import Opponents   from '../../../parts/player/detail/Opponents.svelte'
-  import PlaceHolder from '../../../parts/PlaceHolder.svelte'
+  import Header      from '/src/parts/Header.svelte'
+  import Profile     from '/src/parts/player/detail/Profile.svelte'
+  import Teams       from '/src/parts/player/detail/Teams.svelte'
+  import Tournaments from '/src/parts/player/detail/Tournaments.svelte'
+  import Matches     from '/src/parts/player/detail/Matches.svelte'
+  import Mates       from '/src/parts/player/detail/Mates.svelte'
+  import Opponents   from '/src/parts/player/detail/Opponents.svelte'
+  import PlaceHolder from '/src/parts/PlaceHolder.svelte'
 
   afterNavigate(() => { fetchPlayer(null) })
   onDestroy(() => apiData.set(null))
