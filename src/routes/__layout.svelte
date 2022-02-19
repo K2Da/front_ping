@@ -4,6 +4,10 @@
 
 <script lang="ts">
   import { base } from '$app/paths'
+  import { loadMaster } from '$lib/store/global'
+  import { onMount } from 'svelte'
+
+  onMount(async () => loadMaster())
 </script>
 
 <svelte:window bind:innerWidth={$windowWidth}/>

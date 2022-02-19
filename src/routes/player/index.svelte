@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { page_size, apiData, playerList, filterString, showRecord, showSns, showTournament, pageNo } from '$lib/store/player'
-  import { onMount } from 'svelte'
+  import { page_size, playerList, filterString, showRecord, showSns, showTournament, pageNo } from '$lib/store/player'
   import { base } from '$app/paths'
   import Pager from '../../parts/player/Pager.svelte'
   import Header from '../../parts/Header.svelte'
@@ -11,13 +10,6 @@
     $filterString = event.target.value
     $pageNo = 1
   }
-
-  onMount(async () => {
-    fetch("/center_pin_g/data/player/players.json")
-      .then(response => response.json())
-      .then(data => apiData.set(data))
-      .catch(() => [])
-  })
 </script>
 
 <Header title="プレイヤー一覧" type="article" url="player" description="ポケモンユナイトの大会のプレイヤーの一覧" />
