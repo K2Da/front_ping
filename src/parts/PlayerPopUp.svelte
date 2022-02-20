@@ -2,20 +2,29 @@
   import type { PlayerIndex } from '$lib/api/PlayerIndex'
   import T from '/src/parts/T.svelte'
   import S from '/src/parts/S.svelte'
+  import Date from '/src/parts/Date.svelte'
 
   export let player: PlayerIndex
 </script>
 
 <style>
 h3 {
-  padding: 0;
+  padding: 4px 2px;
+  margin: 0;
+}
+h4 {
+  padding: 4px 2px;
+  margin: 0;
+}
+p {
+  padding: 1px 8px;
   margin: 0;
 }
 </style>
 
 <h3>{player.name}</h3>
 <p>
-  <T t="rating " />{player.rating}
+  <T t="rating " />{player.rating.toLocaleString()}
   <S s={2} />
   {player.entries}<T t=" 大会エントリー" />
   <S s={2} />
@@ -23,3 +32,12 @@ h3 {
   <S s={2} />
   {player.lose}<T t=" 敗" />
 </p>
+{#if player.latest}
+  <h4>最新大会</h4>
+  <p>
+    <Date date={player.latest.date} spacing={false} /> {player.latest.tournament}
+  </p>
+  <p>
+    <T t="チーム " />{player.latest.team}
+  </p>
+{/if}

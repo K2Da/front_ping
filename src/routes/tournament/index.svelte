@@ -1,20 +1,12 @@
 <script lang="ts">
-  import { onMount } from 'svelte'
-  import { slimMode } from '/src/lib/store/global'
-  import { apiData } from '$lib/store/tournament'
+  import { slimMode } from '$lib/store/global'
+  import { tournamentMaster } from '$lib/store/global'
 
-  import Header from '../../parts/Header.svelte'
-  import PlaceHolder from '../../parts/PlaceHolder.svelte'
+  import Header from '/src/parts/Header.svelte'
+  import PlaceHolder from '/src/parts/PlaceHolder.svelte'
   import T from '/src/parts/T.svelte'
   import Date from '/src/parts/Date.svelte'
   import TournamentName from '/src/parts/TournamentName.svelte'
-
-  onMount(async () => {
-    fetch("/center_pin_g/data/tournament/tournaments.json")
-      .then(response => response.json())
-      .then(data => apiData.set(data))
-      .catch(() => [])
-  })
 </script>
 
 <Header title="大会一覧" type="article" url="tournament" description="ポケモンユナイトの大会の一覧" />
@@ -35,8 +27,8 @@
     {/if}
   </thead>
   <tbody class="{$slimMode ? 'double' : ''}">
-    {#if $apiData.tournaments}
-      {#each $apiData.tournaments as row}
+    {#if Array.isArray($tournamentMaster?.tournaments)}
+      {#each $tournamentMaster.tournaments as row}
           {#if $slimMode}
             <tr>
               <th class="tal" colspan="4">

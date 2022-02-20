@@ -2,23 +2,23 @@
   import { afterNavigate } from '$app/navigation'
   import { get_param_hash } from '$lib/util'
   import { slimMode } from '/src/lib/store/global'
-  import { base } from '$app/paths'
-  import { sha1 } from '/src/lib/util'
   import { onDestroy } from 'svelte'
   import { tournamentKey, apiData } from '$lib/store/tournament/detail'
   import { browser } from '$app/env'
   import TeamName from '/src/parts/TeamName.svelte'
   import Date from '/src/parts/Date.svelte'
-  import Header from '../../../parts/Header.svelte'
-  import PlaceHolder from '../../../parts/PlaceHolder.svelte'
+  import Header from '/src/parts/Header.svelte'
+  import PlaceHolder from '/src/parts/PlaceHolder.svelte'
   import T from '/src/parts/T.svelte'
   import TournamentResult from '/src/parts/TournamentResult.svelte'
+  import PlayersLine from '/src/parts/PlayersLine.svelte'
 
   afterNavigate(() => { fetchTournament() })
   onDestroy(() => apiData.set(null))
 
   async function fetchTournament() {
     if (!browser) return
+
     apiData.set(null)
     tournamentKey.set(get_param_hash(null, 't'))
     if ($tournamentKey === null) return
@@ -65,17 +65,7 @@
           </tr>
           <tr>
             <td colspan="3" class="tal" style="padding-left: 2em">
-              {#each t.members as player, index}
-                {#if index !== 0}, {/if}
-                {#if player in $apiData.ratings}
-                  <a href="{base}/player/detail/?p={sha1(player)}">{player}</a>
-                  {#if $apiData.ratings[player] > 1500}
-                    <T t={'(' + $apiData.ratings[player].toLocaleString() + ')'} />
-                  {/if}
-                {:else}
-                  {player}
-                {/if}
-              {/each}
+              <PlayersLine players={t.members} ratings={$apiData.ratings} />
             </td>
           </tr>
         {/each}
@@ -98,17 +88,7 @@
             <td class="tal"><TeamName name={t.team_name} /></td>
             <td style="text-align: center">{t.win}<T t=" 勝 " /> {t.lose}<T t=" 敗" /></td>
             <td class="tal">
-              {#each t.members as player, index}
-                {#if index !== 0}, {/if}
-                {#if player in $apiData.ratings}
-                  <a href="{base}/player/detail/?p={sha1(player)}">{player}</a>
-                  {#if $apiData.ratings[player] > 1500}
-                    <T t={'(' + $apiData.ratings[player].toLocaleString() + ')'} />
-                  {/if}
-                {:else}
-                  {player}
-                {/if}
-              {/each}
+              <PlayersLine players={t.members} ratings={$apiData.ratings} />
             </td>
           </tr>
         {/each}

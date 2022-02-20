@@ -7,7 +7,10 @@ export const windowHeight = writable(0)
 export const slimMode = derived(windowWidth, ($windowWidth) => {
   return $windowWidth <= 1280
 })
-export const masterData: Writable<MasterData> = writable({ players: [], player_dic: {} })
+export const playerMaster: Writable<MasterData> = writable({
+  players: [], player_dic: {}, tournaments: []
+})
+export const tournamentMaster = writable(null)
 
 export type MasterData = {
   players: PlayerIndex[]
@@ -17,14 +20,14 @@ export type MasterData = {
 export function loadMaster(): null {
   fetch("/center_pin_g/data/player/players.json")
     .then(response => response.json())
-    .then(data => {
-      masterData.set({
-        ...masterData,
-        players: data,
-        player_dic: player_dic(data)
-      })
-    })
-    .catch(() => [])
+    .then(data => playerMaster.set({ players: data, player_dic: player_dic(data)}))
+    .catch((e) => console.log(e))
+
+  fetch("/center_pin_g/data/tournament/tournaments.json")
+    .then(response => response.json())
+    .then(data => { tournamentMaster.set(data) })
+    .catch((e) => console.log(e))
+
   return null
 }
 

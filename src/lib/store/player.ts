@@ -1,4 +1,4 @@
-import { masterData } from '$lib/store/global'
+import { playerMaster } from '$lib/store/global'
 import { writable, derived } from 'svelte/store'
 
 export const page_size = 200
@@ -10,7 +10,7 @@ export const pageNo         = writable(1)
 
 export const filterString = writable('')
 
-export const playerList = derived([masterData, filterString], ([$masterData, $filterString]) => {
+export const playerList = derived([playerMaster, filterString], ([$masterData, $filterString]) => {
   if ($masterData.players.length > 0) {
     if ($filterString) {
       return $masterData.players.filter(
