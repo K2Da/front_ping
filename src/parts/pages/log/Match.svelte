@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { SplitTeam, Match } from '$lib/api/LogDetail'
+  import type { SplitTeam, Match } from '$lib/../../../../../center_ping/src/api/LogDetail'
   import Date from '/src/parts/Date.svelte'
   import TournamentName from '/src/parts/TournamentName.svelte'
   import T from '/src/parts/T.svelte'

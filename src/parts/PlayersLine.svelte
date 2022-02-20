@@ -2,8 +2,8 @@
   import { base } from '$app/paths'
   import { sha1 } from '$lib/util'
   import { playerMaster } from '$lib/store/global'
-  import PopUpA from '/src/parts/PopUpA.svelte'
-  import PlayerPopUp from '/src/parts/PlayerPopUp.svelte'
+  import PopUpA from '/src/parts/popup/PopUpA.svelte'
+  import PlayerPopUp from '/src/parts/popup/PlayerPopUp.svelte'
   import T from '/src/parts/T.svelte'
 
   export let players: string[]

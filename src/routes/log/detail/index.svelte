@@ -13,7 +13,7 @@
   import { get_param_hash } from '$lib/util'
   import PlaceHolder from '/src/parts/PlaceHolder.svelte'
   import TeamName from '/src/parts/TeamName.svelte'
-  import TeamRelation from '/src/parts/log/TeamRelation.svelte'
+  import TeamRelation from '/src/parts/pages/log/TeamRelation.svelte'
 
   afterNavigate(() => { fetchLog(null) })
   onDestroy(() => apiData.set(null))

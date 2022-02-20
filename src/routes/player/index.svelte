@@ -1,9 +1,9 @@
 <script lang="ts">
   import { page_size, playerList, filterString, showRecord, showSns, showTournament, pageNo } from '$lib/store/player'
   import { base } from '$app/paths'
-  import Pager from '../../parts/player/Pager.svelte'
-  import Header from '../../parts/Header.svelte'
-  import PlaceHolder from '../../parts/PlaceHolder.svelte'
+  import Pager from '/src/parts/pages/player/Pager.svelte'
+  import Header from '/src/parts/Header.svelte'
+  import PlaceHolder from '/src/parts/PlaceHolder.svelte'
   import TeamName from '/src/parts/TeamName.svelte'
 
   function filter(event) {

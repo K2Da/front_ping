@@ -8,9 +8,9 @@
   import T           from '/src/parts/T.svelte'
   import Header      from '/src/parts/Header.svelte'
   import PlaceHolder from '/src/parts/PlaceHolder.svelte'
-  import Tournaments from '../../../parts/team/detail/Tournaments.svelte'
-  import Members     from '../../../parts/team/detail/Members.svelte'
-  import SimilarTeam from '../../../parts/team/detail/SimilarTeam.svelte'
+  import Tournaments from '/src/parts/pages/team/detail/Tournaments.svelte'
+  import Members     from '/src/parts/pages/team/detail/Members.svelte'
+  import SimilarTeam from '/src/parts/pages/team/detail/SimilarTeam.svelte'
 
   afterNavigate(() => { fetchTeam(null) })
   onDestroy(() => apiData.set(null))

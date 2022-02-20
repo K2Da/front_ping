@@ -1,12 +1,11 @@
 <script lang="ts">
-  import { page_size, apiData, teamList, filterString, pageNo } from '$lib/store/team'
+  import { page_size, teamList, filterString, pageNo } from '$lib/store/team'
   import { slimMode } from '$lib/store/global'
-  import { onMount } from 'svelte'
-  import Pager from '../../parts/team/Pager.svelte'
-  import Header from '../../parts/Header.svelte'
+  import Pager from '/src/parts/pages/team/Pager.svelte'
+  import Header from '/src/parts/Header.svelte'
   import PlayersLine from '/src/parts/PlayersLine.svelte'
   import TeamName from '/src/parts/TeamName.svelte'
-  import PlaceHolder from '../../parts/PlaceHolder.svelte'
+  import PlaceHolder from '/src/parts/PlaceHolder.svelte'
   import T from '/src/parts/T.svelte'
 
   function filter(event) {
@@ -14,12 +13,6 @@
     $pageNo = 1
   }
 
-  onMount(async () => {
-    fetch("/center_pin_g/data/team/teams.json")
-      .then(response => response.json())
-      .then(data => apiData.set(data))
-      .catch(() => [])
-  })
 </script>
 
 <Header title="チーム一覧" type="article" url="team" description="ポケモンユナイトの大会のチームの一覧" />

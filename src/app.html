@@ -65,7 +65,6 @@
 				border-bottom: var(--border) 1px solid;
 			}
 
-
 			dl.one_line{ display: block }
 			dl.one_line dt { font-size: smaller; color: var(--text-muted); display: inline; margin: 0 6px 0 10px }
 			dl.one_line dd { color: var(--text-bright); display: inline; margin: 0 }
@@ -73,6 +72,32 @@
 			span.muted { font-size: smaller; color: var(--text-muted) }
 
 			.m { font-family:monospace, serif }
+
+			div.popup {
+				position: absolute;
+				margin: 0 0 0 0;
+				padding: 0 3px 5px 3px;
+
+				border: var(--border) solid 2px;
+				border-radius: 5px;
+				overflow-wrap: normal;
+
+				background-color: var(--background);
+				z-index: 256;
+			}
+			div.popup h3 {
+				margin: 0 0 4px 0;
+				padding: 10px 2px 6px 8px;
+			}
+			div.popup h4 {
+				margin: 0;
+				padding: 10px 2px 6px 10px;
+			}
+			div.popup p {
+				margin: 0;
+				padding: 2px 14px;
+				white-space: normal;
+			}
 		</style>
 
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-KQ7HCNR2RZ"></script>

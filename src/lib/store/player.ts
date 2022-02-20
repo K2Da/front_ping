@@ -10,16 +10,16 @@ export const pageNo         = writable(1)
 
 export const filterString = writable('')
 
-export const playerList = derived([playerMaster, filterString], ([$masterData, $filterString]) => {
-  if ($masterData.players.length > 0) {
+export const playerList = derived([playerMaster, filterString], ([$playerMaster, $filterString]) => {
+  if ($playerMaster.players.length > 0) {
     if ($filterString) {
-      return $masterData.players.filter(
+      return $playerMaster.players.filter(
         s => [s.name, s.latest.team].filter(
           f => f.toLowerCase().includes($filterString.toLowerCase())
         ).length > 0
       )
     } else {
-      return $masterData.players
+      return $playerMaster.players
     }
   }
 

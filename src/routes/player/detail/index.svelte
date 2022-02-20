@@ -7,12 +7,12 @@
   import { slimMode } from '$lib/store/global'
 
   import Header      from '/src/parts/Header.svelte'
-  import Profile     from '/src/parts/player/detail/Profile.svelte'
-  import Teams       from '/src/parts/player/detail/Teams.svelte'
-  import Tournaments from '/src/parts/player/detail/Tournaments.svelte'
-  import Matches     from '/src/parts/player/detail/Matches.svelte'
-  import Mates       from '/src/parts/player/detail/Mates.svelte'
-  import Opponents   from '/src/parts/player/detail/Opponents.svelte'
+  import Profile     from '/src/parts/pages/player/detail/Profile.svelte'
+  import Teams       from '/src/parts/pages/player/detail/Teams.svelte'
+  import Tournaments from '/src/parts/pages/player/detail/Tournaments.svelte'
+  import Matches     from '/src/parts/pages/player/detail/Matches.svelte'
+  import Mates       from '/src/parts/pages/player/detail/Mates.svelte'
+  import Opponents   from '/src/parts/pages/player/detail/Opponents.svelte'
   import PlaceHolder from '/src/parts/PlaceHolder.svelte'
 
   afterNavigate(() => { fetchPlayer(null) })

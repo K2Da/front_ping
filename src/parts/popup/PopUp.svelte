@@ -13,18 +13,9 @@
 </script>
 
 <style>
-div {
-  position: absolute;
 
-  border: var(--border) solid 2px;
-  border-radius: 5px;
-
-  background-color: var(--background-body);
-  padding: 10px;
-  z-index: 256;
-}
 </style>
 
-<div style={style()}>
+<div class="popup" style={style()}>
   <slot />
 </div>

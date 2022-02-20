@@ -1,26 +1,11 @@
 <script lang="ts">
-  import type { PlayerIndex } from '$lib/api/PlayerIndex'
+  import type { PlayerIndex } from '$lib/../../../../center_ping/src/api/PlayerIndex'
   import T from '/src/parts/T.svelte'
   import S from '/src/parts/S.svelte'
   import Date from '/src/parts/Date.svelte'
 
   export let player: PlayerIndex
 </script>
-
-<style>
-h3 {
-  padding: 4px 2px;
-  margin: 0;
-}
-h4 {
-  padding: 4px 2px;
-  margin: 0;
-}
-p {
-  padding: 1px 8px;
-  margin: 0;
-}
-</style>
 
 <h3>{player.name}</h3>
 <p>
