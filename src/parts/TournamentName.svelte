@@ -1,9 +1,15 @@
 <script lang="ts">
   import { base } from '$app/paths'
+  import { tournamentMaster } from '$lib/store/global'
+  import PopUpA from '/src/parts/popup/PopUpA.svelte'
+  import TournamentPopUp from '/src/parts/popup/TournamentPopUp.svelte'
 
   export let name: string
   export let key: string
   export let official: boolean
 </script>
 
-{#if official}<span style="color: greenyellow">✔</span>{/if} <a href="{base}/tournament/detail/?t={key}">{name}</a>
+{#if official}<span style="color: greenyellow">✔</span>{/if}
+<PopUpA href="{base}/tournament/detail/?t={key}" text={name} condition={!!$tournamentMaster.dic[key]}>
+  <TournamentPopUp tournament={$tournamentMaster.dic[key]} />
+</PopUpA>

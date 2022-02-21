@@ -27,8 +27,8 @@
     {/if}
   </thead>
   <tbody class="{$slimMode ? 'double' : ''}">
-    {#if Array.isArray($tournamentMaster)}
-      {#each $tournamentMaster as row}
+    {#if Array.isArray($tournamentMaster.list)}
+      {#each $tournamentMaster.list as row}
           {#if $slimMode}
             <tr>
               <th class="tal" colspan="4">

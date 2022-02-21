@@ -8,15 +8,15 @@ export const filterString = writable('')
 export const teamList = derived(
   [teamMaster, filterString], ([$teamMaster, $filterString]
   ) => {
-  if ($teamMaster.teams) {
+  if ($teamMaster.list) {
     if ($filterString) {
-      return $teamMaster.teams.filter(
+      return $teamMaster.list.filter(
         t => [t.name].filter(
           f => f.toLowerCase().includes($filterString.toLowerCase())
         ).length > 0
       )
     } else {
-      return $teamMaster.teams
+      return $teamMaster.list
     }
   }
 

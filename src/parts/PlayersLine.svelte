@@ -13,17 +13,10 @@
 
 {#each players as player, index}
   {#if index !== 0}, {/if}
-  {#if $playerMaster.player_dic[player]}
-    <PopUpA
-      href="{base}/player/detail/?p={sha1(player)}" text={player}
-      max_width={640}
-    >
-      <PlayerPopUp player={$playerMaster.player_dic[player]} />
+    <PopUpA href="{base}/player/detail/?p={sha1(player)}" text={player} condition={!!$playerMaster.dic[player]}>
+      <PlayerPopUp player={$playerMaster.dic[player]} />
       <slot />
     </PopUpA>
-  {:else}
-    <a href="{base}/player/detail/?p={sha1(player)}">{player}</a>
-  {/if}
   {#if ratings}
     {#if ratings[player] > 1500}
       <T t={'(' + ratings[player].toLocaleString() + ')'} />
