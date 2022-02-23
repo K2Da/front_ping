@@ -29,19 +29,19 @@ export type TeamMaster = {
 }
 
 export function loadMaster(): void {
-  fetch("/center_pin_g/data/player/players.json")
+  fetch("/data/player/players.json")
     .then(response => response.json())
     .then(data => playerMaster.set({ players: data, dic: player_dic(data) }))
     .catch((e) => console.log(e))
 
-  fetch("/center_pin_g/data/tournament/tournaments.json")
+  fetch("/data/tournament/tournaments.json")
     .then(response => response.json())
     .then(data => tournamentMaster.set({
       list: data.tournaments, dic: tournament_dic(data.tournaments)
     }))
     .catch((e) => console.log(e))
 
-  fetch("/center_pin_g/data/team/teams.json")
+  fetch("/data/team/teams.json")
     .then(response => response.json())
     .then(data => teamMaster.set({ list: data, dic: team_dic(data) }))
     .catch((e) => console.log(e))

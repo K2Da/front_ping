@@ -23,7 +23,7 @@
     tournamentKey.set(get_param_hash(null, 't'))
     if ($tournamentKey === null) return
 
-    fetch(`/center_pin_g/data/tournament/${$tournamentKey}.json`)
+    fetch(`/data/tournament/${$tournamentKey}.json`)
       .then(response => response.json())
       .then(data => { apiData.set(data) })
       .catch(() => [])

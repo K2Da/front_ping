@@ -8,7 +8,6 @@ const config = {
   kit: {
     adapter: adapter(),
     appDir: 'app',
-    paths: { base: '/center_pin_g' },
     serviceWorker: { register: false },
   },
 };

@@ -19,7 +19,7 @@
   onDestroy(() => apiData.set(null))
 
   async function redirectPlayer(player_hash) {
-    fetch(`/center_pin_g/data/player/player_aliases.json`)
+    fetch(`/data/player/player_aliases.json`)
       .then(response => response.json())
       .then(data => fetchPlayer(data[player_hash]))
       .catch(() => [])
@@ -32,7 +32,7 @@
     playerHash.set(get_param_hash(player_hash, 'p'))
     if ($playerHash === null) return
 
-    fetch(`/center_pin_g/data/player/${$playerHash}.json`)
+    fetch(`/data/player/${$playerHash}.json`)
       .then(response => {
         if (response.status === 404) throw new Error('NOT FOUND')
         return response.json()

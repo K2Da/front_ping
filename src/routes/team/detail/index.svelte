@@ -16,7 +16,7 @@
   onDestroy(() => apiData.set(null))
 
   async function redirectTeam(team_hash) {
-    fetch(`/center_pin_g/data/team/team_aliases.json`)
+    fetch(`/data/team/team_aliases.json`)
       .then(response => response.json())
       .then(data => { fetchTeam(data[team_hash]) })
       .catch(() => [])
@@ -28,7 +28,7 @@
     teamHash.set(get_param_hash(team_hash, 'm'))
     if ($teamHash === null) return
 
-    fetch(`/center_pin_g/data/team/${$teamHash}.json`)
+    fetch(`/data/team/${$teamHash}.json`)
       .then(response => {
         if (response.status === 404) throw new Error('NOT FOUND')
         return response.json()
