@@ -6,6 +6,7 @@
   import Date from '/src/parts/Date.svelte'
   import PlayersLine from '/src/parts/PlayersLine.svelte'
   import TeamName from '/src/parts/TeamName.svelte'
+  import TournamentName from '/src/parts/TournamentName.svelte'
 
   function rate(t: any) {
     if (t == null) return "-"
@@ -18,7 +19,7 @@
     <table>
       <tbody class="triple">
         {#each $apiData.tournaments as t}
-          <tr><th class="tal" colspan="3"><a href="#{t.tournament_key}">{t.tournament_name}</a></th></tr>
+          <tr><th class="tal" colspan="3"><TournamentName key={t.tournament_key} name={t.tournament_name} /></th></tr>
           <tr class="tal">
             <td class="tal"><Date date={t.tournament_date} /></td>
             <td class="tal"><T t="チーム " /><TeamName name={t.team_name} /></td>
@@ -46,7 +47,7 @@
       {#each $apiData.tournaments as t}
         <tr>
           <td><Date date={t.tournament_date} /></td>
-          <td class="tal"><a href="#{t.tournament_key}">{t.tournament_name}</a></td>
+          <td class="tal"><TournamentName key={t.tournament_key} name={t.tournament_name} /></td>
           <td><TournamentResult rank={t.team_result} /></td>
           <td>{rate(t.rating)}</td>
           <td class="tal"><TeamName name={t.team_name} /></td>

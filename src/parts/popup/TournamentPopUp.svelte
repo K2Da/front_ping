@@ -12,7 +12,7 @@
 </p>
 <h4>参加数</h4>
 <p>
-  <T t="team" /> {tournament.team_count}
-  <T t="player" /> {tournament.player_count}
-  <T t="matches" /> {tournament.match_count}
+  <T t="team" /> {tournament.team_count.toLocaleString()}
+  <T t="player" /> {tournament.player_count.toLocaleString()}
+  <T t="matches" /> {tournament.match_count.toLocaleString()}
 </p>

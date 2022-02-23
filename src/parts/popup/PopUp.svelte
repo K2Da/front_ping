@@ -13,7 +13,6 @@
 </script>
 
 <style>
-
 </style>
 
 <div class="popup" style={style()}>
