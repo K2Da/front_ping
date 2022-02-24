@@ -9,12 +9,9 @@
 
 {#each players as player, index}
   {#if index !== 0}, {/if}
-    <PlayerName name={player}>
-      <slot />
-    </PlayerName>
-  {#if ratings}
-    {#if ratings[player] > 1500}
-      <T t={'(' + ratings[player].toLocaleString() + ')'} />
-    {/if}
+  <PlayerName name={player}>
+    <slot />
+  </PlayerName>{#if ratings && ratings[player] > 1500}
+    <T t={'(' + ratings[player].toLocaleString() + ')'} />
   {/if}
 {/each}
