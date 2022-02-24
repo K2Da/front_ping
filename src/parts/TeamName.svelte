@@ -7,6 +7,6 @@
 
   export let name: string
 </script>
-<PopUpA href="{base}/team/detail/?m={sha1(name)}"} text={name} condition={!!$teamMaster?.dic[name]}>
+<PopUpA href="{base}/team/detail/?m={sha1(name)}" text={name} condition={!!$teamMaster?.dic[name]}>
   <TeamPopUp team={$teamMaster.dic[name]} />
 </PopUpA>
