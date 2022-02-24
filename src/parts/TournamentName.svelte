@@ -6,7 +6,7 @@
 
   export let name: string
   export let key: string
-  export let official: boolean
+  export let official = false
 </script>
 
 {#if official}<span style="color: greenyellow">✔</span>{/if}
