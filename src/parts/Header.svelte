@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { afterNavigate } from '$app/navigation'
   import { ga_view } from '$lib/store/global'
 
   export let title: string
@@ -7,11 +6,14 @@
   export let url: string
   export let description: string
 
-  afterNavigate(() => { ga_view(title) })
+  function title_ga() {
+    ga_view(title)
+    return title
+  }
 </script>
 
 <svelte:head>
-  <title>Center Pin(g): {title}</title>
+  <title>Center Pin(g): {title_ga()}</title>
 
   <meta property="og:type" content="{type}" />
   <meta property="og:url" content="https://center-ping.pages.dev/{url}" />

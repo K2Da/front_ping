@@ -70,6 +70,7 @@ function tournament_dic(tournaments: TournamentIndex[]): Record<string, Tourname
 }
 
 export function ga_view(title: string): void {
+  console.log(title)
   if (browser) {
     // @ts-ignore
     gtag('set', 'page_path', window.location.pathname)
