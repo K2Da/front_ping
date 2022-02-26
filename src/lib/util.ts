@@ -1,3 +1,11 @@
+const LOCAL_DATA = "/data"
+const CDN_DATA = "https://dfxbbu1v7k99l.cloudfront.net/data"
+
+export function fetch_data(path: string): Promise<Response> {
+  const data_host = window.location.host.includes('localhost') ? LOCAL_DATA : CDN_DATA
+  return fetch(`${data_host}/${path}`)
+}
+
 export function sha1(txt: string): string {
   // @ts-ignore
   return SHA1.createHash().update(txt).digest("hex");

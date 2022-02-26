@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { get_param_hash } from '$lib/util'
+  import { get_param_hash, fetch_data } from '$lib/util'
   import { onDestroy } from 'svelte'
   import { afterNavigate } from '$app/navigation'
   import { teamHash, apiData, set_api_data } from '$lib/store/team/detail'
@@ -16,7 +16,7 @@
   onDestroy(() => apiData.set(null))
 
   async function redirectTeam(team_hash) {
-    fetch(`/data/team/team_aliases.json`)
+    fetch_data('team/team_aliases.json')
       .then(response => response.json())
       .then(data => { fetchTeam(data[team_hash]) })
       .catch(() => [])
@@ -28,7 +28,7 @@
     teamHash.set(get_param_hash(team_hash, 'm'))
     if ($teamHash === null) return
 
-    fetch(`/data/team/${$teamHash}.json`)
+    fetch_data(`team/${$teamHash}.json`)
       .then(response => {
         if (response.status === 404) throw new Error('NOT FOUND')
         return response.json()

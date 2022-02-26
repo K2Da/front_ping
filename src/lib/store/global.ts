@@ -1,3 +1,4 @@
+import { fetch_data } from '$lib/util'
 import type { PlayerIndex } from '$lib/api/PlayerIndex'
 import type { TeamIndex } from '$lib/api/TeamIndex'
 import type { TournamentIndex } from '$lib/api/TournamentIndex'
@@ -29,19 +30,19 @@ export type TeamMaster = {
 }
 
 export function loadMaster(): void {
-  fetch("/data/player/players.json")
+  fetch_data("player/players.json")
     .then(response => response.json())
     .then(data => playerMaster.set({ players: data, dic: player_dic(data) }))
     .catch((e) => console.log(e))
 
-  fetch("/data/tournament/tournaments.json")
+  fetch_data("tournament/tournaments.json")
     .then(response => response.json())
     .then(data => tournamentMaster.set({
       list: data.tournaments, dic: tournament_dic(data.tournaments)
     }))
     .catch((e) => console.log(e))
 
-  fetch("/data/team/teams.json")
+  fetch_data("team/teams.json")
     .then(response => response.json())
     .then(data => teamMaster.set({ list: data, dic: team_dic(data) }))
     .catch((e) => console.log(e))
@@ -70,7 +71,6 @@ function tournament_dic(tournaments: TournamentIndex[]): Record<string, Tourname
 }
 
 export function ga_view(title: string): void {
-  console.log(title)
   if (browser) {
     // @ts-ignore
     gtag('set', 'page_path', window.location.pathname)

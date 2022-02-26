@@ -1,6 +1,6 @@
 <script lang="ts">
   import { afterNavigate } from '$app/navigation'
-  import { get_param_hash } from '$lib/util'
+  import { get_param_hash, fetch_data } from '$lib/util'
   import { slimMode } from '/src/lib/store/global'
   import { onDestroy } from 'svelte'
   import { tournamentKey, apiData } from '$lib/store/tournament/detail'
@@ -23,7 +23,7 @@
     tournamentKey.set(get_param_hash(null, 't'))
     if ($tournamentKey === null) return
 
-    fetch(`/data/tournament/${$tournamentKey}.json`)
+    fetch_data(`tournament/${$tournamentKey}.json`)
       .then(response => response.json())
       .then(data => { apiData.set(data) })
       .catch(() => [])

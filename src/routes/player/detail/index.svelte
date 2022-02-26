@@ -3,7 +3,7 @@
   import { afterNavigate } from '$app/navigation'
   import { playerHash, apiData, set_api_data } from '$lib/store/player/detail'
   import { browser } from '$app/env'
-  import { get_param_hash } from '$lib/util'
+  import { get_param_hash, fetch_data } from '$lib/util'
   import { slimMode } from '$lib/store/global'
 
   import Header      from '/src/parts/Header.svelte'
@@ -19,7 +19,7 @@
   onDestroy(() => apiData.set(null))
 
   async function redirectPlayer(player_hash) {
-    fetch(`/data/player/player_aliases.json`)
+    fetch_data('player/player_aliases.json')
       .then(response => response.json())
       .then(data => fetchPlayer(data[player_hash]))
       .catch(() => [])
@@ -32,7 +32,7 @@
     playerHash.set(get_param_hash(player_hash, 'p'))
     if ($playerHash === null) return
 
-    fetch(`/data/player/${$playerHash}.json`)
+    fetch_data(`player/${$playerHash}.json`)
       .then(response => {
         if (response.status === 404) throw new Error('NOT FOUND')
         return response.json()

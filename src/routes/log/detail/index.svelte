@@ -10,7 +10,7 @@
   import { selectedTeams, logHash, apiData, teamRelation, set_api_data, select_team, tk } from '$lib/store/log'
   import { base } from '$app/paths'
   import { browser } from '$app/env'
-  import { get_param_hash } from '$lib/util'
+  import { get_param_hash, fetch_data } from '$lib/util'
   import PlaceHolder from '/src/parts/PlaceHolder.svelte'
   import TeamName from '/src/parts/TeamName.svelte'
   import TeamRelation from '/src/parts/pages/log/TeamRelation.svelte'
@@ -25,7 +25,7 @@
     logHash.set(get_param_hash(log_hash, 'l'))
     if ($logHash === null) return
 
-    fetch(`/data/log/${$logHash}.json`)
+    fetch_data(`log/${$logHash}.json`)
       .then(response => {
         if (response.status === 404) throw new Error('NOT FOUND')
         return response.json()

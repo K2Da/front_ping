@@ -33,7 +33,7 @@
     {#if $apiData.data.twitter}
       <tr>
         <th class="tal"><i class="fab fa-twitter"></i> twitter</th>
-        <td class="tal"><a href="https://twiter.com/{$apiData.data.twitter}">@{$apiData.data.twitter}</a></td>
+        <td class="tal"><a href="https://twitter.com/{$apiData.data.twitter}">@{$apiData.data.twitter}</a></td>
       </tr>
     {/if}
     {#if $apiData.data.youtube}
