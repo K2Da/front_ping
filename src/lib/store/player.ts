@@ -3,7 +3,6 @@ import { writable, derived } from 'svelte/store'
 
 export const page_size = 200
 
-export const showRecord     = writable(true)
 export const showTournament = writable(false)
 export const showSns        = writable(false)
 export const pageNo         = writable(1)
