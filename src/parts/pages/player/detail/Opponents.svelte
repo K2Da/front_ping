@@ -4,7 +4,7 @@
   import PlayersLine from '/src/parts/PlayersLine.svelte'
 </script>
 
-<h4>対戦の多いプレイヤー(2戦以上)</h4>
+<h4>対戦の多いプレイヤー(3戦以上)</h4>
 <table>
   <thead>
   <tr>

@@ -14,9 +14,15 @@ export const playerList = derived([playerMaster, filterString], ([$playerMaster,
   if ($playerMaster.players.length > 0) {
     if ($filterString) {
       return $playerMaster.players.filter(
-        s => [s.name, s.latest.team].filter(
-          f => f.toLowerCase().includes($filterString.toLowerCase())
-        ).length > 0
+        s => {
+          let target = [s.name, s.latest.team]
+          if (s.data && s.data?.aliases) {
+            target = target.concat(s.data.aliases)
+          }
+          return target.filter(
+            f => f.toLowerCase().includes($filterString.toLowerCase())
+          ).length > 0
+        }
       )
     } else {
       return $playerMaster.players

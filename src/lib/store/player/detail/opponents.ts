@@ -40,7 +40,7 @@ export const opponentsData = derived(apiData, ($apiData) => {
 
   return [...new Set(Object.values(opponents_dic).map(m => m.matches.join("\t")))]
     .map(j => j.split("\t")).sort((a, b) => b.length - a.length)
-    .filter(p => p.length > 1).map((pattern) => {
+    .filter(p => p.length >= 3).map((pattern) => {
       const team_up = opponents.filter(o => o.matches.join('\t') === pattern.join('\t'))
       return {
         names: team_up.map(m => m.name),
