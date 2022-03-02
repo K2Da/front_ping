@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { PlayerIndex } from '$lib/../../../../center_ping/src/api/PlayerIndex'
+  import type { PlayerIndex } from '$lib/api/PlayerIndex'
   import T from '/src/parts/T.svelte'
   import S from '/src/parts/S.svelte'
   import Date from '/src/parts/Date.svelte'
@@ -8,6 +8,7 @@
 </script>
 
 <h3>{player.name}</h3>
+{#if player.data && player.data.aliases.length > 0}<p><T>登録名 </T>{player.data.aliases.join(", ")}</p>{/if}
 <p>
   <T t="rating " />{player.rating.toLocaleString()}
   <S s={2} />
