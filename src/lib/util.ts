@@ -1,5 +1,5 @@
-const LOCAL_DATA = "/data"
-// const LOCAL_DATA = "https://dfxbbu1v7k99l.cloudfront.net/002"
+// const CDN_DATA = "https://dfxbbu1v7k99l.cloudfront.net/003"
+const LOCAL_DATA = "https://dfxbbu1v7k99l.cloudfront.net/003"
 const CDN_DATA = "https://dfxbbu1v7k99l.cloudfront.net/003"
 
 export function fetch_data(path: string): Promise<Response> {

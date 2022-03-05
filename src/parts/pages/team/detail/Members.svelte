@@ -30,12 +30,12 @@
     {#each $apiData.players as p}
       <tr>
         <td class="tal"><PlayerName name={p} /></td>
-        <td>{$apiData.player_info[p].rating.toLocaleString()}</td>
+        <td>{#if $apiData.player_info[p]}{$apiData.player_info[p].rating.toLocaleString()}{/if}</td>
         {#each $apiData.reversed_tournaments as t}
           <td>{#if t.player_list.indexOf(p) !== -1}➜{/if}</td>
         {/each}
         <td class="tal nw">
-          {#if $apiData.player_info[p].latest_team !== $apiData.team.name}
+          {#if $apiData.player_info[p] && $apiData.player_info[p].latest_team !== $apiData.team.name}
             <TeamName name={$apiData.player_info[p].latest_team} />
           {/if}
         </td>

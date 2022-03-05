@@ -8,7 +8,11 @@
   export let name: string
 </script>
 
-<PopUpA href="{base}/player/detail/?p={sha1(name)}" text={name} condition={!!$playerMaster.dic[name]}>
-  <PlayerPopUp player={$playerMaster.dic[name]} />
-  <slot />
-</PopUpA>
+{#if !!$playerMaster.dic[name]}
+  <PopUpA href="{base}/player/detail/?p={sha1(name)}" text={name} condition={!!$playerMaster.dic[name]}>
+    <PlayerPopUp player={$playerMaster.dic[name]} />
+    <slot />
+  </PopUpA>
+{:else}
+  {name}
+{/if}
