@@ -3,6 +3,7 @@
   import { base } from '$app/paths'
   import PlaceHolder from '/src/parts/PlaceHolder.svelte'
   import TeamName from '/src/parts/TeamName.svelte'
+  import TournamentName from '/src/parts/TournamentName.svelte'
 </script>
 
 <table style="table-layout: auto">
@@ -48,7 +49,9 @@
           <td class="tal">{#if player.data?.aliases}{player.data?.aliases?.join(', ')}{/if}</td>
           <td class="tal"><TeamName name={player.latest.team} /></td>
           {#if $showTournament}
-            <td class="tal">{player.latest.tournament}</td>
+            <td class="tal">
+              <TournamentName name={player.latest.tournament_name} key={player.latest.tournament_key} official={false} />
+            </td>
             <td class="tal">{new Date(player.latest.date).toLocaleDateString()}</td>
           {/if}
           <td>{player.entries}</td>

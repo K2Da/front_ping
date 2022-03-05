@@ -1,6 +1,6 @@
-// const CDN_DATA = "https://dfxbbu1v7k99l.cloudfront.net/003"
-const LOCAL_DATA = "https://dfxbbu1v7k99l.cloudfront.net/003"
-const CDN_DATA = "https://dfxbbu1v7k99l.cloudfront.net/003"
+const LOCAL_DATA = "/data"
+// const LOCAL_DATA = "https://dfxbbu1v7k99l.cloudfront.net/004"
+const CDN_DATA = "https://dfxbbu1v7k99l.cloudfront.net/004"
 
 export function fetch_data(path: string): Promise<Response> {
   const data_host = window.location.host.includes('localhost') ? LOCAL_DATA : CDN_DATA

@@ -1,10 +1,11 @@
 <script lang="ts">
-  import { page_size, playerList, showSns, showTournament, pageNo } from '$lib/store/player'
+  import { page_size, playerList, pageNo } from '$lib/store/player'
   import { base } from '$app/paths'
   import PlaceHolder from '/src/parts/PlaceHolder.svelte'
   import TeamName from '/src/parts/TeamName.svelte'
   import Date from '/src/parts/Date.svelte'
   import T from '/src/parts/T.svelte'
+  import TournamentName from '/src/parts/TournamentName.svelte'
   import Twitter from '/src/parts/link/Twitter.svelte'
   import Youtube from '/src/parts/link/Youtube.svelte'
   import Twitch from '/src/parts/link/Twitch.svelte'
@@ -43,7 +44,7 @@
         <tr>
           <td class="tal" colspan="2">
             <T>大会</T>
-            {player.latest.tournament}
+            <TournamentName name={player.latest.tournament_name} key={player.latest.tournament_key} official={false} />
           </td>
         </tr>
         <tr>
