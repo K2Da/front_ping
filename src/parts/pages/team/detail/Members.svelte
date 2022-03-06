@@ -28,15 +28,16 @@
   </thead>
   <tbody>
     {#each $apiData.players as p}
+      {@const info = $apiData.player_info[p]}
       <tr>
         <td class="tal"><PlayerName name={p} /></td>
-        <td>{#if $apiData.player_info[p]}{$apiData.player_info[p].rating.toLocaleString()}{/if}</td>
+        <td>{#if info}{info.rating.toLocaleString()}{/if}</td>
         {#each $apiData.reversed_tournaments as t}
           <td>{#if t.player_list.indexOf(p) !== -1}➜{/if}</td>
         {/each}
         <td class="tal nw">
-          {#if $apiData.player_info[p] && $apiData.player_info[p].latest_team !== $apiData.team.name}
-            <TeamName name={$apiData.player_info[p].latest_team} />
+          {#if info && info.latest_team !== $apiData.team.name}
+            <TeamName name={info.latest_team} current_name={info.latest_team} />
           {/if}
         </td>
       </tr>

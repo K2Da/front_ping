@@ -10,7 +10,7 @@
     <tbody>
       {#each Object.keys($apiData.similar_team) as name}
         <tr>
-          <td class="tal" style="width: 20em"><TeamName name={name} /></td>
+          <td class="tal" style="width: 20em"><TeamName name={name} current_name={name} /></td>
           <td class="tal"><PlayersLine players={$apiData.similar_team[name]} /></td>
         </tr>
       {/each}

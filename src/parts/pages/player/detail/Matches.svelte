@@ -30,7 +30,10 @@
               <td><T t="スコア"/> {m.score_text}</td>
             </tr>
             <tr>
-              <td class="tal"><T t="対戦相手" /> <TeamName name={m.opponent_team_name} /></td>
+              <td class="tal">
+                <T t="対戦相手" />
+                <TeamName name={m.opponent_team_name} current_name={m.opponent_team_current_name} />
+              </td>
               <td><T t="最終順位" /> <TournamentResult rank={m.opponent_team_rank} /></td>
             </tr>
             <tr>
@@ -61,7 +64,7 @@
             <td>{m.round}</td>
             <td><MatchResult win={m.wl} /></td>
             <td>{m.score_text}</td>
-            <td class="tal"><TeamName name={m.opponent_team_name} /></td>
+            <td class="tal"><TeamName name={m.opponent_team_name} current_name={m.opponent_team_current_name} /></td>
             <td><TournamentResult rank={m.opponent_team_rank} /></td>
             <td class="tal"><PlayerLine players={m.opponents_list} /></td>
           </tr>

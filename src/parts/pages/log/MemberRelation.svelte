@@ -27,7 +27,7 @@
       <tr>
         <td><Date date={team.tournament_date} /></td>
         <td class="tal"><TournamentName name={team.tournament_name} key={team.tournament_key} official={false} /></td>
-        <td class="tal"><TeamName name={team.team_name} /></td>
+        <td class="tal"><TeamName name={team.team_name} current_name={team.team_current_name} /></td>
         <td><TournamentResult rank={team.team_rank} /></td>
         <td class="tal"><PlayersLine players={team.team_players} /></td>
       </tr>

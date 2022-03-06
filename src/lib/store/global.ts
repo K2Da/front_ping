@@ -1,7 +1,7 @@
 import { fetch_data } from '$lib/util'
 import type { PlayerIndex } from '$lib/api/PlayerIndex'
 import type { TeamIndex } from '$lib/api/TeamIndex'
-import type { TournamentIndex } from '$lib/api/TournamentIndex'
+import type { Tournaments, Winner } from '$lib/api/Tournaments'
 import { Writable, writable, derived } from 'svelte/store'
 import { browser } from '$app/env'
 
@@ -17,10 +17,11 @@ export type PlayerMaster = {
   dic: Record<string, PlayerIndex>
 }
 
-export const tournamentMaster: Writable<TournamentMaster> = writable({ list: [], dic: {} })
+export const tournamentMaster: Writable<TournamentMaster> = writable({ list: [], dic: {}, winners: {} })
 export type TournamentMaster = {
-  list: TournamentIndex[]
-  dic: Record<string, TournamentIndex>
+  list: Tournaments[]
+  dic: Record<string, Tournaments>
+  winners: Record<string, Winner[]>
 }
 
 export const teamMaster: Writable<TeamMaster> = writable({ list: [], dic: {} })
@@ -38,7 +39,7 @@ export function loadMaster(): void {
   fetch_data("tournament/tournaments.json")
     .then(response => response.json())
     .then(data => tournamentMaster.set({
-      list: data.tournaments, dic: tournament_dic(data.tournaments)
+      list: data.tournaments, dic: tournament_dic(data.tournaments), winners: data.tournament_winners
     }))
     .catch((e) => console.log(e))
 
@@ -64,8 +65,8 @@ function team_dic(teams: TeamIndex[]): Record<string, TeamIndex> {
   return ret
 }
 
-function tournament_dic(tournaments: TournamentIndex[]): Record<string, TournamentIndex> {
-  const ret: Record<string, TournamentIndex> = {}
+function tournament_dic(tournaments: Tournaments[]): Record<string, Tournaments> {
+  const ret: Record<string, Tournaments> = {}
   for (const t of tournaments) ret[t.key] = t
   return ret
 }

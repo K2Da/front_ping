@@ -22,7 +22,9 @@
           <tr><th class="tal" colspan="3"><TournamentName key={t.tournament_key} name={t.tournament_name} /></th></tr>
           <tr class="tal">
             <td class="tal"><Date date={t.tournament_date} /></td>
-            <td class="tal"><T t="チーム " /><TeamName name={t.team_name} /></td>
+            <td class="tal"><T t="チーム " />
+              <TeamName name={t.team_name} current_name={t.team_current_name} />
+            </td>
             <td class="nw"><T t="結果 " /><TournamentResult rank={t.team_result} />
           </tr>
           <tr>
@@ -50,7 +52,9 @@
           <td class="tal"><TournamentName key={t.tournament_key} name={t.tournament_name} /></td>
           <td><TournamentResult rank={t.team_result} /></td>
           <td>{rate(t.rating)}</td>
-          <td class="tal"><TeamName name={t.team_name} /></td>
+          <td class="tal">
+            <TeamName name={t.team_name} current_name={t.team_current_name} />
+          </td>
           <td class="tal">{t.member_name}, <PlayersLine players={t.mate_list} /></td>
         </tr>
       {/each}

@@ -36,7 +36,9 @@
         {#if ($pageNo - 1) * page_size <= i && i < $pageNo * page_size}
           <tr>
             <td class="nw" rowspan="3" style="vertical-align: middle">{(i + 1).toLocaleString()}</td>
-            <td class="tal nw"><TeamName name={team.name} /></td>
+            <td class="tal nw">
+              <TeamName name={team.name} current_name={team.name} />
+            </td>
             <td class="nw">{team.tournament_count}<T t=" 大会" /></td>
             <td class="nw">{team.win}<T t=" 勝" /></td>
             <td class="nw">{team.lose}<T t=" 敗" /></td>
@@ -78,7 +80,7 @@
           {#if ($pageNo - 1) * page_size <= i && i < $pageNo * page_size}
             <tr>
               <td class="nw">{(i + 1).toLocaleString()}</td>
-              <td class="tal nw"><TeamName name={team.name} /></td>
+              <td class="tal nw"><TeamName name={team.name} current_name={team.name} /></td>
               <td class="nw">{team.tournament_count}<T t=" 大会" /></td>
               <td class="nw">{team.win}<T t=" 勝" /></td>
               <td class="nw">{team.lose}<T t=" 敗" /></td>

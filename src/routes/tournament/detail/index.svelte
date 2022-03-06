@@ -59,12 +59,14 @@
       <tbody class="double">
         {#each $apiData.teams as t}
           <tr>
-            <td class="nw"><TournamentResult rank={t.team_rank} /></td>
-            <td class="tal"><TeamName name={t.team_name} /></td>
+            <td class="nw tal">
+              <TournamentResult rank={t.team_rank} />
+              <TeamName name={t.team_name} current_name={t.team_current_name} />
+            </td>
             <td class="nw" style="text-align: center">{t.win}<T t="勝" /> {t.lose}<T t="敗" /></td>
           </tr>
           <tr>
-            <td colspan="3" class="tal" style="padding-left: 2em">
+            <td colspan="2" class="tal" style="padding-left: 2em">
               <PlayersLine players={t.members} ratings={$apiData.ratings} />
             </td>
           </tr>
@@ -85,7 +87,7 @@
         {#each $apiData.teams as t}
           <tr>
             <td><TournamentResult rank={t.team_rank} /></td>
-            <td class="tal"><TeamName name={t.team_name} /></td>
+            <td class="tal"><TeamName name={t.team_name} current_name={t.team_current_name} /></td>
             <td style="text-align: center">{t.win}<T t=" 勝 " /> {t.lose}<T t=" 敗" /></td>
             <td class="tal">
               <PlayersLine players={t.members} ratings={$apiData.ratings} />

@@ -24,7 +24,7 @@
           <Span date1={t.first_match_at} date2={t.last_match_at} />
         {/if}
       </td>
-      <td class="tal nw"><TeamName name={t.name} /></td>
+      <td class="tal nw"><TeamName name={t.name} current_name={t.name} /></td>
       <td class="nw">{t.tournament_count}</td>
     </tr>
   {/each}

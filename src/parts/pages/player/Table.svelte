@@ -47,7 +47,7 @@
           <td>{(i + 1).toLocaleString()}</td>
           <td class="tal"><a href="{base}/player/detail/?p={player.hash}">{player.name}</a></td>
           <td class="tal">{#if player.data?.aliases}{player.data?.aliases?.join(', ')}{/if}</td>
-          <td class="tal"><TeamName name={player.latest.team} /></td>
+          <td class="tal"><TeamName name={player.latest.team} current_name={player.latest.team_current} /></td>
           {#if $showTournament}
             <td class="tal">
               <TournamentName name={player.latest.tournament_name} key={player.latest.tournament_key} official={false} />
@@ -60,7 +60,7 @@
           {#if $showSns }
             <td class="tal">
               {#if player.data && player.data.twitter}
-                <i class="fab fa-twitter"></i> <a href="https://twitter.com/{player.data.twitter}">@{player.data.twitter}</a>
+                <i class="fab fa-twitter"></i> <a href="https://twitter.com/{player.data.twitter}">{player.data.twitter}</a>
               {/if}
             </td>
             <td class="tal">

@@ -38,7 +38,7 @@
             <T>最新</T>
             <Date date={player.latest.date} spacing={false} />
             <T>チーム</T>
-            <TeamName name={player.latest.team} />
+            <TeamName name={player.latest.team} current_name={player.latest.team_current} />
           </td>
         </tr>
         <tr>

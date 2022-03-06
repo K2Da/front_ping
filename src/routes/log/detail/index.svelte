@@ -53,7 +53,7 @@
     {#each $apiData.teams as t1, i}
       <tr>
         <th class="nw">{i + 1}</th>
-        <td class="nw tal"><TeamName name={t1.team_name} /></td>
+        <td class="nw tal"><TeamName name={t1.team_name} current_name={t1.team_current_name} /></td>
         {#each $apiData.teams as t2, j}
           {@const rel = $teamRelation[tk(t1.team_name, t2.team_name)]}
           <td>
