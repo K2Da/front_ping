@@ -21,7 +21,7 @@
 {#if player.latest}
   <h4>最新大会</h4>
   <p>
-    <Date date={player.latest.date} spacing={false} /> {player.latest.tournament}
+    <Date date={player.latest.date} spacing={false} /> {player.latest.tournament_name}
   </p>
   <p>
     <T t="チーム " />{player.latest.team}
