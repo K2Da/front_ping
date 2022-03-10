@@ -7,7 +7,9 @@
 
 <p><a href="https://www.pokemonunite.jp/">ポケモンユナイト</a>の大会結果をメモしてく場所です。各種大会の結果を集めて、名前で寄せて集計してます。</p>
 <p>サイト内のデータは基本的に各大会で使用されたトーナメントサイトから取得したデータをそのまま使用していますが、各種SNSのアカウント、名寄せ等に誤りがある場合はメンションでお知らせください。</p>
-<a href="https://twitter.com/intent/tweet?screen_name=K2Da&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-show-count="false">Tweet to @K2Da</a>
+<p>
+  <a href="https://twitter.com/intent/tweet?screen_name=K2Da&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-show-count="false">Tweet to @K2Da</a>
+</p>
 
 <h2>お願い</h2>
 <p>
