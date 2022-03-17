@@ -15,9 +15,16 @@
 <p>
   <a href="https://battlefy.com/pokemon-unite-championship-series-2022/">Pokémon UNITE Championship Series</a>のトーナメント表が、公式サイトで発表されていません。2月大会のURLは検索エンジンで発見できたのですが、3月以降、自力で発見できるか怪しいため、ご存知の方は教えていただけるとありがたいです。2月分もNA、SA、JP以外は発見できていないため、ご存知だったら教えてください！ 以下のような形式のURLです。
 </p>
-<p>https://battlefy.com/pok%C3%A9mon-unite-championship-series/february-monthly-open-qualifier-[region]/[????]/</p>
+<p>2月: https://battlefy.com/pok%C3%A9mon-unite-championship-series/february-monthly-open-qualifier-[region]/[????]/</p>
+<p>3月のAPAC(アジア太平洋): https://battlefy.com/pok%C3%A9mon-unite-championship-series/march-monthly-open-qualifier-day-1-apac/621fadf68694796bab628982/stage/622c1a855ff8590591648d69/bracket/</p>
 
 <h2>etc</h2>
+<h3>収集対象大会</h3>
+<p>基本的に、日本の公式大会はすべて、その他の大会は参加人数が多いものを収集対象としたいと思ってます。</p>
+
+<p>しかし、データを投入するには、各試合結果含むトーナメント表 + チーム名 + メンバー名がデータの形で必要です。先述のとおり、Pokémon UNITE Championship Seriesのトーナメント表は存在してますが、公式にはURLが発表されていないので、今後、URLを見つけられなかった場合は収集できません。</p>
+<p>また、過去の非公式大会で規模が大きく、結果を収集しようとしたが、チームのメンバー情報を効率よく取得する方法がない(か、自分が見つけられていない)ため、収集していない大会がいくつか存在しています。主に、Tonamelを使用して開催された大会が該当しますので、参加チームのメンバー情報をTonamelから効率よく取得する方法をご存知の方は教えていただけるとありがたいです。</p>
+
 <h3>プレイヤー名について</h3>
 <p>原則、大会に参加した名前が同じだったら同じプレイヤーであるとして集計していますが、一部、おそらく、おなじプレイヤーであろうとおもわれる名前については、複数の文字列をおなじプレイヤーとして扱うよう、手動で設定しています。</p>
 
