@@ -2,8 +2,10 @@
   import { afterNavigate } from '$app/navigation'
   import { get_param_hash, fetch_data } from '$lib/util'
   import { slimMode } from '/src/lib/store/global'
+  import { teamMaster } from '$lib/store/global'
   import { onDestroy } from 'svelte'
   import { tournamentKey, apiData } from '$lib/store/tournament/detail'
+  import { TournamentTeam } from '$lib/api/Tournaments'
   import { browser } from '$app/env'
   import TeamName from '/src/parts/TeamName.svelte'
   import Date from '/src/parts/Date.svelte'
@@ -27,6 +29,20 @@
       .then(response => response.json())
       .then(data => { apiData.set(data) })
       .catch(() => [])
+  }
+
+  function sortTeam(teams: TournamentTeam[]) {
+    return teams.sort((a, b) => {
+      let r = a.team_rank - b.team_rank
+      if (r !== 0) return r
+
+      let ma = $teamMaster?.dic[a.team_name]
+      let mb = $teamMaster?.dic[b.team_name]
+      let t = (mb?.tournament_count || 0) - (ma?.tournament_count || 0)
+      if (t !== 0) return t
+
+      return (mb?.win || 0) - (ma?.win || 0)
+    })
   }
 </script>
 
@@ -57,11 +73,11 @@
   {#if $slimMode}
     <table>
       <tbody class="double">
-        {#each $apiData.teams as t}
+        {#each sortTeam($apiData.teams) as t}
           <tr>
             <td class="nw tal">
               <TournamentResult rank={t.team_rank} />
-              <TeamName name={t.team_name} current_name={t.team_current_name} />
+              <TeamName name={t.team_name} current_name={t.team_current_name} show_results={true} />
             </td>
             <td class="nw" style="text-align: center">{t.win}<T t="勝" /> {t.lose}<T t="敗" /></td>
           </tr>
@@ -84,10 +100,10 @@
         </tr>
       </thead>
       <tbody>
-        {#each $apiData.teams as t}
+        {#each sortTeam($apiData.teams) as t}
           <tr>
             <td><TournamentResult rank={t.team_rank} /></td>
-            <td class="tal"><TeamName name={t.team_name} current_name={t.team_current_name} /></td>
+            <td class="tal"><TeamName name={t.team_name} current_name={t.team_current_name} show_results={true} /></td>
             <td style="text-align: center">{t.win}<T t=" 勝 " /> {t.lose}<T t=" 敗" /></td>
             <td class="tal">
               <PlayersLine players={t.members} ratings={$apiData.ratings} />
