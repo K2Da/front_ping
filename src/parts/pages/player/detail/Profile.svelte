@@ -39,7 +39,7 @@
     {#if $apiData.data.youtube}
       <tr>
         <th class="tal"><i class="fab fa-youtube"></i> youtube</th>
-        <td class="tal"><a href="https://www.youtube.com/{$apiData.data.youtube[0]}">{$apiData.data.youtube[1]}</a></td>
+        <td class="tal"><a href="https://www.youtube.com/channel/{$apiData.data.youtube[0]}">{$apiData.data.youtube[1]}</a></td>
       </tr>
     {/if}
     {#if $apiData.data.twitch}

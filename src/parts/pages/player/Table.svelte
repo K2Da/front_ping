@@ -65,7 +65,7 @@
             </td>
             <td class="tal">
               {#if player.data && player.data.youtube}
-                <i class="fab fa-youtube"></i> <a href="https://www.youtube.com/{player.data.youtube[0]}">{player.data.youtube[1]}</a>
+                <i class="fab fa-youtube"></i> <a href="https://www.youtube.com/channel/{player.data.youtube[0]}">{player.data.youtube[1]}</a>
               {/if}
             </td>
             <td class="tal">

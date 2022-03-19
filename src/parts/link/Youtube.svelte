@@ -4,5 +4,5 @@
 </script>
 
 {#if channel && name}
-  <i class="fab fa-youtube"></i> <a href="https://www.youtube.com/{channel}">{name}</a>
+  <i class="fab fa-youtube"></i> <a href="https://www.youtube.com/channel/{channel}">{name}</a>
 {/if}
