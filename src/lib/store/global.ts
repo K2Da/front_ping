@@ -1,7 +1,8 @@
-import { fetch_data } from '$lib/util'
+import { fetch_data, fetch_worker } from '$lib/util'
 import type { PlayerIndex } from '$lib/api/PlayerIndex'
 import type { TeamIndex } from '$lib/api/TeamIndex'
 import type { Tournaments, Winner } from '$lib/api/Tournaments'
+import type { ChannelList } from '$lib/back_types/channel'
 import { Writable, writable, derived } from 'svelte/store'
 import { browser } from '$app/env'
 
@@ -28,6 +29,19 @@ export const teamMaster: Writable<TeamMaster> = writable({ list: [], dic: {} })
 export type TeamMaster = {
   list: TeamIndex[]
   dic: Record<string, TeamIndex>
+}
+
+export const channelMaster: Writable<ChannelList|null> = writable(null)
+
+export function loadChannels(): boolean {
+  if (!browser) return false
+
+  fetch_worker("channels/list")
+    .then(response => response.json())
+    .then(data => channelMaster.set(data))
+    .catch((e) => console.log(e))
+
+  return false
 }
 
 export function loadMaster(): void {

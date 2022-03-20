@@ -1,6 +1,11 @@
 const LOCAL_DATA = "/data"
 // const LOCAL_DATA = "https://dfxbbu1v7k99l.cloudfront.net/004"
-const CDN_DATA = "https://dfxbbu1v7k99l.cloudfront.net/005"
+const CDN_DATA = "https://dfxbbu1v7k99l.cloudfront.net/006"
+const WORKER_HOST = "https://back_ping.center-ping.workers.dev"
+
+export function fetch_worker(path: string): Promise<Response> {
+  return fetch(`${WORKER_HOST}/${path}`)
+}
 
 export function fetch_data(path: string): Promise<Response> {
   const data_host = window.location.host.includes('localhost') ? LOCAL_DATA : CDN_DATA
