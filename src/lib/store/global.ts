@@ -2,7 +2,7 @@ import { fetch_data, fetch_worker } from '$lib/util'
 import type { PlayerIndex } from '$lib/api/PlayerIndex'
 import type { TeamIndex } from '$lib/api/TeamIndex'
 import type { Tournaments, Winner } from '$lib/api/Tournaments'
-import type { ChannelList } from '$lib/back_types/channel'
+import type { ChannelList, VideoList } from '$lib/back_types/channel'
 import { Writable, writable, derived } from 'svelte/store'
 import { browser } from '$app/env'
 
@@ -39,6 +39,19 @@ export function loadChannels(): boolean {
   fetch_worker("channels/list")
     .then(response => response.json())
     .then(data => channelMaster.set(data))
+    .catch((e) => console.log(e))
+
+  return false
+}
+
+export const videoMaster: Writable<VideoList|null> = writable(null)
+
+export function loadVideos(): boolean {
+  if (!browser) return false
+
+  fetch_worker("videos/list")
+    .then(response => response.json())
+    .then(data => videoMaster.set(data))
     .catch((e) => console.log(e))
 
   return false
