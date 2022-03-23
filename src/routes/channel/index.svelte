@@ -9,7 +9,13 @@
   import PlayerName from '/src/parts/PlayerName.svelte'
   import ChannelName from '/src/parts/ChannelName.svelte'
   import BigNumber from '/src/parts/BigNumber.svelte'
-  import DateTime from '/src/parts/DateTime.svelte'
+  import DateDiff from '/src/parts/DateDiff.svelte'
+  import { afterNavigate } from '$app/navigation'
+
+  afterNavigate(() => {
+    loadVideos()
+    loadChannels()
+  })
 
   function sortVideo(players: PlayerIndex[], videoMaster: VideoList) {
     return players.filter(p => p.data?.youtube && videoMaster[p.data?.youtube[0]]).sort((a, b) => {
@@ -23,27 +29,32 @@
       return (new Date(video_b.publishedAt).getTime() - new Date(video_a.publishedAt).getTime())
     })
   }
+  let show_detail = false
 </script>
 
-<style>
-</style>
-
 <Header title="チャンネル一覧" type="article" url="channel" description="ポケモンユナイトプレイヤのチャンネルの一覧" />
+
 <h2>Channel</h2>
 
-<h3>ToDo</h3>
-<ul style="padding-left: 20px">
-  <li>定期的にチャンネル情報を再取得する</li>
-  <li>チャンネルIDが設定されてるのに情報取れてないものがあるかチェックする</li>
-  <li>公式チャンネルなどもリストに入れる</li>
-</ul>
+<div>
+  <input id="show_detail" type="checkbox" bind:checked={show_detail} />
+  <label for="show_detail">詳細表示</label>
+</div>
 
-{#if ($channelMaster || loadChannels())}
-  <p><T>チャンネルデータ取得</T> {$channelMaster.stored_at.toLocaleString()}</p>
-{/if}
+{#if show_detail}
+  {#if $channelMaster}
+    <p><T>チャンネルデータ取得</T> {$channelMaster.stored_at.toLocaleString()}</p>
+  {/if}
+  {#if $videoMaster}
+    <p><T>ビデオデータ取得</T>
+  {/if}
 
-{#if ($videoMaster || loadVideos())}
-  <p><T>ビデオデータ取得</T>
+  <h3>ToDo</h3>
+  <ul style="padding-left: 20px">
+    <li>定期的にチャンネル情報を再取得する</li>
+    <li>チャンネルIDが設定されてるのに情報取れてないものがあるかチェックする</li>
+    <li>公式チャンネルなどもリストに入れる</li>
+  </ul>
 {/if}
 
 <table style="table-layout: auto">
@@ -75,16 +86,18 @@
               <ChannelName channel_id={channel[0]} title={master.title} />
               <T>プレイヤー</T>
               <PlayerName name={player.name} />
-              <T>開設</T>
-              <DateParts date={master.publishedAt} spacing={false} />
-              <T>再生</T>
-              <BigNumber num={master.viewCount} />
-              {#if !!master.subscriberCount}
-                <T>登録者</T>
-                <BigNumber num={master.subscriberCount} />
+              {#if show_detail}
+                <T>開設</T>
+                <DateParts date={master.publishedAt} spacing={false} />
+                <T>再生</T>
+                <BigNumber num={master.viewCount} />
+                {#if !!master.subscriberCount}
+                  <T>登録者</T>
+                  <BigNumber num={master.subscriberCount} />
+                {/if}
+                <T>動画</T>
+                {master.videoCount.toLocaleString()}
               {/if}
-              <T>動画</T>
-              {master.videoCount.toLocaleString()}
             </td>
           </tr>
           <tr>
@@ -98,8 +111,20 @@
                   {/if}
                 </T>
                 <a href="https://www.youtube.com/watch?v={video.id}">{video.title}</a>
-                <T>(<DateTime datetime={video.publishedAt} />)</T>
-              {/if}
+                  {#if video.liveBroadcastContent !== 'live'}
+                    <T>(<DateDiff datetime={video.publishedAt} />)</T>
+                    {#if show_detail}
+                      <T>再生数</T>
+                      {video.viewCount ? video.viewCount.toLocaleString() : '-'}
+                      <T>コメント数</T>
+                      {video.commentCount ? video.commentCount.toLocaleString() : '-'}
+                      <T>Like</T>
+                      {video.likeCount ? video.likeCount.toLocaleString() : '-'}
+                      <T>fav</T>
+                      {video.favoriteCount ? video.favoriteCount.toLocaleString() : '-'}
+                    {/if}
+                  {/if}
+                {/if}
             </td>
           </tr>
         {/if}
