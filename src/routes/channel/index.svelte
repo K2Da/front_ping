@@ -1,9 +1,9 @@
 <script lang="ts">
-  import type { PlayerIndex } from '$lib/api/PlayerIndex'
   import type { VideoData } from '$lib/back_types/channel'
+  import type { Channel } from '$lib/api/ChannelIndex'
   import Header from '/src/parts/Header.svelte'
   import PlaceHolder from '/src/parts/PlaceHolder.svelte'
-  import { playerMaster, channelMaster, videoMaster, loadChannels, loadVideos } from '$lib/store/global'
+  import { channelJson, channelMaster, videoMaster, loadChannels, loadVideos, loadChannelJson } from '$lib/store/global'
   import T from '/src/parts/T.svelte'
   import DateParts from '/src/parts/Date.svelte'
   import PlayerName from '/src/parts/PlayerName.svelte'
@@ -13,16 +13,15 @@
   import { afterNavigate } from '$app/navigation'
 
   afterNavigate(() => {
+    loadChannelJson()
     loadVideos()
     loadChannels()
   })
 
-  function sortVideo(players: PlayerIndex[], videoMaster: Record<string, VideoData>) {
-    return players.filter(p => p.data?.youtube && videoMaster[p.data?.youtube[0]]).sort((a, b) => {
-      const channel_a = a.data?.youtube
-      const channel_b = b.data?.youtube
-      const video_a = videoMaster[(channel_a || [])[0]]
-      const video_b = videoMaster[(channel_b || [])[0]]
+  function sortVideo(channels: Channel[], videoMaster: Record<string, VideoData>) {
+    return channels.filter(c => videoMaster[c.id]).sort((a, b) => {
+      const video_a = videoMaster[a.id]
+      const video_b = videoMaster[b.id]
       if (!!video_a.concurrentViewers || !!video_b.concurrentViewers) {
         return (video_b.concurrentViewers || 0) - (video_a.concurrentViewers || 0)
       }
@@ -60,11 +59,10 @@
   <thead>
   </thead>
   <tbody class="double">
-    {#if Array.isArray($playerMaster.players) && $channelMaster && $videoMaster}
-      {#each sortVideo($playerMaster.players, $videoMaster.list) as player}
-        {@const channel = player.data?.youtube}
-        {@const master = $channelMaster.list[(channel || [])[0]]}
-        {@const video = $videoMaster.list[(channel || [])[0]]}
+    {#if Array.isArray($channelJson) && $channelMaster && $videoMaster}
+      {#each sortVideo($channelJson, $videoMaster.list) as channel}
+        {@const master = $channelMaster.list[channel.id]}
+        {@const video = $videoMaster.list[channel.id]}
         {#if channel && master}
           <tr>
             <td rowspan="2" style="width: 100px; padding: 0 4px 0 4px;">
@@ -82,9 +80,11 @@
               <img src={master.thumbnail}
                    alt="チャンネル画像"
                    style="border-radius: 50%; width: 1.2em; height: 1.2em; vertical-align: middle;"/>
-              <ChannelName channel_id={channel[0]} title={master.title} />
-              <T>プレイヤー</T>
-              <PlayerName name={player.name} />
+              <ChannelName channel_id={channel.id} title={master.title} />
+              {#if channel.player}
+                <T>プレイヤー</T>
+                <PlayerName name={channel.player} />
+              {/if}
               {#if show_detail}
                 <T>開設</T>
                 <DateParts date={master.publishedAt} spacing={false} />
