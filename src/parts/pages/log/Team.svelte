@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Team } from '$lib/api/LogDetail'
+  import type { Team } from '$lib/api/LogDetail'
   import PlayersLine from '/src/parts/PlayersLine.svelte'
   import T from '/src/parts/T.svelte'
   import S from '/src/parts/S.svelte'

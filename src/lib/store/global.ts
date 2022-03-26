@@ -3,7 +3,8 @@ import type { PlayerIndex } from '$lib/api/PlayerIndex'
 import type { TeamIndex } from '$lib/api/TeamIndex'
 import type { Tournaments, Winner } from '$lib/api/Tournaments'
 import type { ChannelList, VideoList } from '$lib/back_types/channel'
-import { Writable, writable, derived } from 'svelte/store'
+import type { Writable } from 'svelte/store'
+import { writable, derived } from 'svelte/store'
 import { browser } from '$app/env'
 
 export const windowWidth = writable(0)

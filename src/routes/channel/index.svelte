@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { PlayerIndex } from '$lib/api/PlayerIndex'
-  import type { VideoList } from '$lib/back_types/channel'
+  import type { VideoData } from '$lib/back_types/channel'
   import Header from '/src/parts/Header.svelte'
   import PlaceHolder from '/src/parts/PlaceHolder.svelte'
   import { playerMaster, channelMaster, videoMaster, loadChannels, loadVideos } from '$lib/store/global'
@@ -17,7 +17,7 @@
     loadChannels()
   })
 
-  function sortVideo(players: PlayerIndex[], videoMaster: VideoList) {
+  function sortVideo(players: PlayerIndex[], videoMaster: Record<string, VideoData>) {
     return players.filter(p => p.data?.youtube && videoMaster[p.data?.youtube[0]]).sort((a, b) => {
       const channel_a = a.data?.youtube
       const channel_b = b.data?.youtube
@@ -51,7 +51,6 @@
 
   <h3>ToDo</h3>
   <ul style="padding-left: 20px">
-    <li>定期的にチャンネル情報を再取得する</li>
     <li>チャンネルIDが設定されてるのに情報取れてないものがあるかチェックする</li>
     <li>公式チャンネルなどもリストに入れる</li>
   </ul>
@@ -62,10 +61,10 @@
   </thead>
   <tbody class="double">
     {#if Array.isArray($playerMaster.players) && $channelMaster && $videoMaster}
-      {#each sortVideo($playerMaster.players, $videoMaster) as player}
+      {#each sortVideo($playerMaster.players, $videoMaster.list) as player}
         {@const channel = player.data?.youtube}
         {@const master = $channelMaster.list[(channel || [])[0]]}
-        {@const video = $videoMaster[(channel || [])[0]]}
+        {@const video = $videoMaster.list[(channel || [])[0]]}
         {#if channel && master}
           <tr>
             <td rowspan="2" style="width: 100px; padding: 0 4px 0 4px;">

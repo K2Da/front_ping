@@ -1,5 +1,6 @@
 import type { LogData, Match, MembersTeam } from '$lib/api/LogDetail'
-import { Writable, writable } from 'svelte/store'
+import type { Writable } from 'svelte/store'
+import { writable } from 'svelte/store'
 
 export const logHash: Writable<(string|null)> = writable('')
 export const apiData: Writable<LogData|null> = writable(null)

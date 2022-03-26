@@ -5,7 +5,7 @@
   import { teamMaster } from '$lib/store/global'
   import { onDestroy } from 'svelte'
   import { tournamentKey, apiData } from '$lib/store/tournament/detail'
-  import { TournamentTeam } from '$lib/api/Tournaments'
+  import type { TournamentTeam } from '$lib/api/Tournaments'
   import { browser } from '$app/env'
   import TeamName from '/src/parts/TeamName.svelte'
   import Date from '/src/parts/Date.svelte'

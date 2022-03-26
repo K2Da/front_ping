@@ -1,5 +1,6 @@
 import type { PlayerDetail } from '$lib/api/PlayerDetail'
-import { Writable, writable } from 'svelte/store'
+import type { Writable } from 'svelte/store'
+import { writable } from 'svelte/store'
 
 export const playerHash: Writable<(string|null)> = writable('')
 export const apiData: Writable<(PlayerDetail|null)> = writable(null)

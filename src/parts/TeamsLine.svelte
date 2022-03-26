@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Winner } from '$lib/api/Tournaments'
+  import type { Winner } from '$lib/api/Tournaments'
   import TeamName from '/src/parts/TeamName.svelte'
   import T from '/src/parts/T.svelte'
 
