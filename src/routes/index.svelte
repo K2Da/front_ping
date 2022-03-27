@@ -13,7 +13,7 @@
 
 <h2>お願い</h2>
 <p>
-  <a href="https://battlefy.com/pokemon-unite-championship-series-2022/">Pokémon UNITE Championship Series</a>のトーナメント表が、公式サイトで発表されていません。2月大会のURLは検索エンジンで発見できたのですが、3月以降、自力で発見できるか怪しいため、ご存知の方は教えていただけるとありがたいです。2月分もNA、SA、JP以外は発見できていないため、ご存知だったら教えてください！ 以下のような形式のURLです。
+  <a href="https://battlefy.com/pokemon-unite-championship-series-2022/">Pokémon UNITE Championship Series</a>のトーナメント表が、公式サイトで発表されていません。過去大会のURLは検索エンジンで発見できたのですが、今後も、自力で発見できるか怪しいため、ご存知の方は教えていただけるとありがたいです。2月分もNA、SA、JP以外は発見できていないため、ご存知だったら教えてください！ 以下のような形式のURLです。
 </p>
 <p>2月: https://battlefy.com/pok%C3%A9mon-unite-championship-series/february-monthly-open-qualifier-[region]/[????]/</p>
 <p>3月のAPAC(アジア太平洋): https://battlefy.com/pok%C3%A9mon-unite-championship-series/march-monthly-open-qualifier-day-1-apac/621fadf68694796bab628982/stage/622c1a855ff8590591648d69/bracket/</p>
