@@ -105,6 +105,8 @@
                 <T>
                   {#if video.liveBroadcastContent === 'live'}
                     👀 {video.concurrentViewers}<T>人</T>
+                  {:else if video.liveBroadcastContent === 'upcoming'}
+                    📅
                   {:else}
                     🎞️
                   {/if}

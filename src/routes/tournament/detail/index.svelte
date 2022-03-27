@@ -52,7 +52,7 @@
   {#if $apiData.data}
     <dl>
       <dt>開催日</dt>
-      <dd><Date date={$apiData.tournament.date} /></dd>
+      <dd><Date date={$apiData.tournament.date} spacing={false} /></dd>
       <dt>形式</dt>
       <dd>{#if $apiData.data.official}<span style="color: greenyellow">公式 ✔</span>{/if} {$apiData.data.type}</dd>
       {#if $apiData.data.note}
