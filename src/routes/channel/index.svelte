@@ -123,6 +123,8 @@
                       {video.likeCount ? video.likeCount.toLocaleString() : '-'}
                       <T>fav</T>
                       {video.favoriteCount ? video.favoriteCount.toLocaleString() : '-'}
+                      <t>checked</t>
+                      {new Date(video.storedAt)}
                     {/if}
                   {/if}
                 {/if}
