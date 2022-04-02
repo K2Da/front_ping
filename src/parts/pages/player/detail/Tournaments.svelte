@@ -19,7 +19,10 @@
     <table>
       <tbody class="triple">
         {#each $apiData.tournaments as t}
-          <tr><th class="tal" colspan="3"><TournamentName key={t.tournament_key} name={t.tournament_name} /></th></tr>
+          <tr>
+            <th class="tal" colspan="2"><a href="#{t.tournament_key}">{t.tournament_name}</a></th>
+            <td><T>ratings </T>{rate(t.rating)}</td>
+          </tr>
           <tr class="tal">
             <td class="tal"><Date date={t.tournament_date} /></td>
             <td class="tal"><T t="チーム " />
@@ -49,7 +52,7 @@
       {#each $apiData.tournaments as t}
         <tr>
           <td><Date date={t.tournament_date} /></td>
-          <td class="tal"><TournamentName key={t.tournament_key} name={t.tournament_name} /></td>
+          <td class="tal"><a href="#{t.tournament_key}">{t.tournament_name}</a></td>
           <td><TournamentResult rank={t.team_result} /></td>
           <td>{rate(t.rating)}</td>
           <td class="tal">

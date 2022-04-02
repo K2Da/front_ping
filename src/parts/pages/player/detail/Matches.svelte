@@ -4,13 +4,16 @@
   import PlayerLine from '/src/parts/PlayersLine.svelte'
   import MatchResult from '/src/parts/MatchResult.svelte'
   import TournamentResult from '/src/parts/TournamentResult.svelte'
+  import TournamentName from '/src/parts/TournamentName.svelte'
   import T from '/src/parts/T.svelte'
   import Date from '/src/parts/Date.svelte'
   import TeamName from '/src/parts/TeamName.svelte'
 </script>
 
 {#each $apiData.tournaments as t}
-  <h4 id={t.tournament_key}>{t.tournament_name}</h4>
+  <h4 id={t.tournament_key}>
+    <TournamentName name={t.tournament_name} key={t.tournament_key} official={false} />
+  </h4>
   <dl class="one_line">
     <dt>開催日</dt>
     <dd><Date date={t.tournament_date} /></dd>
