@@ -15,7 +15,6 @@
 <svelte:head>
   <title>Center Pin(g): {title_ga()}</title>
 
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   <meta property="og:type" content="{type}" />
   <meta property="og:url" content="https://center-ping.pages.dev/{url}" />
   <meta property="og:site_name" content="Center Pin(g)" />

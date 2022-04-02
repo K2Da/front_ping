@@ -1,6 +1,6 @@
 const LOCAL_DATA = "/data"
 // const LOCAL_DATA = "https://dfxbbu1v7k99l.cloudfront.net/008"
-const CDN_DATA = "https://dfxbbu1v7k99l.cloudfront.net/011"
+const CDN_DATA = "https://dfxbbu1v7k99l.cloudfront.net/013"
 const WORKER_HOST = "https://back_ping.center-ping.workers.dev"
 
 export function fetch_worker(path: string): Promise<Response> {
@@ -20,3 +20,4 @@ export function sha1(txt: string): string {
 export function get_param_hash(func_param: string|null, key_name: string): string|null {
   return func_param || new URLSearchParams(window.location.search).get(key_name)
 }
+
