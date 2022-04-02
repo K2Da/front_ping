@@ -40,11 +40,13 @@
               <TeamName name={team.name} current_name={team.name} />
             </td>
             <td class="nw">{team.tournament_count}<T t=" 大会" /></td>
+            <td class="nw"><T>優勝 </T>{team.top_1} <T>回</T></td>
+            <td class="nw"><T>Top4 </T>{team.top_4} <T>回</T></td>
             <td class="nw">{team.win}<T t=" 勝" /></td>
             <td class="nw">{team.lose}<T t=" 敗" /></td>
           </tr>
           <tr>
-            <td class="tal" colspan="4">
+            <td class="tal" colspan="6">
               <T t="大会登録名" />
               {#each team.names.filter(n => team.name !== n) as name, index}
                 {#if index !== 0}, {/if}{name}
@@ -52,7 +54,7 @@
             </td>
           </tr>
           <tr>
-            <td class="tal" colspan="4">
+            <td class="tal" colspan="6">
               {team.members.length}
               <T t="名" />
               <PlayersLine players={team.members} />
@@ -69,7 +71,7 @@
       <tr>
         <th></th>
         <th>チーム名</th>
-        <th colspan="3">戦績</th>
+        <th colspan="5">戦績</th>
         <th>大会登録チーム別名</th>
         <th>参加プレイヤー</th>
       </tr>
@@ -82,6 +84,8 @@
               <td class="nw">{(i + 1).toLocaleString()}</td>
               <td class="tal nw"><TeamName name={team.name} current_name={team.name} /></td>
               <td class="nw">{team.tournament_count}<T t=" 大会" /></td>
+              <td class="nw"><T>優勝 </T>{team.top_1} <T>回</T></td>
+              <td class="nw"><T>Top4 </T>{team.top_4} <T>回</T></td>
               <td class="nw">{team.win}<T t=" 勝" /></td>
               <td class="nw">{team.lose}<T t=" 敗" /></td>
               <td class="tal">
