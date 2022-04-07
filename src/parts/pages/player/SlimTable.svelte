@@ -17,7 +17,7 @@
     {#each $playerList as player, i}
       {#if ($pageNo - 1) * page_size <= i && i < $pageNo * page_size}
         <tr>
-          <td rowspan="4" style="vertical-align: middle">{(i + 1).toLocaleString()}</td>
+          <td rowspan="4" style="vertical-align: middle">{player.rank.toLocaleString()}</td>
           <td class="tal">
             <a href="{base}/player/detail/?p={player.hash}">{player.name}</a>
             <T>{#if player.data?.aliases?.length > 0}({player.data?.aliases?.join(', ')}){/if}</T>

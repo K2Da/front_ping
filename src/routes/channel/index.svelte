@@ -68,7 +68,7 @@
             <td rowspan="2" style="width: 100px; padding: 0 4px 0 4px;">
               {#if video}
                 <div style="vertical-align: middle;">
-                  <a href="https://www.youtube.com/watch?v={video.id}">
+                  <a href="https://www.youtube.com/watch?v={video.id}" target="_blank">
                     <img src={video.thumbnail}
                          alt="動画サムネイル"
                          style="vertical-align: middle;"/>
@@ -111,23 +111,25 @@
                     🎞️
                   {/if}
                 </T>
-                <a href="https://www.youtube.com/watch?v={video.id}">{video.title}</a>
-                  {#if video.liveBroadcastContent !== 'live'}
-                    <T>(<DateDiff datetime={video.publishedAt} />)</T>
-                    {#if show_detail}
-                      <T>再生数</T>
-                      {video.viewCount ? video.viewCount.toLocaleString() : '-'}
-                      <T>コメント数</T>
-                      {video.commentCount ? video.commentCount.toLocaleString() : '-'}
-                      <T>Like</T>
-                      {video.likeCount ? video.likeCount.toLocaleString() : '-'}
-                      <T>fav</T>
-                      {video.favoriteCount ? video.favoriteCount.toLocaleString() : '-'}
-                      <t>checked</t>
-                      {new Date(video.storedAt)}
-                    {/if}
+                <a href="https://www.youtube.com/watch?v={video.id}" target="_blank">
+                  {video.title}
+                </a>
+                {#if video.liveBroadcastContent !== 'live'}
+                  <T>(<DateDiff datetime={video.publishedAt} />)</T>
+                  {#if show_detail}
+                    <T>再生数</T>
+                    {video.viewCount ? video.viewCount.toLocaleString() : '-'}
+                    <T>コメント数</T>
+                    {video.commentCount ? video.commentCount.toLocaleString() : '-'}
+                    <T>Like</T>
+                    {video.likeCount ? video.likeCount.toLocaleString() : '-'}
+                    <T>fav</T>
+                    {video.favoriteCount ? video.favoriteCount.toLocaleString() : '-'}
+                    <t>checked</t>
+                    {new Date(video.storedAt)}
                   {/if}
                 {/if}
+              {/if}
             </td>
           </tr>
         {/if}

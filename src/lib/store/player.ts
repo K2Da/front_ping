@@ -1,5 +1,6 @@
 import { playerMaster } from '$lib/store/global'
 import { writable, derived } from 'svelte/store'
+import type { PlayerIndex } from '$lib/api/PlayerIndex'
 
 export const page_size = 200
 
@@ -9,10 +10,24 @@ export const pageNo         = writable(1)
 
 export const filterString = writable('')
 
-export const playerList = derived([playerMaster, filterString], ([$playerMaster, $filterString]) => {
-  if ($playerMaster.players.length > 0) {
+export type RankedPlayer = PlayerIndex & {
+  rank: number
+}
+
+export const playerList = derived(
+  [playerMaster, filterString],
+  ([$playerMaster, $filterString]) => {
+  if ($playerMaster.players.length === 0) return []
+    const ranked_players = []
+    let prev = { rank: 0, rating: 0 }
+    for (const [current, p] of $playerMaster.players.entries()) {
+      const rank = p.rating === prev.rating ? prev.rank : current + 1
+      ranked_players.push({ ...p, rank })
+      prev = { rank, rating: p.rating }
+    }
+
     if ($filterString) {
-      return $playerMaster.players.filter(
+      return ranked_players.filter(
         s => {
           let target = [s.name, s.latest.team]
           if (s.data && s.data?.aliases) {
@@ -24,9 +39,7 @@ export const playerList = derived([playerMaster, filterString], ([$playerMaster,
         }
       )
     } else {
-      return $playerMaster.players
+      return ranked_players
     }
   }
-
-  return []
-})
+)
