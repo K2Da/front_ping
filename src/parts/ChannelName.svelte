@@ -3,4 +3,6 @@
   export let title: string
 </script>
 
-<a href="https://www.youtube.com/channel/{channel_id}">{title}</a>
+<a href="https://www.youtube.com/channel/{channel_id}" target="_blank">
+  {title}
+</a>
