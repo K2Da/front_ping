@@ -10,7 +10,7 @@
 <h3>{player.name}</h3>
 {#if player.data && player.data.aliases.length > 0}<p><T>登録名 </T>{player.data.aliases.join(", ")}</p>{/if}
 <p>
-  <T t="rating " />{player.rating.toLocaleString()}
+  <T t="rating " />{#if player.rating}{player.rating.toLocaleString()}{/if}
   <S s={2} />
   {player.entries}<T t=" 大会エントリー" />
   <S s={2} />

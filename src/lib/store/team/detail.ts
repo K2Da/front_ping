@@ -1,11 +1,17 @@
 import type { Writable } from 'svelte/store'
+import type { TeamDetail, TeamTournament } from '$lib/api/TeamDetail'
 import { writable } from 'svelte/store'
 
 export const teamHash: Writable<(string|null)> = writable('')
-export const apiData = writable(null)
+export const apiData: Writable<TeamDetailView|null> = writable(null)
 
-export function set_api_data(data: any): void {
-  const player_stats: { [name: string]: { tournament: number, count: number } } = {};
+export type TeamDetailView = TeamDetail & {
+  players: string[]
+  reversed_tournaments: TeamTournament[]
+}
+
+export function set_api_data(data: TeamDetail): void {
+  const player_stats: Record<string, { tournament: number, count: number }> = {};
 
   for (const [i, t] of data.tournaments.entries()) {
     for (const p of t.player_list){
@@ -16,15 +22,16 @@ export function set_api_data(data: any): void {
     }
   }
 
-  data.players = Object.keys(player_stats)
-  data.players.sort((p1: string, p2: string) => {
+  const players = Object.keys(player_stats)
+  players.sort((p1: string, p2: string) => {
     if (player_stats[p1].tournament === player_stats[p2].tournament) {
-      return player_stats[p1].count < player_stats[p2].count
+      return player_stats[p2].count - player_stats[p1].count
     } else {
-      return player_stats[p1].tournament > player_stats[p2].tournament
+      return player_stats[p1].tournament - player_stats[p2].tournament
     }
   })
-  data.reversed_tournaments = [...data.tournaments].reverse()
+  const reversed_tournaments = [...data.tournaments].reverse()
+  const view_data: TeamDetailView = { ...data, players, reversed_tournaments }
 
-  apiData.set(data)
+  apiData.set(view_data)
 }
