@@ -36,12 +36,10 @@
       let r = a.team_rank - b.team_rank
       if (r !== 0) return r
 
-      let ma = $teamMaster?.dic[a.team_name]
-      let mb = $teamMaster?.dic[b.team_name]
-      let t = (mb?.tournament_count || 0) - (ma?.tournament_count || 0)
-      if (t !== 0) return t
+      let l = (a?.lose || 0) - (b?.lose || 0)
+      if (l !== 0) return l
 
-      return (mb?.win || 0) - (ma?.win || 0)
+      return (a?.win || 0) - (b?.win || 0)
     })
   }
 </script>
@@ -79,7 +77,13 @@
               <TournamentResult rank={t.team_rank} />
               <TeamName name={t.team_name} current_name={t.team_current_name} show_results={true} />
             </td>
-            <td class="nw" style="text-align: center">{t.win}<T t="勝" /> {t.lose}<T t="敗" /></td>
+            <td class="nw" style="text-align: center">
+              {#if t.win !== 0 || t.lose !== 0}
+                {t.win}<T t="勝" /> {t.lose}<T t="敗" />
+              {:else}
+                -
+              {/if}
+            </td>
           </tr>
           <tr>
             <td colspan="2" class="tal" style="padding-left: 2em">
@@ -104,7 +108,13 @@
           <tr>
             <td><TournamentResult rank={t.team_rank} /></td>
             <td class="tal"><TeamName name={t.team_name} current_name={t.team_current_name} show_results={true} /></td>
-            <td style="text-align: center">{t.win}<T t=" 勝 " /> {t.lose}<T t=" 敗" /></td>
+            <td style="text-align: center">
+              {#if t.win !== 0 || t.lose !== 0}
+                {t.win}<T t=" 勝 " /> {t.lose}<T t=" 敗" />
+              {:else}
+                -
+              {/if}
+            </td>
             <td class="tal">
               <PlayersLine players={t.members} ratings={$apiData.ratings} />
             </td>

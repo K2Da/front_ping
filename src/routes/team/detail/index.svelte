@@ -11,6 +11,7 @@
   import Tournaments from '/src/parts/pages/team/detail/Tournaments.svelte'
   import Members     from '/src/parts/pages/team/detail/Members.svelte'
   import SimilarTeam from '/src/parts/pages/team/detail/SimilarTeam.svelte'
+  import Matches     from '/src/parts/pages/team/detail/Matches.svelte'
 
   afterNavigate(() => { fetchTeam(null) })
   onDestroy(() => apiData.set(null))
@@ -61,9 +62,13 @@
       <tr>
         <th>戦績</th>
         <td class="tal">
-          {$apiData.team.tournament_count}<T t=" 大会" />
-          {$apiData.team.win}<T t=" 勝" />
-          {$apiData.team.lose}<T t=" 敗" />
+          {#if $apiData.team.win !== 0 || $apiData.team.lose !== 0}
+            {$apiData.team.tournament_count}<T t=" 大会" />
+            {$apiData.team.win}<T t=" 勝" />
+            {$apiData.team.lose}<T t=" 敗" />
+          {:else}
+            -
+          {/if}
         </td>
       </tr>
       <tr>
@@ -77,13 +82,16 @@
     </tbody>
   </table>
 
+  <SimilarTeam />
+
   <h3>参加大会</h3>
   <Tournaments />
 
   <h3>メンバー</h3>
   <Members />
 
-  <SimilarTeam />
+  <h3>試合</h3>
+  <Matches />
 {:else}
   <PlaceHolder />
 {/if}
