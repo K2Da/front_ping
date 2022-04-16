@@ -21,7 +21,7 @@
   "scripts": {
     "dev": "svelte-kit dev",
     "build": "rm static/data; rm -rf ./build; svelte-kit build; ln -s ../../center_ping/out/data static/data",
-    "front": "rm -rf ../center_ping/out/app ./build/data; cp -r ./build/* ../center_ping/out/",
+    "front": "rm -rf  ../center_ping/front/* ./build/data; cp -r ./build/* ../center_ping/front/; ln -s ../out/data ../center_ping/front/data",
     "package": "svelte-kit package",
     "preview": "svelte-kit preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
