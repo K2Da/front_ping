@@ -87,7 +87,7 @@
           </tr>
           <tr>
             <td colspan="2" class="tal" style="padding-left: 2em">
-              <PlayersLine players={t.members} ratings={$apiData.ratings} />
+              <PlayersLine players={t.members} ratings={true} />
             </td>
           </tr>
         {/each}
@@ -116,7 +116,7 @@
               {/if}
             </td>
             <td class="tal">
-              <PlayersLine players={t.members} ratings={$apiData.ratings} />
+              <PlayersLine players={t.members} ratings={true} />
             </td>
           </tr>
         {/each}
