@@ -17,9 +17,11 @@
 </script>
 
 '{y1}<T t="年" /> {@html m1 < 10 ? s : ''}{m1}<T t="月" /> {@html d1 < 10 ? s : ''}{d1}<T t="日" />
-〜
-{#if dd1.getFullYear() === dd2.getFullYear()}
-  {@html m2 < 10 ? s : ''}{m2}<T t="月" /> {@html d2 < 10 ? s : ''}{d2}<T t="日" />
-{:else}
-  '{y2}<T t="年" /> {@html m2 < 10 ? s : ''}{m2}<T t="月" /> {@html d2 < 10 ? s : ''}{d2}<T t="日" />
+{#if y1 !== y2 || m1 !== m2 || d1 !== d2}
+  〜
+  {#if dd1.getFullYear() === dd2.getFullYear()}
+    {@html m2 < 10 ? s : ''}{m2}<T t="月" /> {@html d2 < 10 ? s : ''}{d2}<T t="日" />
+  {:else}
+    '{y2}<T t="年" /> {@html m2 < 10 ? s : ''}{m2}<T t="月" /> {@html d2 < 10 ? s : ''}{d2}<T t="日" />
+  {/if}
 {/if}
