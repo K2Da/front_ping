@@ -3,6 +3,7 @@
 
   export let date1: number
   export let date2: number
+  export let length: boolean = false
 
   const dd1 = new Date(date1)
   const dd2 = new Date(date2)
@@ -23,5 +24,8 @@
     {@html m2 < 10 ? s : ''}{m2}<T t="月" /> {@html d2 < 10 ? s : ''}{d2}<T t="日" />
   {:else}
     '{y2}<T t="年" /> {@html m2 < 10 ? s : ''}{m2}<T t="月" /> {@html d2 < 10 ? s : ''}{d2}<T t="日" />
+  {/if}
+  {#if length}
+    <T>({(dd2 - dd1) / 1000.0 / 60.0 / 60.0 / 24.0}日)</T>
   {/if}
 {/if}

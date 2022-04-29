@@ -4,13 +4,12 @@
   import { afterNavigate } from '$app/navigation'
   import { teamHash, apiData, set_api_data } from '$lib/store/team/detail'
   import { browser } from '$app/env'
-  import { slimMode } from '$lib/store/global'
-  import T           from '/src/parts/T.svelte'
   import Header      from '/src/parts/Header.svelte'
   import PlaceHolder from '/src/parts/PlaceHolder.svelte'
   import Tournaments from '/src/parts/pages/team/detail/Tournaments.svelte'
   import Members     from '/src/parts/pages/team/detail/Members.svelte'
   import SimilarTeam from '/src/parts/pages/team/detail/SimilarTeam.svelte'
+  import Basic       from '/src/parts/pages/team/detail/Basic.svelte'
   import Matches     from '/src/parts/pages/team/detail/Matches.svelte'
 
   afterNavigate(() => { fetchTeam(null) })
@@ -50,37 +49,9 @@
           description="" />
 
   <h2>{$apiData.team.name}</h2>
-  <h4>基本情報</h4>
-  <table>
-    <thead>
-      <tr style="">
-        <th style="{$slimMode ? '' : 'width: 20%'}"></th>
-        <th style="{$slimMode ? '' : 'width: 80%'}"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th>戦績</th>
-        <td class="tal">
-          {#if $apiData.team.win !== 0 || $apiData.team.lose !== 0}
-            {$apiData.team.tournament_count}<T t=" 大会" />
-            {$apiData.team.win}<T t=" 勝" />
-            {$apiData.team.lose}<T t=" 敗" />
-          {:else}
-            -
-          {/if}
-        </td>
-      </tr>
-      <tr>
-        <th>大会参加登録チーム名</th>
-        <td class="tal">
-          {#each $apiData.team.names as name, index}
-            {#if index !== 0}, {/if}{name}
-          {/each}
-        </td>
-      </tr>
-    </tbody>
-  </table>
+
+  <h3>基本情報</h3>
+  <Basic />
 
   <SimilarTeam />
 
