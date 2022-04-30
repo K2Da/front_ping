@@ -5,6 +5,7 @@
 
   export let players: string[]
   export let ratings = false
+  export let notes: Record<string, string> = null
 </script>
 
 
@@ -13,6 +14,8 @@
   <PlayerName name={player}>
     <slot />
   </PlayerName>{#if ratings && $playerMaster.dic[player] && $playerMaster.dic[player].rating > 1500}
-  <T t={'(' + $playerMaster.dic[player].rating.toLocaleString() + ')'} />
+    <T t={'(' + $playerMaster.dic[player].rating.toLocaleString() + ')'} />
+  {/if}{#if notes}
+    <T t={'(' + notes[player] + ')'} />
   {/if}
 {/each}

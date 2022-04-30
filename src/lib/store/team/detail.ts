@@ -8,6 +8,7 @@ export const apiData: Writable<TeamDetailView|null> = writable(null)
 export type TeamDetailView = TeamDetail & {
   players: string[]
   reversed_tournaments: TeamTournament[]
+  player_stats: Record<string, { tournament: number, count: number }>
 }
 
 export function set_api_data(data: TeamDetail): void {
@@ -39,7 +40,7 @@ export function set_api_data(data: TeamDetail): void {
   }
 
   const reversed_tournaments = [...data.tournaments].reverse()
-  const view_data: TeamDetailView = { ...data, players, reversed_tournaments }
+  const view_data: TeamDetailView = { ...data, players, reversed_tournaments, player_stats }
 
   apiData.set(view_data)
 }

@@ -10,19 +10,19 @@
 
 {#if $slimMode}
   <table>
-    <tbody class="triple">
+    <tbody class="double">
       {#each $apiData.tournaments as t, i}
         <tr>
-          <th rowspan="3" style="vertical-align: middle;">#{i + 1}</th>
-          <th class="tal" colspan="3"><a href="#{t.tournament_key}">{t.tournament_name}</a></th>
-        </tr>
-        <tr class="tal">
-          <td class="tal"><Date date={t.tournament_date} /></td>
-          <td class="tal"><T t="登録チーム名" /> {t.name}</td>
+          <td class="tal" colspan="2">
+            <T>#{i + 1}</T>
+            <Date date={t.tournament_date} spacing={false} />
+          </td>
           <td class="nw"><T t="結果" /> <TournamentResult rank={t.result} />
         </tr>
         <tr>
-          <td class="tal" colspan="3"><PlayersLine players={t.player_list} /></td>
+          <td colspan="3" class="tal">
+            <a href="#{t.tournament_key}">{t.tournament_name}</a>
+          </td>
         </tr>
       {/each}
     </tbody>

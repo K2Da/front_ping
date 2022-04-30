@@ -14,9 +14,9 @@
   <h4 id={t.tournament_key}>
     <TournamentName name={t.tournament_name} key={t.tournament_key} official={false} />
   </h4>
-  <dl class="one_line">
+  <dl>
     <dt>開催日</dt>
-    <dd><Date date={t.tournament_date} /></dd>
+    <dd><Date date={t.tournament_date} spacing={false} /></dd>
     <dt>エントリーチーム名</dt>
     <dd>{t.name}</dd>
     <dt>結果</dt>
@@ -29,15 +29,15 @@
         {#each $apiData.matches as m}
           {#if m.tnmt_key === t.tournament_key }
             <tr>
-              <td class="tal">{m.bracket} <T t="Round" /> {m.round} <T t="試合結果" /> <MatchResult win={m.wl} /></td>
-              <td><T t="スコア"/> {m.score_text}</td>
+              <td class="tal">{m.bracket} <T t="R " /> {m.round} <MatchResult win={m.wl} /></td>
+              <td>{m.score_text}</td>
             </tr>
             <tr>
               <td class="tal">
-                <T t="対戦相手" />
+                <T t="vs. " />
                 <TeamName name={m.opponent_team_name} current_name={m.opponent_team_current_name} />
               </td>
-              <td><T t="最終順位" /> <TournamentResult rank={m.opponent_team_rank} /></td>
+              <td><T t="" /> <TournamentResult rank={m.opponent_team_rank} /></td>
             </tr>
             <tr>
               <td colspan="2" class="tal" style="padding-left: 1em"><PlayerLine players={m.opponents_list} /></td>

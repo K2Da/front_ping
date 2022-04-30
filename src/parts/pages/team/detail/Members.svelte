@@ -25,7 +25,7 @@
           />
         </th>
       {/each}
-      <th class="tal">最新チーム</th>
+      <th class="tal nw">最新チーム</th>
     </tr>
   </thead>
   <tbody>

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { apiData } from '$lib/store/team/detail'
+  import { slimMode } from '$lib/store/global'
   import type { TeamDetailView } from '$lib/store/team/detail'
   import { teamMaster } from '$lib/store/global'
   import PlayersLine from '/src/parts/PlayersLine.svelte'
@@ -18,22 +19,44 @@
 
 {#if $apiData && $teamMaster.list.length > 0 && $apiData.similar_team.length > 0}
   <h3>3名以上のメンバーが共通するチーム</h3>
-  <table style="width: 100%">
-    <tbody>
-      {#each sort_similar_teams($apiData.similar_team, $teamMaster.dic) as name}
-        {@const master = $teamMaster.dic[name] }
-        <tr>
-          <td class="tal" style="width: 20em">
-            <TeamName name={name} current_name={name} />
-          </td>
-          <td class="tal">
-            <Span date1={master.first_tournament_date} date2={master.latest_tournament_date} />
-          </td>
-          <td class="tal">
-            <PlayersLine players={common_players($apiData, name, $teamMaster.dic)} />
-          </td>
-        </tr>
-      {/each}
-    </tbody>
+    <table style="width: 100%">
+    {#if $slimMode}
+      <tbody class="triple">
+        {#each sort_similar_teams($apiData.similar_team, $teamMaster.dic) as name}
+          {@const master = $teamMaster.dic[name] }
+          <tr>
+            <td class="tal" style="width: 20em">
+              <TeamName name={name} current_name={name} />
+            </td>
+          <tr>
+            <td class="tal">
+              <Span date1={master.first_tournament_date} date2={master.latest_tournament_date} />
+            </td>
+          </tr>
+          <tr>
+            <td class="tal">
+              <PlayersLine players={common_players($apiData, name, $teamMaster.dic)} />
+            </td>
+          </tr>
+        {/each}
+      </tbody>
+    {:else}
+      <tbody>
+        {#each sort_similar_teams($apiData.similar_team, $teamMaster.dic) as name}
+          {@const master = $teamMaster.dic[name] }
+          <tr>
+            <td class="tal" style="width: 20em">
+              <TeamName name={name} current_name={name} />
+            </td>
+            <td class="tal">
+              <Span date1={master.first_tournament_date} date2={master.latest_tournament_date} />
+            </td>
+            <td class="tal">
+              <PlayersLine players={common_players($apiData, name, $teamMaster.dic)} />
+            </td>
+          </tr>
+        {/each}
+      </tbody>
+    {/if}
   </table>
 {/if}
