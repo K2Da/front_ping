@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { days } from '$lib/util'
   import { page_size, teamList, filterString, pageNo } from '$lib/store/team'
   import { slimMode } from '$lib/store/global'
   import Pager from '/src/parts/pages/team/Pager.svelte'
@@ -7,6 +8,7 @@
   import TeamName from '/src/parts/TeamName.svelte'
   import PlaceHolder from '/src/parts/PlaceHolder.svelte'
   import T from '/src/parts/T.svelte'
+  import Span from '/src/parts/Span.svelte'
 
   function filter(event) {
     $filterString = event.target.value
@@ -28,84 +30,76 @@
 
 <Pager />
 
-<table style="table-layout: auto">
-  {#if $slimMode}
-    <tbody class="triple">
-    {#if Array.isArray($teamList)}
-      {#each $teamList as team, i}
-        {#if ($pageNo - 1) * page_size <= i && i < $pageNo * page_size}
-          <tr>
-            <td class="nw" rowspan="3" style="vertical-align: middle">{(i + 1).toLocaleString()}</td>
-            <td class="tal nw">
-              <TeamName name={team.name} current_name={team.name} />
-            </td>
-            <td class="nw">{team.tournament_count}<T t=" 大会" /></td>
-            <td class="nw"><T>優勝 </T>{team.top_1} <T>回</T></td>
-            <td class="nw"><T>Top4 </T>{team.top_4} <T>回</T></td>
-            <td class="nw">{team.win}<T t=" 勝" /></td>
-            <td class="nw">{team.lose}<T t=" 敗" /></td>
-          </tr>
-          <tr>
-            <td class="tal" colspan="6">
-              <T t="大会登録名" />
-              {#each team.names.filter(n => team.name !== n) as name, index}
-                {#if index !== 0}, {/if}{name}
-              {/each}
-            </td>
-          </tr>
-          <tr>
-            <td class="tal" colspan="6">
-              {team.members.length}
-              <T t="名" />
-              <PlayersLine players={team.members} />
-            </td>
-          </tr>
-        {/if}
-      {/each}
+{#if Array.isArray($teamList)}
+  <table style="table-layout: auto">
+    {#if $slimMode}
+      <tbody class="quad">
+        {#each $teamList as team, i}
+          {#if ($pageNo - 1) * page_size <= i && i < $pageNo * page_size}
+            <tr>
+              <td style="vertical-align: middle; margin-left: 0; margin-right: 0; padding-right: 0; padding-left: 0">{(i + 1).toLocaleString()}:</td>
+              <td class="tal" style="margin-left: 0; padding-left: 0">
+                <TeamName name={team.name} current_name={team.name} />
+                {#if team.names.length > 1}<T>(別名{team.names.length - 1}件)</T>{/if}
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" class="tal" style="padding-left: 2em">
+                {team.tournament_count}<T t=" 大会" />
+                {#if team.top_1 > 0}<T>🥇 </T>{team.top_1}<T>回</T>{/if}
+                {#if team.top_4 > 0}<T>Top4 </T>{team.top_4}<T>回</T>{/if}
+                {team.win}<T t="勝" />
+                {team.lose}<T t="敗" />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" class="tal" style="padding-left: 2em">
+                <PlayersLine players={team.members.slice(0, 5)} />
+                {#if team.members.length > 5}<T>(他{team.members.length - 5}人)</T>{/if}
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" class="tal" style="padding-left: 2em">
+                <Span date1={team.first_tournament_date} date2={team.latest_tournament_date} length=true />
+              </td>
+            </tr>
+          {/if}
+        {/each}
+      </tbody>
     {:else}
-      <PlaceHolder />
-    {/if}
-    </tbody>
-  {:else}
-    <thead>
-      <tr>
-        <th></th>
-        <th>チーム名</th>
-        <th colspan="5">戦績</th>
-        <th>大会登録チーム別名</th>
-        <th>参加プレイヤー</th>
-      </tr>
+      <thead>
+        <tr>
+          <th></th>
+          <th colspan="2">チーム名</th>
+          <th colspan="5">戦績</th>
+          <th colspan="2">活動期間</th>
+          <th colspan="2">参加プレイヤー</th>
+        </tr>
       </thead>
       <tbody>
-      {#if Array.isArray($teamList)}
         {#each $teamList as team, i}
           {#if ($pageNo - 1) * page_size <= i && i < $pageNo * page_size}
             <tr>
               <td class="nw">{(i + 1).toLocaleString()}</td>
               <td class="tal nw"><TeamName name={team.name} current_name={team.name} /></td>
+              <td class="tal">{#if team.names.length > 1}<T>(別名{team.names.length - 1}件)</T>{/if}</td>
               <td class="nw">{team.tournament_count}<T t=" 大会" /></td>
-              <td class="nw"><T>優勝 </T>{team.top_1} <T>回</T></td>
-              <td class="nw"><T>Top4 </T>{team.top_4} <T>回</T></td>
-              <td class="nw">{team.win}<T t=" 勝" /></td>
-              <td class="nw">{team.lose}<T t=" 敗" /></td>
-              <td class="tal">
-                {#each team.names.filter(n => team.name !== n) as name, index}
-                  {#if index !== 0}, {/if}{name}
-                {/each}
-              </td>
-              <td class="tal">
-                {team.members.length}
-                <T t="名" />
-                <PlayersLine players={team.members} />
-              </td>
+              <td class="nw">{#if team.top_1 > 0}<T>🥇 </T>{team.top_1}<T>回</T>{/if}</td>
+              <td class="nw">{#if team.top_4 > 0}<T>Top4 </T>{team.top_4}<T>回</T>{/if}</td>
+              <td class="nw">{team.win}<T t="勝" /></td>
+              <td class="nw">{team.lose}<T t="敗" /></td>
+              <td class="nw tal"><Span date1={team.first_tournament_date} date2={team.latest_tournament_date} /></td>
+              <td class="nw tal"><T>({days(team.first_tournament_date, team.latest_tournament_date)}日)</T></td>
+              <td class="tal"><PlayersLine players={team.members.slice(0, 5)} /></td>
+              <td>{#if team.members.length > 5}<T>(他{team.members.length - 5}人)</T>{/if}</td>
             </tr>
           {/if}
         {/each}
-      {:else}
-        <PlaceHolder />
-      {/if}
-    </tbody>
-  {/if}
-</table>
+      </tbody>
+    {/if}
+  </table>
+{:else}
+  <PlaceHolder />
+{/if}
 
 <Pager />

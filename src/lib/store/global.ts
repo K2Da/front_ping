@@ -100,6 +100,7 @@ function player_dic(players: PlayerIndex[]): Record<string, PlayerIndex> {
 function team_dic(teams: TeamIndex[]): Record<string, TeamIndex> {
   const ret: Record<string, TeamIndex> = {}
   for (const t of teams) {
+    ret[t.name] = t
     for (const alias of t.names) {
       ret[alias] = t
     }

@@ -1,9 +1,10 @@
 <script lang="ts">
+  import { days } from '$lib/util'
   import T from './T.svelte'
 
   export let date1: number
   export let date2: number
-  export let length: boolean = false
+  export let length = false
 
   const dd1 = new Date(date1)
   const dd2 = new Date(date2)
@@ -15,6 +16,7 @@
   const m2 = dd2.getMonth() + 1
   const d2 = dd2.getDate()
   const s = '&nbsp;'
+  const day_count = days(date1, date2)
 </script>
 
 '{y1}<T t="年" /> {@html m1 < 10 ? s : ''}{m1}<T t="月" /> {@html d1 < 10 ? s : ''}{d1}<T t="日" />
@@ -26,6 +28,6 @@
     '{y2}<T t="年" /> {@html m2 < 10 ? s : ''}{m2}<T t="月" /> {@html d2 < 10 ? s : ''}{d2}<T t="日" />
   {/if}
   {#if length}
-    <T>({(dd2 - dd1) / 1000.0 / 60.0 / 60.0 / 24.0}日)</T>
+    <T>({day_count}日)</T>
   {/if}
 {/if}
