@@ -5,18 +5,17 @@
   export let date1: number
   export let date2: number
   export let length = false
-
-  const dd1 = new Date(date1)
-  const dd2 = new Date(date2)
-
-  const y1 = dd1.getFullYear() % 100
-  const m1 = dd1.getMonth() + 1
-  const d1 = dd1.getDate()
-  const y2 = dd2.getFullYear() % 100
-  const m2 = dd2.getMonth() + 1
-  const d2 = dd2.getDate()
   const s = '&nbsp;'
-  const day_count = days(date1, date2)
+
+  $: dd1 = new Date(date1)
+  $: dd2 = new Date(date2)
+  $: y1 = dd1.getFullYear() % 100
+  $: m1 = dd1.getMonth() + 1
+  $: d1 = dd1.getDate()
+  $: y2 = dd2.getFullYear() % 100
+  $: m2 = dd2.getMonth() + 1
+  $: d2 = dd2.getDate()
+  $: day_count = days(date1, date2)
 </script>
 
 '{y1}<T t="年" /> {@html m1 < 10 ? s : ''}{m1}<T t="月" /> {@html d1 < 10 ? s : ''}{d1}<T t="日" />

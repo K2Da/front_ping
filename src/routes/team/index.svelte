@@ -14,7 +14,6 @@
     $filterString = event.target.value
     $pageNo = 1
   }
-
 </script>
 
 <Header title="チーム一覧" type="article" url="team" description="ポケモンユナイトの大会のチームの一覧" />
@@ -23,7 +22,7 @@
 
 <div>
   <input on:input={filter}
-         placeholder="チーム名"
+         placeholder="チーム名/メンバー名"
          style="box-sizing: border-box; width: 100%"
          value={$filterString} />
 </div>
