@@ -12,7 +12,7 @@
 
 {#if stats.win !== 0 || stats.lose !== 0}
   {stats.tournament_count}<T t=" 大会" />
-  {#if stats.top_1 > 0}<T>優勝 </T>{stats.top_1}<T>回</T>{/if}
+  {#if stats.top_1 > 0}<T>🥇 </T>{stats.top_1}<T>回</T>{/if}
   {#if stats.top_4 > 0}<T>Top4 </T>{stats.top_4}<T>回</T>{/if}
   <br />
   {stats.win}<T t="勝" />

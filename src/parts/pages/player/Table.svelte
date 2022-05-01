@@ -13,7 +13,7 @@
     {#if $showTournament}
       <th colspan="2">最新参加大会</th>
     {/if}
-    <th colspan="3">通算戦績</th>
+    <th colspan="5">通算戦績</th>
     {#if $showSns }
       <th colspan="3">アカウント</th>
     {/if}
@@ -29,6 +29,8 @@
       <th class="tal">開催日</th>
     {/if}
     <th>出場</th>
+    <th>🥇</th>
+    <th>Top 4</th>
     <th>勝</th>
     <th>敗</th>
     {#if $showSns }
@@ -55,9 +57,11 @@
             <td class="tal">{new Date(player.latest.date).toLocaleDateString()}</td>
           {/if}
           <td>{player.entries}</td>
+          <td>{player.top_1}</td>
+          <td>{player.top_4}</td>
           <td>{player.win}</td>
           <td>{player.lose}</td>
-          {#if $showSns }
+          {#if $showSns}
             <td class="tal">
               {#if player.data && player.data.twitter}
                 <i class="fab fa-twitter"></i> <a href="https://twitter.com/{player.data.twitter}">{player.data.twitter}</a>

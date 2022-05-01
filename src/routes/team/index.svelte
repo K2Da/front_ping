@@ -33,33 +33,27 @@
 {#if Array.isArray($teamList)}
   <table style="table-layout: auto">
     {#if $slimMode}
-      <tbody class="quad">
+      <tbody class="double">
         {#each $teamList as team, i}
           {#if ($pageNo - 1) * page_size <= i && i < $pageNo * page_size}
             <tr>
-              <td style="vertical-align: middle; margin-left: 0; margin-right: 0; padding-right: 0; padding-left: 0">{(i + 1).toLocaleString()}:</td>
+              <td class="row_no">{(i + 1).toLocaleString()}:</td>
               <td class="tal" style="margin-left: 0; padding-left: 0">
                 <TeamName name={team.name} current_name={team.name} />
                 {#if team.names.length > 1}<T>(別名{team.names.length - 1}件)</T>{/if}
               </td>
             </tr>
             <tr>
-              <td colspan="2" class="tal" style="padding-left: 2em">
+              <td colspan="2" class="tal">
                 {team.tournament_count}<T t=" 大会" />
                 {#if team.top_1 > 0}<T>🥇 </T>{team.top_1}<T>回</T>{/if}
                 {#if team.top_4 > 0}<T>Top4 </T>{team.top_4}<T>回</T>{/if}
                 {team.win}<T t="勝" />
                 {team.lose}<T t="敗" />
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2" class="tal" style="padding-left: 2em">
+                <br />
                 <PlayersLine players={team.members.slice(0, 5)} />
                 {#if team.members.length > 5}<T>(他{team.members.length - 5}人)</T>{/if}
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2" class="tal" style="padding-left: 2em">
+                <br />
                 <Span date1={team.first_tournament_date} date2={team.latest_tournament_date} length=true />
               </td>
             </tr>
