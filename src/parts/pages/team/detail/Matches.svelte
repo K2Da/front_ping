@@ -8,6 +8,7 @@
   import T from '/src/parts/T.svelte'
   import Date from '/src/parts/Date.svelte'
   import TeamName from '/src/parts/TeamName.svelte'
+  import PlayersLine from '/src/parts/PlayersLine.svelte'
 </script>
 
 {#each $apiData.tournaments as t}
@@ -21,6 +22,8 @@
     <dd>{t.name}</dd>
     <dt>結果</dt>
     <dd><TournamentResult rank={t.result} /></dd>
+    <dt>メンバー</dt>
+    <dd><PlayersLine players={t.player_list} /></dd>
   </dl>
 
   {#if $slimMode}

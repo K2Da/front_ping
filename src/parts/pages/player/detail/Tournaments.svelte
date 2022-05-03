@@ -17,23 +17,22 @@
 {#if $apiData}
   {#if $slimMode}
     <table>
-      <tbody class="triple">
-        {#each $apiData.tournaments as t}
-          <tr>
-            <th class="tal" colspan="2"><a href="#{t.tournament_key}">{t.tournament_name}</a></th>
-            <td><T>ratings </T>{rate(t.rating)}</td>
-          </tr>
-          <tr class="tal">
-            <td class="tal"><Date date={t.tournament_date} /></td>
-            <td class="tal"><T t="チーム " />
-              <TeamName name={t.team_name} current_name={t.team_current_name} />
-            </td>
-            <td class="nw"><T t="結果 " /><TournamentResult rank={t.team_result} />
-          </tr>
-          <tr>
-            <td class="tal" colspan="3">{t.member_name}, <PlayersLine players={t.mate_list} /></td>
-          </tr>
-        {/each}
+      <tbody class="double">
+      {#each $apiData.tournaments as t, i}
+        <tr>
+          <td class="tal">
+            <T>#{i + 1}</T>
+            <Date date={t.tournament_date} spacing={false} />
+          </td>
+          <td class="nw"><TournamentResult rank={t.team_result} />
+          <td class="nw"><T>{rate(t.rating)}</T></td>
+        </tr>
+        <tr>
+          <td colspan="3" class="tal">
+            <a href="#{t.tournament_key}">{t.tournament_name}</a>
+          </td>
+        </tr>
+      {/each}
       </tbody>
     </table>
   {:else}

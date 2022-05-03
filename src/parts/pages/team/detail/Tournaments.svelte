@@ -5,7 +5,6 @@
   import TournamentResult from '/src/parts/TournamentResult.svelte'
   import Date from '/src/parts/Date.svelte'
   import PlayersLine from '/src/parts/PlayersLine.svelte'
-  import TournamentName from '/src/parts/TournamentName.svelte'
 </script>
 
 {#if $slimMode}
@@ -17,7 +16,7 @@
             <T>#{i + 1}</T>
             <Date date={t.tournament_date} spacing={false} />
           </td>
-          <td class="nw"><T t="結果" /> <TournamentResult rank={t.result} />
+          <td class="nw"><TournamentResult rank={t.result} />
         </tr>
         <tr>
           <td colspan="3" class="tal">
