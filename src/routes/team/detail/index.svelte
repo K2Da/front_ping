@@ -58,7 +58,6 @@
   <Tab bind:current_mode={current_mode} mode="relation" name="関連" />
 
   {#if current_mode === "basic"}
-    <h3>基本情報</h3>
     <Basic />
   {/if}
 

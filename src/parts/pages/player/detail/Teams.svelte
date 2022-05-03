@@ -5,28 +5,17 @@
   import TeamName from '/src/parts/TeamName.svelte'
 </script>
 
-<h4>チーム履歴</h4>
-<table>
-  <thead>
-    <tr>
-      <th style="width: 30%;"></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
+<h3>チーム履歴</h3>
+<dl>
   {#each $teamsData as t}
-    <tr>
-      <td>
-        {#if t.first_match_at === t.last_match_at}
-          <Date date={t.first_match_at} />
-        {:else}
-          <Span date1={t.first_match_at} date2={t.last_match_at} />
-        {/if}
-      </td>
-      <td class="tal nw"><TeamName name={t.name} current_name={t.name} /></td>
-      <td class="nw">{t.tournament_count}</td>
-    </tr>
+    <dt class="tal nw"><TeamName name={t.name} current_name={t.name} /></dt>
+    <dd>
+      {t.tournament_count}回出場<br />
+      {#if t.first_match_at === t.last_match_at}
+        <Date date={t.first_match_at} />
+      {:else}
+        <Span date1={t.first_match_at} date2={t.last_match_at} />
+      {/if}
+    </dd>
   {/each}
-  </tbody>
-</table>
+</dl>

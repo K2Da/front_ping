@@ -11,7 +11,7 @@ export type Team = {
 export const teamsData = derived(apiData, ($apiData) => {
   if ($apiData == null) return []
 
-  const teams:  { [name: string]: Team }  = {}
+  const teams:  Record<string, Team> = {}
   for (const tournament of $apiData.tournaments) {
     const name = tournament.team_current_name
     if (teams[name] === undefined) {

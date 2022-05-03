@@ -4,7 +4,7 @@
   import { playerHash, apiData, set_api_data } from '$lib/store/player/detail'
   import { browser } from '$app/env'
   import { get_param_hash, fetch_data } from '$lib/util'
-  import { slimMode } from '$lib/store/global'
+  import Tab         from '/src/parts/Tab.svelte'
 
   import Header      from '/src/parts/Header.svelte'
   import Profile     from '/src/parts/pages/player/detail/Profile.svelte'
@@ -14,6 +14,8 @@
   import Mates       from '/src/parts/pages/player/detail/Mates.svelte'
   import Opponents   from '/src/parts/pages/player/detail/Opponents.svelte'
   import PlaceHolder from '/src/parts/PlaceHolder.svelte'
+
+  let current_mode = 'basic';
 
   afterNavigate(() => { fetchPlayer(null) })
   onDestroy(() => apiData.set(null))
@@ -46,15 +48,6 @@
   }
 </script>
 
-<style>
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-  .grid .l { padding: 0 10px 0 0 }
-  .grid .r { padding: 0 0 0 10px }
-</style>
-
 {#if $apiData}
   <Header title="{$apiData.player.collated_name}"
           type="article"
@@ -63,16 +56,24 @@
 
   <h2>{$apiData.player.collated_name}</h2>
 
-  <div class="{$slimMode ? '' : 'grid'}">
-    <div class="l"><Profile /></div>
-    <div class="r"><Teams /></div>
-    <div class="l"><Mates /></div>
-    <div class="r"><Opponents /></div>
-  </div>
+  <Tab bind:current_mode={current_mode} mode="basic" name="基本" />
+  <Tab bind:current_mode={current_mode} mode="tournament" name="大会" />
+  <Tab bind:current_mode={current_mode} mode="relation" name="関連" />
 
-  <h3>参加大会</h3>
-  <Tournaments />
-  <Matches />
+
+  {#if current_mode === "basic"}
+    <Profile />
+    <Teams />
+  {/if}
+  {#if current_mode === "tournament"}
+    <h3>参加大会</h3>
+    <Tournaments />
+    <Matches />
+  {/if}
+  {#if current_mode === "relation"}
+    <Mates />
+    <Opponents />
+  {/if}
 {:else}
   <PlaceHolder />
 {/if}

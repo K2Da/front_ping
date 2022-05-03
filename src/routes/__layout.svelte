@@ -24,6 +24,4 @@
 
 <slot />
 
-<footer>
-  <a href="https://twitter.com/K2Da">@K2Da</a>
-</footer>
+<footer></footer>
