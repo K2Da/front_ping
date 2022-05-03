@@ -32,14 +32,14 @@
           {#if m.tnmt_key === t.tournament_key }
             <tr>
               <td class="tal">{m.bracket} <T t="R" /> {m.round} <MatchResult win={m.wl} /></td>
-              <td>{m.score_text}</td>
+              <td class="nw">{m.score_text}</td>
             </tr>
             <tr>
               <td class="tal">
                 <T t="vs." />
                 <TeamName name={m.opponent_team_name} current_name={m.opponent_team_current_name} />
               </td>
-              <td><TournamentResult rank={m.opponent_team_rank} /></td>
+              <td class="nw"><TournamentResult rank={m.opponent_team_rank} /></td>
             </tr>
             <tr>
               <td colspan="2" class="tal" style="padding-left: 1em"><PlayersLine players={m.opponents_list} /></td>
@@ -71,7 +71,7 @@
             <td>{m.score_text}</td>
             <td class="tal"><TeamName name={m.opponent_team_name} current_name={m.opponent_team_current_name} /></td>
             <td><TournamentResult rank={m.opponent_team_rank} /></td>
-            <td class="tal"><PlayerLine players={m.opponents_list} /></td>
+            <td class="tal"><PlayersLine players={m.opponents_list} /></td>
           </tr>
         {/if}
       {/each}

@@ -3,10 +3,6 @@
   import TournamentsStats from '/src/parts/TournamentsStats.svelte'
 </script>
 
-<style>
-    p { padding-left: 1em; }
-</style>
-
 <dl>
 {#if $apiData.data}
   <dt>エントリー名</dt>
