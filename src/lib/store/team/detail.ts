@@ -24,13 +24,11 @@ export function set_api_data(data: TeamDetail): void {
   }
 
   const players = Object.keys(player_stats)
-  players.sort((p1: string, p2: string) => {
-    if (player_stats[p1].tournament === player_stats[p2].tournament) {
-      return player_stats[p2].count - player_stats[p1].count
-    } else {
-      return player_stats[p1].tournament - player_stats[p2].tournament
-    }
-  })
+  players.sort((p1: string, p2: string) =>
+    (player_stats[p1].tournament === player_stats[p2].tournament)
+      ? player_stats[p2].count - player_stats[p1].count
+      : player_stats[p1].tournament - player_stats[p2].tournament
+  )
 
   for (const m of data.matches) {
     m.wl = m.opponent_team_key === m.loser_key

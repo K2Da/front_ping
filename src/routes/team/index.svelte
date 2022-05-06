@@ -39,7 +39,7 @@
               <td class="row_no">{(i + 1).toLocaleString()}:</td>
               <td class="tal" style="margin-left: 0; padding-left: 0">
                 <TeamName name={team.name} current_name={team.name} />
-                {#if team.names.length > 1}<T>(別名{team.names.length - 1}件)</T>{/if}
+                {#if team.names.length > 0}<T>(別名{team.names.length}件)</T>{/if}
               </td>
             </tr>
             <tr>
@@ -75,7 +75,7 @@
             <tr>
               <td class="nw">{(i + 1).toLocaleString()}</td>
               <td class="tal nw"><TeamName name={team.name} current_name={team.name} /></td>
-              <td class="tal">{#if team.names.length > 1}<T>(別名{team.names.length - 1}件)</T>{/if}</td>
+              <td class="tal">{#if team.names.length > 0}<T>(別名{team.names.length}件)</T>{/if}</td>
               <td class="nw">{team.tournament_count}<T t=" 大会" /></td>
               <td class="nw">{#if team.top_1 > 0}<T>🥇 </T>{team.top_1}<T>回</T>{/if}</td>
               <td class="nw">{#if team.top_4 > 0}<T>Top4 </T>{team.top_4}<T>回</T>{/if}</td>

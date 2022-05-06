@@ -11,7 +11,7 @@
   }
 
   function sortedPlayers(players: string[], player_stats: Record<string, { tournament: number, count: number }>) {
-    return players.sort((a, b) => player_stats[b].count - player_stats[a].count)
+    return players.slice().sort((a, b) => player_stats[b].count - player_stats[a].count)
   }
 </script>
 
