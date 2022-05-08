@@ -18,7 +18,7 @@
     <dt>開催日</dt>
     <dd><Date date={t.tournament_date} /></dd>
     <dt>チーム</dt>
-    <dd>{t.team_name}</dd>
+    <dd><TeamName name={t.team_name} current_name={t.team_name} /></dd>
     <dt>メンバー</dt>
     <dd>{t.member_name}, <PlayersLine players={t.mate_list} /></dd>
     <dt>結果</dt>

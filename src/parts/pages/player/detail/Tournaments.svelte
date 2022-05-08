@@ -6,7 +6,6 @@
   import Date from '/src/parts/Date.svelte'
   import PlayersLine from '/src/parts/PlayersLine.svelte'
   import TeamName from '/src/parts/TeamName.svelte'
-  import TournamentName from '/src/parts/TournamentName.svelte'
 
   function rate(t: any) {
     if (t == null) return "-"
