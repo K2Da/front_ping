@@ -1,10 +1,8 @@
 <script lang="ts">
-  import { onDestroy } from 'svelte'
   import { afterNavigate } from '$app/navigation'
   import { playerHash, apiData, set_api_data } from '$lib/store/player/detail'
   import { browser } from '$app/env'
-  import { get_param_hash, fetch_data } from '$lib/util'
-  import Tab         from '/src/parts/Tab.svelte'
+  import { get_param_hash, fetch_data, get_param } from '$lib/util'
 
   import Header      from '/src/parts/Header.svelte'
   import Profile     from '/src/parts/pages/player/detail/Profile.svelte'
@@ -14,11 +12,11 @@
   import Mates       from '/src/parts/pages/player/detail/Mates.svelte'
   import Opponents   from '/src/parts/pages/player/detail/Opponents.svelte'
   import PlaceHolder from '/src/parts/PlaceHolder.svelte'
+  import PageTab     from '/src/parts/PageTab.svelte'
 
   let current_mode = 'basic';
 
   afterNavigate(() => { fetchPlayer(null) })
-  onDestroy(() => apiData.set(null))
 
   async function redirectPlayer(player_hash) {
     fetch_data('player/player_aliases.json')
@@ -29,11 +27,13 @@
 
   async function fetchPlayer(player_hash) {
     if (!browser) return
-    apiData.set(null)
+    current_mode = get_param("basic", "mode");
 
-    playerHash.set(get_param_hash(player_hash, 'p'))
-    if ($playerHash === null) return
+    const hash = get_param_hash(player_hash, 'p');
+    if ($playerHash === hash || hash === null) return;
+    apiData.set(null);
 
+    playerHash.set(hash);
     fetch_data(`player/${$playerHash}.json`)
       .then(response => {
         if (response.status === 404) throw new Error('NOT FOUND')
@@ -56,10 +56,9 @@
 
   <h2>{$apiData.player.collated_name}</h2>
 
-  <Tab bind:current_mode={current_mode} mode="basic" name="基本" />
-  <Tab bind:current_mode={current_mode} mode="tournament" name="大会" />
-  <Tab bind:current_mode={current_mode} mode="relation" name="関連" />
-
+  <PageTab current_mode={current_mode} mode="basic" name="基本" url="/player/detail?p={$playerHash}&mode=basic" /> |
+  <PageTab current_mode={current_mode} mode="tournament" name="大会" url="/player/detail?p={$playerHash}&mode=tournament" /> |
+  <PageTab current_mode={current_mode} mode="relation" name="関連" url="/player/detail?p={$playerHash}&mode=relation" />
 
   {#if current_mode === "basic"}
     <Profile />

@@ -21,6 +21,10 @@ export function get_param_hash(func_param: string|null, key_name: string): strin
   return func_param || new URLSearchParams(window.location.search).get(key_name)
 }
 
+export function get_param(default_value: string|null, key_name: string): string|null {
+  return new URLSearchParams(window.location.search).get(key_name) || default_value
+}
+
 export function days(date1: number, date2: number): number {
   return ((date2 - date1) / 1000.0 / 60.0 / 60.0 / 24.0) + 1
 }
