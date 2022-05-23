@@ -54,10 +54,10 @@
           description="" />
 
   <h2>{$apiData.team.name}</h2>
-  <PageTab current_mode={current_mode} mode="basic" name="基本" url="/team/detail?p={$teamHash}&mode=basic" /> |
-  <PageTab current_mode={current_mode} mode="tournament" name="大会" url="/team/detail?p={$teamHash}&mode=tournament" /> |
-  <PageTab current_mode={current_mode} mode="member" name="メンバー" url="/team/detail?p={$teamHash}&mode=member" /> |
-  <PageTab current_mode={current_mode} mode="relation" name="関連" url="/team/detail?p={$teamHash}&mode=relation" />
+  <PageTab current_mode={current_mode} mode="basic" name="基本" url="/team/detail?m={$teamHash}&mode=basic" /> |
+  <PageTab current_mode={current_mode} mode="tournament" name="大会" url="/team/detail?m={$teamHash}&mode=tournament" /> |
+  <PageTab current_mode={current_mode} mode="member" name="メンバー" url="/team/detail?m={$teamHash}&mode=member" /> |
+  <PageTab current_mode={current_mode} mode="relation" name="関連" url="/team/detail?m={$teamHash}&mode=relation" />
 
   {#if current_mode === "basic"}
     <Basic />
