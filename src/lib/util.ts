@@ -1,6 +1,6 @@
 const LOCAL_DATA = "/data"
 // const LOCAL_DATA = "https://dfxbbu1v7k99l.cloudfront.net/008"
-const CDN_DATA = "https://dfxbbu1v7k99l.cloudfront.net/027"
+const CDN_DATA = "https://dfxbbu1v7k99l.cloudfront.net/028"
 const WORKER_HOST = "https://back_ping.center-ping.workers.dev"
 
 export function fetch_worker(path: string): Promise<Response> {
@@ -26,5 +26,5 @@ export function get_param(default_value: string|null, key_name: string): string|
 }
 
 export function days(date1: number, date2: number): number {
-  return ((date2 - date1) / 1000.0 / 60.0 / 60.0 / 24.0) + 1
+  return Math.floor(((date2 - date1) / 1000.0 / 60.0 / 60.0 / 24.0) + 1)
 }

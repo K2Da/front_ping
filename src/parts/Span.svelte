@@ -15,7 +15,7 @@
   $: y2 = dd2.getFullYear() % 100
   $: m2 = dd2.getMonth() + 1
   $: d2 = dd2.getDate()
-  $: day_count = days(date1, date2)
+  $: day_count = Math.floor(days(date1, date2))
 </script>
 
 '{y1}<T t="年" /> {@html m1 < 10 ? s : ''}{m1}<T t="月" /> {@html d1 < 10 ? s : ''}{d1}<T t="日" />
