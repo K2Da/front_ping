@@ -9,7 +9,7 @@
 <table style="width: 100%">
   <thead>
     <tr>
-      <th colspan="2"></th>
+      <th colspan="3"></th>
       <th colspan={$apiData.reversed_tournaments.length + 1} class="tal">参加大会#</th>
     </tr>
     <tr>
