@@ -18,7 +18,7 @@
 
 <Header title="チーム一覧" type="article" url="team" description="ポケモンユナイトの大会のチームの一覧" />
 
-<h2>チーム</h2>
+<h1>チーム</h1>
 
 <div>
   <input on:input={filter}

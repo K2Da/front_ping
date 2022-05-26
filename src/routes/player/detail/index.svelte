@@ -54,22 +54,25 @@
           url="player/detail/?q={$playerHash}"
           description="" />
 
-  <h2>{$apiData.player.collated_name}</h2>
+  <h1>{$apiData.player.collated_name}</h1>
 
-  <PageTab current_mode={current_mode} mode="basic" name="基本" url="/player/detail?p={$playerHash}&mode=basic" /> |
-  <PageTab current_mode={current_mode} mode="tournament" name="大会" url="/player/detail?p={$playerHash}&mode=tournament" /> |
-  <PageTab current_mode={current_mode} mode="relation" name="関連" url="/player/detail?p={$playerHash}&mode=relation" />
+  <div class="detail-tab">
+    <PageTab current_mode={current_mode} mode="basic" name="基本" url="/player/detail?p={$playerHash}&mode=basic" /> |
+    <PageTab current_mode={current_mode} mode="tournament" name="大会" url="/player/detail?p={$playerHash}&mode=tournament" /> |
+    <PageTab current_mode={current_mode} mode="relation" name="関連" url="/player/detail?p={$playerHash}&mode=relation" />
+  </div>
 
   {#if current_mode === "basic"}
     <Profile />
     <Teams />
   {/if}
   {#if current_mode === "tournament"}
-    <h3>参加大会</h3>
+    <h2>参加大会</h2>
     <Tournaments />
     <Matches />
   {/if}
   {#if current_mode === "relation"}
+    <h2>関連情報</h2>
     <Mates />
     <Opponents />
   {/if}

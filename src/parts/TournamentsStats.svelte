@@ -15,7 +15,7 @@
   <br />
   {#if stats.top_1 > 0}<T>🥇 </T>{stats.top_1}<T>回</T>{/if}
   {#if stats.top_4 > 0}<T>Top4 </T>{stats.top_4}<T>回</T>{/if}
-  <br />
+  {#if stats.top_1 > 0 || stats.top_4 > 0}<br />{/if}
   {stats.win}<T t="勝" />
   {stats.lose}<T t="敗" />
 {/if}

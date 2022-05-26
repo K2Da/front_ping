@@ -8,7 +8,7 @@
   import TournamentResult from '/src/parts/TournamentResult.svelte'
 </script>
 
-<h2>{$selectedMembers?.left} 🆚 {$selectedMembers?.right}</h2>
+<h1>{$selectedMembers?.left} 🆚 {$selectedMembers?.right}</h1>
 <h3>対戦</h3>
 {#if $selectedMembers.relation.matches.length > 0}
   <TeamMatches

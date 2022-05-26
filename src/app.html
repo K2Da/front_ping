@@ -21,9 +21,10 @@
 
 			dl dt { font-weight: bold; margin-top: 8px; }
 
-			h1 { border-bottom: var(--border) 3px solid }
+			h1 { border-bottom: var(--border) 2px solid; margin-left: -5px; }
 			h2 { border-bottom: var(--border) 2px solid }
-			h3 { border-bottom: var(--border) 2px solid }
+			h3 { border-bottom: var(--border) 1px solid; }
+			h1, h2, h3, h4, h5, h6 { margin-top: 12px; }
 
 			tbody.double { border-top: var(--border) 1px solid; }
 			tbody.double tr:nth-child(4n+1) { background-color: var(--background) }
@@ -145,6 +146,14 @@
 			td.content {
 				padding-left: 2em;
 			}
+			body {
+				max-width: 4800px;
+				padding: 10px;
+				margin: 0;
+			}
+			.detail-tab {
+				margin: 0 -5px;
+			}
 		</style>
 
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-KQ7HCNR2RZ"></script>
@@ -158,7 +167,7 @@
 		%svelte.head%
 	</head>
 
-	<body style="max-width: 4800px; padding: 0 10px 0 10px">
+	<body>
 		<div id="svelte">%svelte.body%</div>
 	</body>
 </html>

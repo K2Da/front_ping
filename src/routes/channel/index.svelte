@@ -33,7 +33,7 @@
 
 <Header title="チャンネル一覧" type="article" url="channel" description="ポケモンユナイトプレイヤのチャンネルの一覧" />
 
-<h2>Channel</h2>
+<h1>Channel</h1>
 
 <div>
   <input id="show_detail" type="checkbox" bind:checked={show_detail} />

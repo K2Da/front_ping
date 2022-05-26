@@ -14,7 +14,7 @@
 
 <Header title="プレイヤー一覧" type="article" url="player" description="ポケモンユナイトの大会のプレイヤーの一覧" />
 
-<h2>プレイヤー</h2>
+<h1>プレイヤー</h1>
 
 <div>
   <input on:input={filter}

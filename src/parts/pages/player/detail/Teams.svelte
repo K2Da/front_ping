@@ -5,7 +5,7 @@
   import TeamName from '/src/parts/TeamName.svelte'
 </script>
 
-<h3>チーム履歴</h3>
+<h2>チーム履歴</h2>
 <dl>
   {#each $teamsData as t}
     <dt class="tal nw"><TeamName name={t.name} current_name={t.name} /></dt>

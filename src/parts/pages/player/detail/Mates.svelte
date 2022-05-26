@@ -4,14 +4,14 @@
   import T from '/src/parts/T.svelte'
 </script>
 
-<h4>チームメイト</h4>
+<h3>チームメイト</h3>
 <table>
   <thead>
-  <tr>
-    <th class="nw" style="width: 5em"></th>
-    <th class="nw" style="width: 7em"></th>
-    <th></th>
-  </tr>
+    <tr>
+      <th class="nw" style="width: 5em;">同チーム</th>
+      <th class="nw" style="width: 7em;">成績</th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
     {#each $matesData as m}

@@ -3,6 +3,7 @@
   import TournamentsStats from '/src/parts/TournamentsStats.svelte'
 </script>
 
+<h2>基本情報</h2>
 <dl>
 {#if $apiData.data}
   <dt>エントリー名</dt>

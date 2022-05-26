@@ -4,12 +4,12 @@
   import PlayersLine from '/src/parts/PlayersLine.svelte'
 </script>
 
-<h4>対戦の多いプレイヤー(3戦以上)</h4>
+<h3>対戦の多いプレイヤー(3戦以上)</h3>
 <table>
   <thead>
   <tr>
-    <th class="nw" style="width: 7em"></th>
-    <th></th>
+    <th class="nw" style="width: 7em">通算成績</th>
+    <th class="tal">プレイヤー</th>
   </tr>
   </thead>
   <tbody>

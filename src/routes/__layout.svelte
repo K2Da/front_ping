@@ -12,16 +12,16 @@
 
 <svelte:window bind:innerWidth={$windowWidth} bind:innerHeight={$windowHeight} />
 
-<h1>Center Pin(g)</h1>
-
 <nav>
-  <a href="{base}/">top </a> |
+  <a href="{base}/">Cp(g) </a> |
   <a href="{base}/tournament">大会</a> |
   <a href="{base}/player">プレイヤー</a> |
   <a href="{base}/team">チーム</a> |
   <a href="{base}/channel">チャンネル</a>
 </nav>
 
-<slot />
+<div style="margin: 0 5px">
+  <slot />
+</div>
 
 <footer></footer>

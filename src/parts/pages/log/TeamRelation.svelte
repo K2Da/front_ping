@@ -11,7 +11,7 @@
   import T from '/src/parts/T.svelte'
 </script>
 
-<h2>{$selectedTeams?.left.name} 🆚 {$selectedTeams?.right.name}</h2>
+<h1>{$selectedTeams?.left.name} 🆚 {$selectedTeams?.right.name}</h1>
 <h3>対戦</h3>
 {#if $teamRelation[tk($selectedTeams.left.name, $selectedTeams.right.name)].matches.length > 0}
   <TeamMatches

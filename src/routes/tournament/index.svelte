@@ -12,7 +12,7 @@
 
 <Header title="大会一覧" type="article" url="tournament" description="ポケモンユナイトの大会の一覧" />
 
-<h2>大会</h2>
+<h1>大会</h1>
 
 <table style="table-layout: auto">
   <thead>

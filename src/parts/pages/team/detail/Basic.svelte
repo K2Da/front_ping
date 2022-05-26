@@ -15,6 +15,7 @@
   }
 </script>
 
+<h2>基本情報</h2>
 <dl>
   <dt>活動期間</dt>
   <dd><Span date1={$apiData.team.first_tournament_date} date2={$apiData.team.latest_tournament_date} length=true /></dd>

@@ -12,9 +12,9 @@
 </script>
 
 {#each $apiData.tournaments as t}
-  <h4 id={t.tournament_key}>
+  <h3 id={t.tournament_key}>
     <TournamentName name={t.tournament_name} key={t.tournament_key} official={false} />
-  </h4>
+  </h3>
   <dl>
     <dt>開催日</dt>
     <dd><Date date={t.tournament_date} spacing={false} /></dd>

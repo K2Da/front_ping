@@ -46,7 +46,7 @@
 
 {#if $apiData}
   <Header title="{$apiData.tournament.name}" type="article" url="tournament" description="{$apiData.tournament.name}の概要" />
-  <h2>{$apiData.tournament.name}</h2>
+  <h1>{$apiData.tournament.name}</h1>
   {#if $apiData.data}
     <dl>
       <dt>開催日</dt>
@@ -67,7 +67,6 @@
     </dd>
     </dl>
   {/if}
-  <h3>参加チーム</h3>
   {#if $slimMode}
     <table>
       <tbody class="double">
