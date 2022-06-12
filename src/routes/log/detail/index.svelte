@@ -27,7 +27,7 @@
 
     fetch_data(`log/${$logHash}.json`)
       .then(response => {
-        if (response.status === 404) throw new Error('NOT FOUND')
+        if ([403, 404].indexOf(response.status) !== -1) throw new Error('NOT FOUND')
         return response.json()
       })
       .then(data => {

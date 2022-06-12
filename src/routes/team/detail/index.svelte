@@ -11,7 +11,6 @@
   import SimilarTeam from '/src/parts/pages/team/detail/SimilarTeam.svelte'
   import Basic       from '/src/parts/pages/team/detail/Basic.svelte'
   import Matches     from '/src/parts/pages/team/detail/Matches.svelte'
-  import { playerHash } from '../../../lib/store/player/detail'
 
   let current_mode = 'basic';
 
@@ -35,7 +34,7 @@
     teamHash.set(hash)
     fetch_data(`team/${$teamHash}.json`)
       .then(response => {
-        if (response.status === 404) throw new Error('NOT FOUND')
+        if ([403, 404].indexOf(response.status) !== -1) throw new Error('NOT FOUND')
         return response.json()
       })
       .then(data => { set_api_data(data) })

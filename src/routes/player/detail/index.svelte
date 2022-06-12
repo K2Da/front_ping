@@ -36,7 +36,7 @@
     playerHash.set(hash);
     fetch_data(`player/${$playerHash}.json`)
       .then(response => {
-        if (response.status === 404) throw new Error('NOT FOUND')
+        if ([403, 404].indexOf(response.status) !== -1) throw new Error('NOT FOUND')
         return response.json()
       })
       .then(data => { set_api_data(data) })
