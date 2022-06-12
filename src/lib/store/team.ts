@@ -13,7 +13,7 @@ export const teamList = derived(
       if ($filterString) {
         const l = $filterString.toLowerCase();
         return $teamMaster.list.filter(
-          t => (t.members.concat([t.name])).filter(f => f.toLowerCase().includes(l)).length > 0
+          t => (t.members.concat(t.names.concat([t.name]))).filter(f => f.toLowerCase().includes(l)).length > 0
         )
       } else {
         return $teamMaster.list
