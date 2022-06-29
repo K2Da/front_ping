@@ -2,7 +2,6 @@
   import { afterNavigate } from '$app/navigation'
   import { get_param_hash, fetch_data } from '$lib/util'
   import { slimMode } from '/src/lib/store/global'
-  import { teamMaster } from '$lib/store/global'
   import { onDestroy } from 'svelte'
   import { tournamentKey, apiData } from '$lib/store/tournament/detail'
   import type { TournamentTeam } from '$lib/api/Tournaments'
@@ -53,6 +52,8 @@
       <dd><Date date={$apiData.tournament.date} spacing={false} /></dd>
       <dt>形式</dt>
       <dd>{#if $apiData.data.official}<span style="color: greenyellow">公式 ✔</span>{/if} {$apiData.data.type}</dd>
+      <dt>rating計算</dt>
+      <dd>{#if $apiData.tournament.rating}対象{:else}非対象{/if}</dd>
       {#if $apiData.data.note}
         <dt>備考</dt>
         <dd>{$apiData.data.note}</dd>

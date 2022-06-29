@@ -13,7 +13,7 @@
 <Header title="大会一覧" type="article" url="tournament" description="ポケモンユナイトの大会の一覧" />
 
 <h1>大会</h1>
-
+<T><span style="color: greenyellow">✔</span> 公式 📈 ratings計算対象</T>
 <table style="table-layout: auto">
   <thead>
     {#if !$slimMode}
@@ -34,17 +34,17 @@
           {#if $slimMode}
             <tr>
               <th class="tal" colspan="4">
-                <TournamentName name={row.name} key={row.key} official={row.info.official} />
+                <TournamentName name={row.name} key={row.key} official={row.info.official} rating={row.rating} />
               </th>
             </tr>
             <tr>
-              <td class="tal" style="padding-left: 2em;"><Date date={row.date} /></td>
+              <td class="tal" style="padding-left: 0.5em;"><Date date={row.date} /></td>
               <td>{row.team_count.toLocaleString()} <T t="チーム" /></td>
               <td>{row.player_count.toLocaleString()} <T t="人" /></td>
               <td>{row.match_count.toLocaleString()} <T t="試合" /></td>
             </tr>
             <tr>
-              <td class="tal" style="padding-left: 2em;" colspan="4">
+              <td class="tal" style="padding-left: 0.5em;" colspan="4">
                 <TeamsLine teams={$tournamentMaster.winners[row.key]} />
               </td>
             </tr>
@@ -52,7 +52,7 @@
             <tr>
               <td><Date date={row.date} /></td>
               <td class="tal">
-                <TournamentName name={row.name} key={row.key} official={row.info.official} />
+                <TournamentName name={row.name} key={row.key} official={row.info.official} rating={row.rating} />
               </td>
               <td class="tar">{row.team_count.toLocaleString()}</td>
               <td class="tar">{row.player_count.toLocaleString()}</td>

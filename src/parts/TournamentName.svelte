@@ -7,9 +7,10 @@
   export let name: string
   export let key: string
   export let official = false
+  export let rating = false
 </script>
 
-{#if official}<span style="color: greenyellow">✔</span>{/if}
+{#if official}<span style="color: greenyellow">✔</span>{/if}{#if rating}📈{/if}
 <PopUpA href="{base}/tournament/detail/?t={key}" text={name} condition={!!$tournamentMaster.dic[key]}>
   <TournamentPopUp tournament={$tournamentMaster.dic[key]} />
 </PopUpA>
