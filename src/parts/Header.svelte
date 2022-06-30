@@ -12,7 +12,7 @@
   }
 </script>
 
-<svelte:head>
+<sveltekit:head>
   <title>Center Pin(g): {title_ga()}</title>
 
   <meta property="og:type" content="{type}" />
@@ -20,4 +20,4 @@
   <meta property="og:site_name" content="Center Pin(g)" />
   <meta property="og:description" content="{description}" />
   <meta name="twitter:card" content="summary" />
-</svelte:head>
+</sveltekit:head>
