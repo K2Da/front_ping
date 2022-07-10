@@ -1,6 +1,6 @@
 const LOCAL_DATA = "/data"
 // const LOCAL_DATA = "https://dfxbbu1v7k99l.cloudfront.net/008"
-const CDN_DATA = "https://dfxbbu1v7k99l.cloudfront.net/044"
+const CDN_DATA = "https://dfxbbu1v7k99l.cloudfront.net/045"
 const WORKER_HOST = "https://back_ping.center-ping.workers.dev"
 
 export function fetch_worker(path: string): Promise<Response> {
