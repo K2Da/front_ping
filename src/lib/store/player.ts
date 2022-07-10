@@ -30,9 +30,12 @@ export const playerList = derived(
       return ranked_players.filter(
         s => {
           let target = [s.name, s.latest.team]
-          if (s.data && s.data?.aliases) {
-            target = target.concat(s.data.aliases)
+          if (s.data) {
+            if (s.data && s.data?.aliases) target = target.concat(s.data.aliases)
+            if (s.data.twitter) target.push(s.data.twitter);
+            if (s.data.twitch) target.push(s.data.twitch);
           }
+
           return target.filter(
             f => f.toLowerCase().includes($filterString.toLowerCase())
           ).length > 0

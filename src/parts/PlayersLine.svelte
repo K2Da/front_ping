@@ -8,14 +8,14 @@
   export let notes: Record<string, string> = null
 </script>
 
-
 {#each players as player, index}
+  {@const master = $playerMaster.dic[player]}
   {#if index !== 0}, {/if}
-  <PlayerName name={player}>
+  {#if master && master.rating > 0}<PlayerName name={player}>
     <slot />
-  </PlayerName>{#if ratings && $playerMaster.dic[player] && $playerMaster.dic[player].rating > 1500}
+  </PlayerName>{#if ratings && master.rating >= 1500}
     <T t={'(' + $playerMaster.dic[player].rating.toLocaleString() + ')'} />
-  {/if}{#if notes}
+  {/if}{:else}{player}{/if}{#if notes}
     <T t={'(' + notes[player] + ')'} />
   {/if}
 {/each}

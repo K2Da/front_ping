@@ -15,6 +15,7 @@
   import PageTab     from '/src/parts/PageTab.svelte'
 
   let current_mode = 'basic';
+  $: mode_name = { basic: '基本', tournament: '大会', relation: '関連' }[current_mode];
 
   afterNavigate(() => { fetchPlayer(null) })
 
@@ -49,7 +50,7 @@
 </script>
 
 {#if $apiData}
-  <Header title="{$apiData.player.collated_name}"
+  <Header title="{$apiData.player.collated_name} : {mode_name}"
           type="article"
           url="player/detail/?q={$playerHash}"
           description="" />

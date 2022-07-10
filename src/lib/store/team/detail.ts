@@ -30,15 +30,16 @@ export function set_api_data(data: TeamDetail): void {
       : player_stats[p1].tournament - player_stats[p2].tournament
   )
 
+  if (!data.matches) data.matches = [];
+
   for (const m of data.matches) {
     m.wl = m.opponent_team_key === m.loser_key
-    m.score_text = m.wl
-      ? `${m.winner_score} - ${m.loser_score}`
-      : `${m.loser_score} - ${m.winner_score}`
+    m.score_text = m.wl ? `${m.winner_score} - ${m.loser_score}` : `${m.loser_score} - ${m.winner_score}`
   }
 
   const reversed_tournaments = [...data.tournaments].reverse()
   const view_data: TeamDetailView = { ...data, players, reversed_tournaments, player_stats }
 
+  console.log({ view_data })
   apiData.set(view_data)
 }

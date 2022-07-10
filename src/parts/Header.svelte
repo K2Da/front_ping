@@ -6,18 +6,18 @@
   export let url: string
   export let description: string
 
-  function title_ga() {
-    ga_view(title)
-    return title
+  function title_ga(t) {
+    ga_view(t);
+    return t;
   }
 </script>
 
-<sveltekit:head>
-  <title>Center Pin(g): {title_ga()}</title>
+<svelte:head>
+  <title>Center Pin(g): {title_ga(title)}</title>
 
   <meta property="og:type" content="{type}" />
   <meta property="og:url" content="https://center-ping.pages.dev/{url}" />
   <meta property="og:site_name" content="Center Pin(g)" />
   <meta property="og:description" content="{description}" />
   <meta name="twitter:card" content="summary" />
-</sveltekit:head>
+</svelte:head>

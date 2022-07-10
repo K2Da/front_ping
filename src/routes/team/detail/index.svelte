@@ -13,6 +13,7 @@
   import Matches     from '/src/parts/pages/team/detail/Matches.svelte'
 
   let current_mode = 'basic';
+  $: mode_name = { basic: '基本', tournament: '大会', member: 'メンバー', relation: '関連' }[current_mode];
 
   afterNavigate(() => { fetchTeam(null) })
 
@@ -25,8 +26,8 @@
 
   async function fetchTeam(team_hash) {
     if (!browser) return
-    current_mode = get_param("basic", "mode");
 
+    current_mode = get_param("basic", "mode");
     const hash = get_param_hash(team_hash, 'm');
     if ($teamHash === hash || hash === null) return;
     apiData.set(null);
@@ -47,7 +48,7 @@
 </script>
 
 {#if $apiData}
-  <Header title="{$apiData.team.name}"
+  <Header title="{$apiData.team.name} : {mode_name}"
           type="article"
           url="team/detail/?t={$teamHash}"
           description="" />

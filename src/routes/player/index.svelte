@@ -18,7 +18,7 @@
 
 <div>
   <input on:input={filter}
-         placeholder="プレイヤー名 / チーム名"
+         placeholder="プレイヤー名 / チーム名 / SNSアカウント"
          style="box-sizing: border-box; width: 100%"
          value={$filterString} />
 
