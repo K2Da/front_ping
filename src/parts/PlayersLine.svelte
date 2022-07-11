@@ -11,7 +11,7 @@
 {#each players as player, index}
   {@const master = $playerMaster.dic[player]}
   {#if index !== 0}, {/if}
-  {#if master && master.rating > 0}<PlayerName name={player}>
+  {#if master && master.rating >= 0}<PlayerName name={player}>
     <slot />
   </PlayerName>{#if ratings && master.rating >= 1500}
     <T t={'(' + $playerMaster.dic[player].rating.toLocaleString() + ')'} />

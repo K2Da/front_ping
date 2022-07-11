@@ -40,6 +40,5 @@ export function set_api_data(data: TeamDetail): void {
   const reversed_tournaments = [...data.tournaments].reverse()
   const view_data: TeamDetailView = { ...data, players, reversed_tournaments, player_stats }
 
-  console.log({ view_data })
   apiData.set(view_data)
 }

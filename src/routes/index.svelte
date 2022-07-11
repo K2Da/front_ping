@@ -1,7 +1,7 @@
 <script lang="ts">
-  import Header from '../parts/Header.svelte'
+  import Header from '../parts/Header.svelte';
+  import { t1_rate, t2_rate } from '../lib/store/global';
 </script>
-
 
 <Header title="Top" type="site" url="" description="ポケモンユナイト大会の情報収集" />
 <h1>Center Pin(g)</h1>
@@ -40,6 +40,7 @@
   <li>世界大会等、通常rating計算対象となっていない、かつ、強さが通常の未ratingプレイヤーとは大きく異なるプレイヤー参加している大会</li>
   <li>ドラフトピック等、メンバ確定後に通常のゲームとは異なるルールが適用されている大会</li>
 </ul>
+<p>試験的にratingで上位{t1_rate * 100}%に当たるプレイヤーを<span class="t1">黄色</span>、上位{t2_rate * 100}%に当たるプレイヤーを<span class="t2">緑色</span>で表示しています。</p>
 
 <h3>サイト名について</h3>
 <p>

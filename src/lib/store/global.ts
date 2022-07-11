@@ -14,10 +14,12 @@ export const slimMode = derived(windowWidth, ($windowWidth) => {
   return $windowWidth <= 1280
 })
 
-export const playerMaster: Writable<PlayerMaster> = writable({ players: [], dic: {} })
+export const playerMaster: Writable<PlayerMaster> = writable({ players: [], dic: {}, t1: 0, t2: 0 })
 export type PlayerMaster = {
   players: PlayerIndex[]
   dic: Record<string, PlayerIndex>
+  t1: number;
+  t2: number;
 }
 
 export const tournamentMaster: Writable<TournamentMaster> = writable({ list: [], dic: {}, winners: {} })
@@ -75,7 +77,7 @@ export function loadChannelJson(): boolean {
 export function loadMaster(): void {
   fetch_data("player/players.json")
     .then(response => response.json())
-    .then(data => playerMaster.set({ players: data, dic: player_dic(data) }))
+    .then(data => playerMaster.set({ players: data, ...player_dic(data) }))
     .catch((e) => console.log(e))
 
   fetch_data("tournament/tournaments.json")
@@ -91,10 +93,16 @@ export function loadMaster(): void {
     .catch((e) => console.log(e))
 }
 
-function player_dic(players: PlayerIndex[]): Record<string, PlayerIndex> {
-  const ret: Record<string, PlayerIndex> = {}
-  for (const p of players) ret[p.name] = p
-  return ret
+export const t1_rate = 0.01;
+export const t2_rate = 0.03;
+function player_dic(players: PlayerIndex[]) {
+  const ret: Record<string, PlayerIndex> = {};
+  for (const p of players) ret[p.name] = p;
+  return {
+    dic: ret,
+    t1: players[Math.floor(players.length * t1_rate)].rating,
+    t2: players[Math.floor(players.length * t2_rate)].rating,
+  };
 }
 
 function team_dic(teams: TeamIndex[]): Record<string, TeamIndex> {
