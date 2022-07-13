@@ -47,6 +47,10 @@
   }
 </script>
 
+{#if !browser}
+  <Header title="ポケモンユナイトチーム詳細" type="article" url="tournament" description="ポケモンユナイト大会参加チームの詳細" />
+{/if}
+
 {#if $apiData}
   <Header title="{$apiData.team.name} : {mode_name}"
           type="article"

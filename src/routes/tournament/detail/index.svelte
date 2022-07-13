@@ -43,6 +43,10 @@
   }
 </script>
 
+{#if !browser}
+  <Header title="ポケモンユナイト大会詳細" type="article" url="tournament" description="ポケモンユナイト大会の詳細" />
+{/if}
+
 {#if $apiData}
   <Header title="{$apiData.tournament.name}" type="article" url="tournament" description="{$apiData.tournament.name}の概要" />
   <h1>{$apiData.tournament.name}</h1>

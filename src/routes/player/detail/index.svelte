@@ -49,11 +49,13 @@
   }
 </script>
 
+{#if !browser}
+  <Header title="プレイヤー詳細" type="article" url="player/detail/" description="ポケモンユナイト大会プレイヤー" />
+{/if}
+
 {#if $apiData}
   <Header title="{$apiData.player.collated_name} : {mode_name}"
-          type="article"
-          url="player/detail/?q={$playerHash}"
-          description="" />
+          type="article" url="player/detail/?q={$playerHash}" description="" />
 
   <h1 class={cssClass($apiData.player.rating)}>{$apiData.player.collated_name}</h1>
 
