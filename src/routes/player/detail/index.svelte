@@ -2,7 +2,7 @@
   import { afterNavigate } from '$app/navigation'
   import { playerHash, apiData, set_api_data } from '$lib/store/player/detail'
   import { browser } from '$app/env'
-  import { get_param_hash, fetch_data, get_param } from '$lib/util'
+  import { get_param_hash, fetch_data, get_param, cssClass } from '$lib/util'
 
   import Header      from '/src/parts/Header.svelte'
   import Profile     from '/src/parts/pages/player/detail/Profile.svelte'
@@ -55,7 +55,7 @@
           url="player/detail/?q={$playerHash}"
           description="" />
 
-  <h1>{$apiData.player.collated_name}</h1>
+  <h1 class={cssClass($apiData.player.rating)}>{$apiData.player.collated_name}</h1>
 
   <div class="detail-tab">
     <PageTab current_mode={current_mode} mode="basic" name="基本" url="/player/detail?p={$playerHash}&mode=basic" /> |

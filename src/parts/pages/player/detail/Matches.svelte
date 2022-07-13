@@ -31,7 +31,8 @@
         {#each $apiData.matches as m}
           {#if m.tnmt_key === t.tournament_key }
             <tr>
-              <td class="tal">{m.bracket} <T t="R" /> {m.round} <MatchResult win={m.wl} /></td>
+              <td class="tac" rowspan="3" style="vertical-align: middle"><MatchResult win={m.wl} /></td>
+              <td class="tal">{m.bracket} <T t="R" /> {m.round}</td>
               <td class="nw">{m.score_text}</td>
             </tr>
             <tr>

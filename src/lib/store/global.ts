@@ -1,4 +1,4 @@
-import { fetch_data, fetch_worker } from '$lib/util'
+import { fetch_data, fetch_worker, setLimit } from '$lib/util'
 import type { PlayerIndex } from '$lib/api/PlayerIndex'
 import type { TeamIndex } from '$lib/api/TeamIndex'
 import type { Tournaments, Winner } from '$lib/api/Tournaments'
@@ -18,8 +18,6 @@ export const playerMaster: Writable<PlayerMaster> = writable({ players: [], dic:
 export type PlayerMaster = {
   players: PlayerIndex[]
   dic: Record<string, PlayerIndex>
-  t1: number;
-  t2: number;
 }
 
 export const tournamentMaster: Writable<TournamentMaster> = writable({ list: [], dic: {}, winners: {} })
@@ -98,11 +96,11 @@ export const t2_rate = 0.03;
 function player_dic(players: PlayerIndex[]) {
   const ret: Record<string, PlayerIndex> = {};
   for (const p of players) ret[p.name] = p;
-  return {
-    dic: ret,
+  setLimit({
     t1: players[Math.floor(players.length * t1_rate)].rating,
     t2: players[Math.floor(players.length * t2_rate)].rating,
-  };
+  });
+  return { dic: ret };
 }
 
 function team_dic(teams: TeamIndex[]): Record<string, TeamIndex> {

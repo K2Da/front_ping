@@ -28,3 +28,16 @@ export function get_param(default_value: string|null, key_name: string): string|
 export function days(date1: number, date2: number): number {
   return Math.floor(((date2 - date1) / 1000.0 / 60.0 / 60.0 / 24.0) + 1)
 }
+
+let rate_limits = { t1: 0, t2: 0 };
+
+export function setLimit(limits: { t1: number, t2: number }) {
+  rate_limits = limits;
+}
+
+export function cssClass(rating: number) {
+  const r = rating ?? 0;
+  if (r > rate_limits.t1) return 't1';
+  if (r > rate_limits.t2) return 't2';
+  return '';
+}

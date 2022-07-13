@@ -1,9 +1,10 @@
 <script lang="ts">
-  import { page_size, playerList, showSns, showTournament, pageNo } from '$lib/store/player'
-  import { base } from '$app/paths'
-  import PlaceHolder from '/src/parts/PlaceHolder.svelte'
-  import TeamName from '/src/parts/TeamName.svelte'
-  import TournamentName from '/src/parts/TournamentName.svelte'
+  import { page_size, playerList, showSns, showTournament, pageNo } from '$lib/store/player';
+  import { cssClass } from '$lib/util';
+  import { base } from '$app/paths';
+  import PlaceHolder from '/src/parts/PlaceHolder.svelte';
+  import TeamName from '/src/parts/TeamName.svelte';
+  import TournamentName from '/src/parts/TournamentName.svelte';
 </script>
 
 <table style="table-layout: auto">
@@ -47,7 +48,7 @@
       {#if ($pageNo - 1) * page_size <= i && i < $pageNo * page_size}
         <tr>
           <td>{player.rank.toLocaleString()}</td>
-          <td class="tal"><a href="{base}/player/detail/?p={player.hash}">{player.name}</a></td>
+          <td class="tal"><a href="{base}/player/detail/?p={player.hash}" class={cssClass(player.rating)}>{player.name}</a></td>
           <td class="tal">{#if player.data?.aliases}{player.data?.aliases?.join(', ')}{/if}</td>
           <td class="tal"><TeamName name={player.latest.team} current_name={player.latest.team_current} /></td>
           {#if $showTournament}

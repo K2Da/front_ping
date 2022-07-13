@@ -1,14 +1,15 @@
 <script lang="ts">
-  import { page_size, playerList, pageNo } from '$lib/store/player'
-  import { base } from '$app/paths'
-  import PlaceHolder from '/src/parts/PlaceHolder.svelte'
-  import TeamName from '/src/parts/TeamName.svelte'
-  import Date from '/src/parts/Date.svelte'
-  import T from '/src/parts/T.svelte'
-  import TournamentName from '/src/parts/TournamentName.svelte'
-  import Twitter from '/src/parts/link/Twitter.svelte'
-  import Youtube from '/src/parts/link/Youtube.svelte'
-  import Twitch from '/src/parts/link/Twitch.svelte'
+  import { page_size, playerList, pageNo } from '$lib/store/player';
+  import { cssClass } from '$lib/util';
+  import { base } from '$app/paths';
+  import PlaceHolder from '/src/parts/PlaceHolder.svelte';
+  import TeamName from '/src/parts/TeamName.svelte';
+  import Date from '/src/parts/Date.svelte';
+  import T from '/src/parts/T.svelte';
+  import TournamentName from '/src/parts/TournamentName.svelte';
+  import Twitter from '/src/parts/link/Twitter.svelte';
+  import Youtube from '/src/parts/link/Youtube.svelte';
+  import Twitch from '/src/parts/link/Twitch.svelte';
 </script>
 
 {#if Array.isArray($playerList)}
@@ -19,7 +20,7 @@
           <tr>
             <td class="row_no">{player.rank.toLocaleString()}:</td>
             <td class="tal">
-              <a href="{base}/player/detail/?p={player.hash}">{player.name}</a>
+              <a href="{base}/player/detail/?p={player.hash}" class={cssClass(player.rating)}>{player.name}</a>
               <T>{#if player.data?.aliases?.length > 0}({player.data?.aliases?.join(', ')}){/if}</T>
             </td>
             <td class="tar">
