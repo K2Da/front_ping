@@ -38,7 +38,7 @@
               </th>
             </tr>
             <tr>
-              <td class="tal" style="padding-left: 0.5em;"><Date date={row.date} /></td>
+              <td class="tal nw" style="padding-left: 0.5em;"><Date date={row.date} /></td>
               <td>{row.team_count.toLocaleString()} <T t="チーム" /></td>
               <td>{row.player_count.toLocaleString()} <T t="人" /></td>
               <td>{row.match_count.toLocaleString()} <T t="試合" /></td>
@@ -50,7 +50,7 @@
             </tr>
           {:else}
             <tr>
-              <td><Date date={row.date} /></td>
+              <td class="nw"><Date date={row.date} /></td>
               <td class="tal">
                 <TournamentName name={row.name} key={row.key} official={row.info.official} rating={row.rating} />
               </td>

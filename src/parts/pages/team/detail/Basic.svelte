@@ -23,6 +23,11 @@
   <dt>戦績</dt>
   <dd><TournamentsStats stats={$apiData.team} /></dd>
 
+  {#if $apiData.info?.twitter}
+    <dt><i class="fab fa-twitter"></i> twitter</dt>
+    <dd><a href="https://twitter.com/{$apiData.info.twitter}">{$apiData.info.twitter}</a></dd>
+  {/if}
+
   {#if $apiData.team.names.length > 0}
     <dt>大会登録名</dt>
     <dd>{$apiData.team.names.join(", ")}</dd>

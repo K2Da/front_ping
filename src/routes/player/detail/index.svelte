@@ -14,7 +14,7 @@
   import PlaceHolder from '/src/parts/PlaceHolder.svelte'
   import PageTab     from '/src/parts/PageTab.svelte'
 
-  let current_mode = 'basic';
+  let current_mode = 'tournament';
   $: mode_name = { basic: '基本', tournament: '大会', relation: '関連' }[current_mode];
 
   afterNavigate(() => { fetchPlayer(null) })
@@ -28,7 +28,7 @@
 
   async function fetchPlayer(player_hash) {
     if (!browser) return
-    current_mode = get_param("basic", "mode");
+    current_mode = get_param("tournament", "mode");
 
     const hash = get_param_hash(player_hash, 'p');
     if ($playerHash === hash || hash === null) return;

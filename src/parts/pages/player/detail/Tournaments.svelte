@@ -50,7 +50,7 @@
       <tbody>
       {#each $apiData.tournaments as t}
         <tr>
-          <td><Date date={t.tournament_date} /></td>
+          <td class="nw"><Date date={t.tournament_date} /></td>
           <td class="tal"><a href="#{t.tournament_key}">{t.tournament_name}</a></td>
           <td><TournamentResult rank={t.team_result} /></td>
           <td>{rate(t.rating)}</td>
